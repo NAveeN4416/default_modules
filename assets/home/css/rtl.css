@@ -1,0 +1,569 @@
+body {
+	direction: rtl;
+	unicode-bidi: embed;
+}
+
+a {
+	display: inline-block;
+}
+
+li > ul, li > ol {
+	margin: 0 20px 0 0;
+}
+caption, th, td {
+	text-align: right;
+}
+.col-lg-1,.col-md-6, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+	float: right;
+}
+.col-lg-offset-1, .col-md-offset-1, .col-sm-offset-1 {
+	margin-right: 8.333333333333332%;
+	margin-left: 0px;
+}
+.col-lg-offset-2, .col-md-offset-2, .col-sm-offset-2 {
+	margin-right: 16.666666666666664%;
+	margin-left: 0px;
+}
+.owl-carousel.owl-loaded {
+	display: block;
+	direction: ltr;
+}
+/**
+ * 2.0 Repeatable Patterns
+ * -----------------------------------------------------------------------------
+ */
+.margin-0 {
+	margin: 0px !important;
+}
+.pad-0 {
+	padding: 0px !important;
+}
+/* Header CSS
+ * -----------------------------------------------------------------------------
+ */
+.navbar-header {
+	float: right !important;
+}
+.navbar-right {
+	float: right !important;
+}
+.navbar-nav {
+	float: right;
+	margin: 0;
+}
+.mr-auto{
+    margin-left: auto!important;
+    margin-right:initial !important;
+}
+.padl_0 {
+    padding-right: 0px !important;
+    padding-left:auto !important;
+}
+/*--------===========top-header=========----------*/
+.top_navbar .navbar-dark .navbar-nav .nav-link {
+    border-left: 1px solid #0000004f;
+    border-right:none;
+}
+.no_borderr {
+    border: none !important;
+}
+.top_navbar .navbar-nav a {
+    text-align: right;
+}
+.bottom_navbar .mr-auto, .mx-auto {
+    margin-right: auto !important;
+    margin-left: initial !important;
+}
+.find_product {
+    width: 75%;
+    float: right;
+    padding-left: 10px;
+    padding-right:0px;
+}
+.post_ad {
+    width: 25%;
+    float: right;
+    padding-right: 10px;
+    padding-left:0px;
+}
+.banner-info {
+
+    text-align: right;
+
+}
+.Iam .innerIam {
+    top: 0;
+    left: initial !important;
+    right: 0 !important;
+}
+.Iam b {
+    float: right !important;
+    overflow: hidden;
+    position: relative;
+    height: 40px;
+}
+.breadcrumb-item+.breadcrumb-item {
+    padding-right: .5rem;
+}
+.breadcrumb-item+.breadcrumb-item::before {
+    display: inline-block;
+    padding-left: .5rem;
+    color: #6c757d;
+    content: "/";
+}
+.categories_menu a {
+    text-align: right;
+}
+.categories_icon {
+    margin-left: 1.5rem;
+    margin-right: auto !important;
+}
+.cat_menu i{
+    padding-left:10px;
+    padding-right:initial;
+}
+.cat_menu_icon{
+    float:right;
+}
+.cat_menu {
+    float: right;
+}
+.cat_icon {
+    float: left;
+}
+/*========================================================
+                             about_us
+=========================================================*/
+.para_about {
+    margin-right: 30px;
+    margin-left:0px;
+}
+/*========================================================
+                      non_existing_product
+=========================================================*/
+.input-group>.input-group-append>.btn, .input-group>.input-group-append>.input-group-text, .input-group>.input-group-prepend:first-child>.btn:not(:first-child), .input-group>.input-group-prepend:first-child>.input-group-text:not(:first-child), .input-group>.input-group-prepend:not(:first-child)>.btn, .input-group>.input-group-prepend:not(:first-child)>.input-group-text {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: .25rem !important;
+    border-bottom-left-radius: .25rem !important;
+}
+.flex-column{
+    padding-right:0px;
+    
+}
+.dashboard_section .sidebar .nav-link{
+    text-align:right;
+}
+.dashboard_section .sidebar .nav-link.active {
+    color: #71227D !important;
+    border-bottom: 1px solid #71227D !important;
+    padding-left: initial;
+    padding-right: 15px;
+}
+.dash_head{
+    text-align:right;
+}
+.post_n {
+    float: right;
+}
+.post_date {
+    float: left;
+}
+.exist_product h2{
+    text-align:right;
+}
+.comment_input {
+    width: 80%;
+    float: right;
+    border: none;
+}
+.exist_product .history_img {
+    width: 15%;
+    float: right;
+}
+.exist_product .history_cont {
+    width: 75%;
+    float: right;
+}
+.reply_input{
+    width:80%;
+    float:right;
+}
+
+.reply_submit{
+    width:20%;
+    float:right;
+}
+/*========================================================
+                      contact_us
+=========================================================*/
+.get_touch h3 {
+    text-align: right !important;
+}
+.get_touch p {
+    text-align: right;
+}
+/*========================================================
+                      login
+=========================================================*/
+.focus-input100::after {
+    width: auto;
+    left: auto;
+    right: 0px;
+}
+.input100 {
+    float: initial !important;
+}
+.container-login100 .form-check {
+   width:100%;
+   text-align:right;
+}
+.btn-show-pass {
+    top: 0;
+    left: 0;
+    right:auto;
+
+}
+.form-check-input {
+
+    margin-right: -1.25rem;
+}
+/*========================================================
+                      all_products
+=========================================================*/
+.best_selling{
+    float:left;
+}
+.filter h3 {
+    text-align: right;
+}
+.allpro_section	.panel-title > a {
+    text-align: right;
+}
+.allpro_section .panel-default>.panel-heading a[aria-expanded="false"]:after {
+    float: left;
+}
+.allpro_section .panel-default>.panel-heading a[aria-expanded="true"]:after {
+    float: left;
+}
+.cat_list li {
+    margin-bottom: 15px;
+    width: 100%;
+    overflow: hidden;
+}
+.cat_name{
+    float:right;
+}
+.cat_check {
+    float: left;
+}
+.reset_btn, .apply_btn {
+    width: 50%;
+    float: right;
+}
+.reset_btn button {
+    width: 70%;
+    float: right;
+}
+.apply_btn button {
+    width: 70%;
+    float: left;
+}
+.love_icon {
+    position: absolute;
+    z-index: 500;
+    top: 10px;
+    right: 15px;
+    left: auto;
+}
+.pro_content {
+    text-align: right;
+}
+.period_btns a{
+    text-align:right;
+}
+/*========================================================
+                      user_profile
+=========================================================*/
+.sidebar_icon i {
+    margin-left: 10px;
+    margin-right:auto;
+}
+.owner_profile .owner_pic {
+    width: 30% !important;
+    float:right;
+}
+.owner_profile .owner_details {
+    text-align: right;
+}
+/*========================================================
+                      footer
+=========================================================*/
+.about_ajer img {
+    height: 60px;
+    float: right;
+}
+.about_ajer p {
+    width: 100%;
+    display: -webkit-box;
+}
+.footer_menu{
+    text-align:right;
+}
+.footer_help{
+    text-align:right;
+}
+.chat_icon img {
+    height: 60px;
+    float: left;
+    margin-top: 50px;
+}
+.copy_para p {
+    text-align: right;
+}
+.copy_payments {
+    float: left;
+}
+
+
+/*========================================================
+                      header
+=========================================================*/
+.ajer2_nav a {
+    border-left: 1px solid #0000001f;
+    border-right:none !important;
+}
+.dropdown-toggle::after {
+    display:none;
+}
+.navbar-nav {
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+.ml-auto {
+    margin-right: auto !important;
+   margin-left: unset !important;
+}
+.header_input_group input {
+    border-radius: 0px;
+    border-left: none;
+    border-right: 1px solid #ced4da !important;
+}
+ul.list-group.a2FooterLinks.a2Footericons {
+    display: -webkit-inline-box;
+    padding-right: 0;
+}
+.footer_info {
+    text-align: right;
+}
+ul.list-group.a2FooterLinks {
+    padding: 0;
+}
+.a2_footer_logo {
+    margin-bottom: 30px;
+    text-align: right;
+}
+.contactinfo-address, .contactinfo-phone, .contactinfo-email {
+    padding-left: 0px;
+    padding-right: 30px !important;
+    text-align: right;
+}
+.contactinfo-address .fa, .contactinfo-phone .fa, .contactinfo-email .fa {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 16px;
+}
+#goToTop {
+    left: 20px;
+    right:auto !important;
+}
+.categories_dropdown .dropdown-content {
+    right: 0px !important;
+    left:auto !important;
+}
+.booking_time {
+    text-align: right;
+}
+.detinner_box {
+    text-align: right;
+}
+.prod_info {
+    text-align: right;
+}
+.owner_details {
+    float: right;
+}
+.owner_details {
+    float: right;
+    text-align: right;
+}
+.owner_pic {
+    width: 10%;
+    float: right;
+}
+.categories_dropdown .dropdown-content a {
+    text-align: right;
+}
+.about_para{
+    text-align:right;
+}
+.terms_conditions {
+    text-align: right !important;
+}
+.tab-content{
+    display: block;
+    text-align: right;
+}
+.owner_details>span{
+    float:left;
+}
+button.btn.btn-success.edit_profile{
+    margin:0 !important;
+}
+.history_img {
+    width: 45%;
+    float: right;
+}
+.history_tabs .nav-item:nth-child(1) {
+    border-left: 1px solid #dee2e6;
+    border-right: none;
+}
+.fav_div .history_img {
+    width: 45%;
+    float: right;
+    padding: 0px 15px;
+}
+.notification_div .closebtn {
+    margin-left: 15px;
+    color: #71227D !important;
+    font-weight: bold;
+    float: left;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.alert_content {
+    width: 70%;
+    float: right;
+    padding: 0px 15px;
+}
+.user_img {
+    width: 20%;
+    float: right;
+}
+.chat_tabs {
+    text-align: left !important;
+    padding: 0px !important;
+}
+.nav_tr td:nth-child(1) {
+    padding-right: 0px;
+}
+.date_time {
+    font-size: 13px;
+    color: #000;
+    float: left;
+}
+.chip_right {
+    float: left;
+    padding-left: 0px;
+    padding-right: 10px;
+}
+.chip_right img {
+    float: left;
+    margin: 0 10px 0 0px;
+}
+.chat-submit {
+    position: absolute;
+    bottom: 3px;
+    left: 10px !important;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    border-radius: 50%;
+    color: #71227D !important;
+    width: 35px;
+    height: 35px;
+    right: auto !important;
+}
+#chat-input {
+    padding-left: 50px !important;
+    padding-right: 15px !important;
+}
+.message_left .chip img {
+    float: right;
+    margin: 0 -25px 0 10px;
+}
+.col-md-6.agree_button{
+    float:left;
+}
+.col-md-6.agree_button>a{
+    float:left;
+}
+.form-group {
+    margin-bottom: 1rem;
+    text-align: right;
+}
+.form-check {
+    padding-right: 1.25rem;
+    padding-left: 0;
+}
+.cost_check .form-check-label {
+    width: 33.33%;
+    float: right;
+}
+.file-upload-input {
+    width: 65%;
+    float: right;
+}
+.submit_col {
+    float: left !important;
+}
+.modal-footer>:not(:first-child) {
+    margin-right: .25rem;
+    margin-left: 0;
+}
+.modal-header .close {
+    padding: 0;
+    margin: 0;
+}
+.booked_pro{
+    text-align:right;
+}
+.booking_info .owner_details {
+    width: 70%;
+    float: right;
+    padding: 0px 10px;
+}
+.trusted_user {
+    position: absolute;
+    right: 44px; 
+    left:auto;
+}
+.owner_profile .trusted_user {
+    position: absolute;
+    right: 110px !important;
+    left:auto !important;
+}
+.history_cont {
+    float: right;
+}
+.nav-tabs {
+    border-bottom: 1px solid #dee2e6;
+    padding: 0;
+}
+.booking_info .trusted_user {
+    position: absolute;
+    right: -5px;
+    left:auto;
+}
+.pull-right {
+    float: left !important;
+}
+.detinner_box {
+    width: 50%;
+    float: right !important;
+    padding: 0px 5px;
+}

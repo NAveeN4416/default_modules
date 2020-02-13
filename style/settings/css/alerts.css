@@ -1,0 +1,106 @@
+.alert {
+	position: relative;
+	padding: 15px 20px;
+	background: #CBE2C1;
+	border: solid thin #B2CFA6;
+	margin: 0 0 10px 0;
+	color: rgba(0,0,0,0.6);
+	border-radius: 0;
+	transition: all 0.3s ease;
+}
+
+.alert a, .alert a:link, .alert a:visited, .alert a:active {
+	color: rgba(0,0,0,0.6);
+	font-weight: bold;
+	text-decoration: underline;
+}
+.alert a:hover { color: rgba(0,0,0,0.7); }
+
+.alert .close-alert {
+	position: absolute;
+	top: 3px;
+	color: rgba(0,0,0,0.5);
+	cursor: pointer;
+	font-weight: normal;
+	font-size: 20px;
+	opacity: 0.5;
+	transition: all 0.1s ease;
+}
+.alert .close-alert:hover {
+	opacity: 1;
+}
+
+.alert.hover:hover {
+	opacity: 0.8;
+}
+
+.alert.white-bg {
+	background: #FFF;
+	border-color: rgba(0,0,0,0.2);
+}
+
+.alert.default {
+	background: #EBEBEB;
+	border-color: #C7C7C7;
+}
+.alert.error {
+	background: #E4C8C8;
+	border-color: #CFA9A9;
+}
+.alert.warning {
+	background: #E8E3C9;
+	border-color: #CFC9AB;
+}
+.alert.info {
+	background: #BFDEED;
+	border-color: #9EC2D3;
+}
+
+body.scheme-teal .alert.primary {
+	background: #16a085;
+}
+body.scheme-green .alert.primary {
+	background: #27ae60;
+}
+body.scheme-blue .alert.primary {
+	background: #2980b9;
+}
+body.scheme-lightblue .alert.primary {
+	background: #03a9f4;
+}
+body.scheme-cyan .alert.primary {
+	background: #00bcd4;
+}
+body.scheme-magenta .alert.primary {
+	background: #8e44ad;
+}
+body.scheme-purple .alert.primary {
+	background: #9c27b0;
+}
+body.scheme-pink .alert.primary {
+	background: #e91e63;
+}
+body.scheme-dark .alert.primary {
+	background: #2c3e50;
+}
+body.scheme-yellow .alert.primary {
+	background: #f1c40f;
+}
+body.scheme-orange .alert.primary {
+	background: #d35400;
+}
+body.scheme-red .alert.primary {
+	background: #c0392b;
+}
+body.scheme-lightgrey .alert.primary {
+	background: #bdc3c7;
+}
+body.scheme-grey .alert.primary {
+	background: #7f8c8d;
+}
+body.scheme-white .alert.primary {
+	background: #fff;
+}
+body[class*='scheme-'] .alert.primary {
+	border-color: rgba(0,0,0,0.15);
+}

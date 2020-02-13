@@ -1,0 +1,19 @@
+.breadcrumb > li + li:before {
+	font-family: "FontAwesome";
+	content: "\f105";
+	margin: 0 5px;
+	color: rgba(0,0,0,0.5);
+}
+
+.breadcrumb > li {
+	color: #0B84FE;
+}
+
+.breadcrumb > .active {
+	color: #1F2C36 !important;
+	background: transparent;
+	font-weight: bold;
+}
+.breadcrumb > .active:before {
+	font-weight: normal;
+}

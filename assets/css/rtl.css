@@ -1,0 +1,96 @@
+
+@font-face {
+    font-family: Helvetica  !important;
+    font-style: normal;
+    font-weight: normal;
+    src: url('http://www.volive.in/zido/assets/fonts/heliveca/HelveticaNeueLT-MediumCond.otf') format('opentype');
+}
+
+
+body {
+	font-family:Helvetica  !important;
+    direction: rtl;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: Helvetica  !important;
+}
+
+.col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9 {
+    float: right;
+}
+.col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9 {
+    float: right;
+}
+a {
+	font-family: Helvetica  !important;
+	display: inline-block;
+}
+/*ul,
+ol {
+	margin: 0 20px 24px 0;
+}
+*/
+li > ul, li > ol {
+	margin: 0 20px 0 0;
+}
+caption, th, td {
+	text-align: right;
+}
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+	float: right !important;
+}
+.col-lg-offset-1, .col-md-offset-1, .col-sm-offset-1 {
+	margin-right: 8.333333333333332%;
+	margin-left: 0px;
+}
+.col-lg-offset-2, .col-md-offset-2, .col-sm-offset-2 {
+	margin-right: 16.666666666666664%;
+	margin-left: 0px;
+}
+.navbar-header {
+    float: right;
+}
+.navbar-nav>li {
+    float: right;
+}
+.navbar-right {
+    float: left!important;
+}
+.our-service-section {
+    direction: ltr;
+}
+.feature-content h3::after {
+    right: 45px;
+}
+.feature-icon i {
+    float: right;
+}
+.feature-icon i {
+    text-align: right;
+}
+.col-md-offset-2 {
+    margin-left: auto;
+    margin-right: 16.66666667%;
+}
+.our-testimonials-section {
+    direction: ltr;
+}
+.col-md-push-3 {
+    left: auto;
+    right: 25%;
+}
+.footer-menu li {
+    border-left: 1px solid#ffffff;
+    border-right: 0px solid#ffffff;
+}
+.footer-menu li:last-child {
+    border-left: none;
+}
+#scrollUp {
+    left: 3%;
+    right: auto;
+}
+
+
+

@@ -1,0 +1,116 @@
+/* Preserved spaces for RTL list item bullets. (#6249)*/
+ol,ul,dl
+{
+	padding-right:40px;
+}
+
+/*
+h1 { 
+    display: block;
+    font-size: 2em;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+h3 { 
+    display: block;
+    font-size: 1.17em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+h4 { 
+    display: block;
+    margin-top: 1.33em;
+    margin-bottom: 1.33em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+h5 { 
+    display: block;
+    font-size: .83em;
+    margin-top: 1.67em;
+    margin-bottom: 1.67em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+h6 { 
+    display: block;
+    font-size: .67em;
+    margin-top: 2.33em;
+    margin-bottom: 2.33em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+*/
+
+h1.white
+{
+	color: #FFF;
+}
+
+h1.black
+{
+	color: #333;
+}
+
+h3.green
+{
+	color: #739E39;
+	font-weight:normal;
+}
+
+span.markYellow { background-color: yellow; }
+span.markGreen { background-color: lime; }
+
+img.left
+{
+	padding: 5px;
+	margin-right: 5px;
+	float:left;
+	border:2px solid #DDD;
+}
+
+img.right
+{
+	padding: 5px;
+	margin-right: 5px;
+	float:right;
+	border:2px solid #DDD;
+}
+
+a.green
+{
+	color:#739E39;
+}
+
+table.grey
+{
+	background-color : #F5F5F5;
+}
+
+table.grey th
+{
+	background-color : #DDD;
+}
+
+ul.square
+{
+	list-style-type : square;
+}
