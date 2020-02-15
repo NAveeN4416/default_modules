@@ -37,8 +37,12 @@ class Admin extends Base {
 
   public function Check_Authentication()
   {
-    if(!$this->is_authenticated || !$this->is_superuser){
+    if(!$this->is_authenticated){
       redirect('admin/auth');
+    }
+
+    if(!$this->is_superuser){
+      redirect('admin/subadmin/');
     }
   }
 

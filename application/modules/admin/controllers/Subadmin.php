@@ -18,8 +18,13 @@ class Subadmin extends Base {
     }
   }
 
-  function index()
+  public function index()
   {
-    echo "Welcome Subadmin ! <br>"."<a href='".base_url()."admin/subadmin/logout'>Logout here</a>" ;
+    $this->data['page_name'] = 'dashboard' ;
+
+    $this->load->view('includes/header',$this->data);
+    $this->load->view('includes/side_menu',$this->data);
+    $this->load->view('index',$this->data);
+    $this->load->view('includes/footer',$this->data);
   }
 }

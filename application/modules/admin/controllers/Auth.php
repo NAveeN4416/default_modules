@@ -33,7 +33,7 @@ class Auth extends Base {
   {
   	$login_config = $this->Auth_model->login_config();
 
-    $where[$login_config['web_key']] = 'admin@gmail.com' ;
+    $where[$login_config['web_key']] = 'developer@gmail.com' ;
     $where['password'] = base64_encode(123456) ;
 
   	$user = $this->db->where($where)->get('auth_users')->row_array();
@@ -53,7 +53,7 @@ class Auth extends Base {
 
 	    if($flag)
 	    {
-	      redirect('admin/auth');
+	      redirect('admin');
 	    }
     }
 

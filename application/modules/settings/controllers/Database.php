@@ -43,15 +43,6 @@ class Database extends Base {
     $this->load->view('includes/footer',$this->data);
   }
 
-  public function site_config()
-  {
-  	$this->data['site_config'] = $this->DB_model->get_site_config();
-    $this->data['page_name'] = 'site_config' ;
 
-    $this->load->view('includes/header',$this->data);
-    $this->load->view('includes/side_menu',$this->data);
-    $this->load->view('site_config',$this->data);
-    $this->load->view('includes/footer',$this->data);
-  }
 
 }
