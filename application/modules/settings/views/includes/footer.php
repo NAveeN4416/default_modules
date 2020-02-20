@@ -19,54 +19,59 @@
 
 
 <!-- Bootstrap 4 -->
-<script src="<?=base_url()?>style/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?=base_url()?>style/settings/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- SweetAlert2 -->
-<script src="<?=base_url()?>style/admin/plugins/sweetalert2/sweetalert2.min.js"></script>
+<script src="<?=base_url()?>style/settings/plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- Toastr -->
-<script src="<?=base_url()?>style/admin/plugins/toastr/toastr.min.js"></script>
+<script src="<?=base_url()?>style/settings/plugins/toastr/toastr.min.js"></script>
 
 <!-- Select2 -->
-<script src="<?=base_url()?>style/admin/plugins/select2/js/select2.full.min.js"></script>
+<script src="<?=base_url()?>style/settings/plugins/select2/js/select2.full.min.js"></script>
 
 <!-- Bootstrap4 Duallistbox -->
-<script src="<?=base_url()?>style/admin/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<script src="<?=base_url()?>style/settings/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+
 
 <!-- ChartJS -->
-<script src="<?=base_url()?>style/admin/plugins/chart.js/Chart.min.js"></script>
+<script src="<?=base_url()?>style/settings/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
-<script src="<?=base_url()?>style/admin/plugins/sparklines/sparkline.js"></script>
+<script src="<?=base_url()?>style/settings/plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->
-<script src="<?=base_url()?>style/admin/plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="<?=base_url()?>style/admin/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<script src="<?=base_url()?>style/settings/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="<?=base_url()?>style/settings/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
 <!-- jQuery Knob Chart -->
-<script src="<?=base_url()?>style/admin/plugins/jquery-knob/jquery.knob.min.js"></script>
+<script src="<?=base_url()?>style/settings/plugins/jquery-knob/jquery.knob.min.js"></script>
 <!-- daterangepicker -->
-<script src="<?=base_url()?>style/admin/plugins/moment/moment.min.js"></script>
-<script src="<?=base_url()?>style/admin/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
-<script src="<?=base_url()?>style/admin/plugins/daterangepicker/daterangepicker.js"></script>
-<script src="<?=base_url()?>style/admin/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<script src="<?=base_url()?>style/settings/plugins/moment/moment.min.js"></script>
+<script src="<?=base_url()?>style/settings/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+<script src="<?=base_url()?>style/settings/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="<?=base_url()?>style/settings/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="<?=base_url()?>style/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="<?=base_url()?>style/settings/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- Bootstrap Switch -->
-<script src="<?=base_url()?>style/admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<script src="<?=base_url()?>style/settings/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <!-- Summernote -->
-<script src="<?=base_url()?>style/admin/plugins/summernote/summernote-bs4.min.js"></script>
+<script src="<?=base_url()?>style/settings/plugins/summernote/summernote-bs4.min.js"></script>
 <!-- overlayScrollbars -->
-<script src="<?=base_url()?>style/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="<?=base_url()?>style/settings/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
-<script src="<?=base_url()?>style/admin/dist/js/adminlte.js"></script>
+<script src="<?=base_url()?>style/settings/dist/js/adminlte.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?=base_url()?>style/admin/dist/js/pages/dashboard.js"></script>
+<script src="<?=base_url()?>style/settings/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="<?=base_url()?>style/admin/dist/js/demo.js"></script>
+<script src="<?=base_url()?>style/settings/dist/js/demo.js"></script>
 
+<!-- Datables -->
+<script type="text/javascript" src="<?=base_url()?>style/datatables.js"></script>
 
 
 
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
+  //Bootstrap Duallistbox
+  $('.duallistbox').bootstrapDualListbox()
 </script>
 
 <script type="text/javascript">
@@ -299,7 +304,7 @@ function Set_ThirdPartyConfig(Thirdparty_name,config_id)
   data.append('mode',mode);
 
   var object = {
-      'url'  : "<?=base_url('settings/base/Change_ThirdPartyMode')?>" ,
+      'url'  : "<?=base_url('settings/base/Change_ThirdPartyMode')?>",
       "data" : data,
       "type" : "post"
   } ;
@@ -309,6 +314,43 @@ function Set_ThirdPartyConfig(Thirdparty_name,config_id)
 
 </script>
 <!-- Site Config Page END -->
+
+
+
+<script type="text/javascript">
+    var $modal = $('#add_category');
+
+    $('.add_category').on('click',function(event){ 
+
+        var id = $(this).data('id');
+
+        event.stopPropagation();
+
+        $modal.load('<?php echo site_url('settings/database/Get_Device_Form');?>', {id: id},
+        function(){
+        /*$('.modal').replaceWith('');*/
+          $("#add_category").modal('show');
+        });
+
+    });
+</script>
+
+<script type="text/javascript">
+    var $modal = $('#add_group');
+
+    $('.add_group').on('click',function(event){ 
+        var id = $(this).data('id');
+        event.stopPropagation();
+
+        $modal.load('<?php echo site_url('settings/user_groups/add_edit_group');?>', {id: id},
+        function(){
+        /*$('.modal').replaceWith('');*/
+          $modal.modal('show');
+        });
+
+    });
+</script>
+
 
 
 <script type="text/javascript">
@@ -322,6 +364,10 @@ function Show_Warning(msg)
   toastr.warning(msg);
 }
 
+function Show_Error(msg)
+{
+  toastr.danger(msg);
+}
 
 //Overload this with custom method
 function AjaxBeforeSend()
@@ -332,10 +378,10 @@ function AjaxBeforeSend()
 //Overload this method with custom method
 function AjaxComplete()
 {
-  console.log("Request Completed")
+  console.log("Response Recieved")
   Toast.fire({
     type: 'success',
-    title: 'Ajax Request Completed'
+    title: 'Ajax Response 200 OK'
   })
 }
 
@@ -343,10 +389,15 @@ function Ajaxerror()
 {
   Toast.fire({
     type: 'error',
-    title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+    title: 'Ajax Response Error !'
   })
 }
 
+
+function JSONparse($response)
+{
+  return JSON.parse($response);
+}
 
 function AjaxUpdate(object,async=false)
 {

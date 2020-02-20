@@ -60,9 +60,11 @@
             <div class="card card-secondary">
               <div class="card-header">
                 <h3 class="card-title">Mobile Config</h3>
-                <span data-placement="right" data-toggle="tooltip" id="mobile_manage" title="Manage Mobile Api's here">
-                  <button style="margin-left: 120px" class="btn btn-light btn-sm"><i class="fas fa-eye"></i> Manage</button>
-                </span>
+                <a href="<?=base_url('settings/database/mobile_config')?>">
+                  <span data-placement="right" data-toggle="tooltip" id="mobile_manage" title="Manage Mobile Api's here">
+                    <button style="margin-left: 120px" class="btn btn-light btn-sm"><i class="fas fa-eye"></i> Manage</button>
+                  </span>
+                </a>
               </div>
               <div class="card-body">
               <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">

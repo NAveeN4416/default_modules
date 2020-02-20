@@ -104,3 +104,7 @@ define('USERS', 'auth_users');
 define('USER_DETAILS', 'auth_user_details');
 define('LOGIN_CONFIG', 'login_config');
 define('SITE_CONFIG', 'site_configurations');
+define('AUTH_GROUPS', 'auth_groups');
+define('MOBILE_DEVICES', 'mobile_devices');
+define('MOBILE_CONFIG', 'mobile_configurations');
+define('THIRD_PARYT_CONFIG', 'third_party_configurations');

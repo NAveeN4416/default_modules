@@ -11,7 +11,19 @@ class Base extends CO_Controller {
     parent::__construct();
     $this->load->library('session');
     $this->load->model('DB_model');
-    
+
+    $this->controller = "base";
+    $this->controller_path = "settings/base/";
+
+    $this->Check_And_Redirect();
+
+    //Ajax Attrs
+    $this->Ajax['status'] = 1 ;
+    $this->Ajax['message'] = "Success" ;
+  }
+
+  public function Check_And_Redirect()
+  {
     $this->superuser = $this->session->IS_SUPERUSER;
     $this->is_authenticated = $this->session->is_authenticated;
     $this->role = $this->superuser ? 'developer' :  $this->session->GROUP_NAME;
@@ -21,18 +33,12 @@ class Base extends CO_Controller {
 
     if($this->role!='developer')
       redirect('settings/errors/Not_Authorised');
-
-
-    $this->controller = "base";
-    $this->controller_path = "settings/base/";
   }
 
 
   public function index()
   {
-    $this->data['page_name']      = 'settings' ;
-    $this->data['site_config']    =  $this->DB_model->get_site_config();
-    $this->data['mobile_configs'] =  $this->DB_model->get_MobileConfig();
+    $this->data['page_name'] = 'settings' ;
 
     $this->Load_View('index',$this->data);
   }
@@ -44,10 +50,7 @@ class Base extends CO_Controller {
     $this->data['mobile_configs'] =  $this->DB_model->get_MobileConfig();
     $this->data['thirdparty_configs'] =  $this->DB_model->get_thirdparty_config();
 
-    $this->load->view('includes/header',$this->data);
-    $this->load->view('includes/side_menu',$this->data);
-    $this->load->view('site_config',$this->data);
-    $this->load->view('includes/footer',$this->data);
+    $this->Load_View('site_config',$this->data);
   }
 
 
@@ -138,6 +141,14 @@ class Base extends CO_Controller {
     $this->load->view($body,$context);
     $this->load->view('includes/footer',$this->data);
   }
+
+  public function AjaxResponse(){
+
+    $send = $this->Ajax;
+
+    return json_encode($send);
+  }
+
 
   public function _remap($method, $args = array())
   {

@@ -7,35 +7,42 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?=base_url()?>style/admin/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>style/settings/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- SweetAlert2 -->
-  <link rel="stylesheet" href="<?=base_url()?>style/admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>style/settings/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
   <!-- Toastr -->
-  <link rel="stylesheet" href="<?=base_url()?>style/admin/plugins/toastr/toastr.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>style/settings/plugins/toastr/toastr.min.css">
 
   <!-- Tempusdominus Bbootstrap 4 -->
-  <link rel="stylesheet" href="<?=base_url()?>style/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>style/settings/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- iCheck -->
-  <link rel="stylesheet" href="<?=base_url()?>style/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>style/settings/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+
+  <!-- Bootstrap4 Duallistbox -->
+  <link rel="stylesheet" href="<?=base_url()?>style/settings/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+
   <!-- JQVMap -->
-  <link rel="stylesheet" href="<?=base_url()?>style/admin/plugins/jqvmap/jqvmap.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>style/settings/plugins/jqvmap/jqvmap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?=base_url()?>style/admin/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>style/settings/dist/css/adminlte.min.css">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="<?=base_url()?>style/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>style/settings/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="<?=base_url()?>style/admin/plugins/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="<?=base_url()?>style/settings/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
-  <link rel="stylesheet" href="<?=base_url()?>style/admin/plugins/summernote/summernote-bs4.css">
+  <link rel="stylesheet" href="<?=base_url()?>style/settings/plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
   <!-- jQuery -->
-  <script src="<?=base_url()?>style/admin/plugins/jquery/jquery.min.js"></script>
+  <script src="<?=base_url()?>style/settings/plugins/jquery/jquery.min.js"></script>
   <!-- jQuery UI 1.11.4 -->
-  <script src="<?=base_url()?>style/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
+  <script src="<?=base_url()?>style/settings/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="<?=base_url()?>style/datatables.css"/>
+
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -51,9 +58,10 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="<?=base_url('admin')?>" class="nav-link" title="Admin Panel"> <i class="nav-icon fa fa-user"></i></a>
       </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="<?=base_url('settings/user_groups/')?>" class="nav-link" title="Groups & Permissions"> <i class="fa fa-users" aria-hidden="true"></i> Groups & <i class="fa fa-lock" aria-hidden="true"></i> Permissions </a>
+      </li>
     </ul>
-    
-
 
     <!-- Right navbar links -->
     <!-- <ul class="navbar-nav ml-auto">
@@ -83,7 +91,7 @@
           <a href="#" class="dropdown-item">
             Message Start
             <div class="media">
-              <img src="<?=base_url()?>style/admin/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <img src="<?=base_url()?>style/settings/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Brad Diesel
@@ -99,7 +107,7 @@
           <a href="#" class="dropdown-item">
             Message Start
             <div class="media">
-              <img src="<?=base_url()?>style/admin/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="<?=base_url()?>style/settings/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   John Pierce
@@ -115,7 +123,7 @@
           <a href="#" class="dropdown-item">
             Message Start
             <div class="media">
-              <img src="<?=base_url()?>style/admin/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="<?=base_url()?>style/settings/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Nora Silvester
@@ -144,7 +152,7 @@
           <a href="#" class="dropdown-item">
             Message Start
             <div class="media">
-              <img src="<?=base_url()?>style/admin/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <img src="<?=base_url()?>style/settings/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Brad Diesel
@@ -160,7 +168,7 @@
           <a href="#" class="dropdown-item">
             Message Start
             <div class="media">
-              <img src="<?=base_url()?>style/admin/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="<?=base_url()?>style/settings/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   John Pierce
@@ -176,7 +184,7 @@
           <a href="#" class="dropdown-item">
             Message Start
             <div class="media">
-              <img src="<?=base_url()?>style/admin/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="<?=base_url()?>style/settings/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Nora Silvester

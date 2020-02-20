@@ -28,7 +28,7 @@
 
           <li class="nav-header">Settings</li>
           <li class="nav-item">
-            <a href="<?=base_url('settings/database/site_config')?>" class="nav-link">
+            <a href="<?=base_url('settings/base/site_config')?>" class="nav-link">
               <i class="nav-icon fa fa-cog"></i>
               <p>Configurations
               </p>
