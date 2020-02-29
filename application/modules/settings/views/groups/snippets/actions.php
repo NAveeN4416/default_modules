@@ -8,6 +8,11 @@
 	</button>
   	<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
  	  	<li>
+  			<a target="_blank" href="<?=base_url('settings/user_groups/Get_GroupUsers/')?><?=$group_id?>"  class="dropdown-item">
+	  		<i class="fa fa-users"></i> Manage Users
+	  		</a>
+	  	</li>
+ 	  	<li>
   			<a href="<?=base_url('settings/user_permissions/edit_permissions/')?><?=$group_id?>"  class="dropdown-item">
 	  		<i class="fa fa-lock"></i> Manage Permissions
 	  		</a>

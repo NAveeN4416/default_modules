@@ -16,7 +16,7 @@ class Base extends CO_Controller {
     $this->set_lang();
 
     $this->initilize_session();
-
+    $this->Load_Menu();
   }
 
   public function set_lang()
@@ -49,6 +49,12 @@ class Base extends CO_Controller {
     $this->is_active = ($this->session->IS_ACTIVE) ? true : false ;
     $this->role = ($this->session->GROUP_NAME) ? $this->session->GROUP_NAME : '' ;
     $this->username = ($this->session->USERNAME) ? $this->session->USERNAME : NULL ;
+  }
+
+
+  public function Load_Menu()
+  {
+    $this->menu = $this->Admin_model->Get_Menu();
   }
 
   public function _remap($method, $args = array())

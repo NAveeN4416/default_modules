@@ -34,25 +34,10 @@ class Permissions {
 
     }
 
-    public function get_permissions($permissions)
-    {
-        $total_permissions = array();
-
-        foreach ($permissions as $key => $permission) {
-           $permission = $this->_CI->db->where_in('id',$permission)
-                                     ->get('auth_permissions')
-                                     ->row_array();
-
-            array_push($total_permissions, $permission);
-        }
-
-        return $total_permissions;
-    }
-
 
     public function get_group_permissions($group_id)
     {
-        return $this->_CI->db->select('permission_id')
+        return $this->_CI->db->select('*')
                              ->where('group_id',$group_id)
                              ->get('auth_group_permissions')
                              ->result_array();

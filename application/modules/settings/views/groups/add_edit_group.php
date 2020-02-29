@@ -26,7 +26,7 @@
         <!-- /.card-body -->
 
         <div class="card-footer">
-          <button type="submit" class="btn btn-primary" style="float: right"> Save Data</button>
+          <button type="submit" class="btn btn-primary" style="float: right">Submit</button>
         </div>
       </form>
       </div>

@@ -35,4 +35,8 @@
 		return $this->db->set($set)->where($where)->update(AUTH_GROUPS);
 	}
 
+	public function Get_GroupUsers($group_id)
+	{
+		$user_ids = $this->db->where('group_id',$group_id)->get(AUTH_USER_GROUPS)->result_array();
+	}
 }

@@ -32,7 +32,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Groups Permissions</h1>
+            <h1>Group Permissions</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -47,11 +47,9 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        
         <div class="card card-default">
           <div class="card-header">
-            <h3 class="card-title">Manager Permissions  <i class="fas fa-map-signs"></i></h3>
-            
+            <h3 class="card-title"><?=$group['group_name']?> Permissions  <i class="fas fa-map-signs"></i></h3>
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
               <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
@@ -59,37 +57,57 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
+          <form id="permissions" onsubmit="return Submit_Permissions()">
+            <input type="hidden" name="group_id" value="<?=$group_id?>">
+            <!-- <div class="form-group">
+              <label>Choose Group</label>
+              <select class="form-control select2" style="width: 100%;" name="group_id" required>
+                <option value='' selected="selected">-- Select --</option>
+                <?php foreach ($groups as $key => $group) { ?>
+                  <option value="<?=$group['id']?>" <?=($permissions['group_id']==$group['id'])? 'selected' : ''?> ><?=strtoupper($group['group_name'])?></option>
+                <?php } ?>
+              </select>
+            </div> -->
             <div class="row">
+            <?php if(@$permissions){ ?>  
               <div class="col-12">
                 <div class="form-group">
-                  <select class="duallistbox" multiple="multiple">
-                    <option selected>Alabama</option>
-                    <option>Alaska</option>
-                    <option>California</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option>
+                  <select class="duallistbox" multiple="multiple" name="permissions[]">
+                  <?php foreach ($menu as $key => $m) { ?>
+                    <option value="<?=$m['id']?>" <?php if(in_array($m['link'], $permissions['permissions'])) { echo "selected" ; }  ?>><?=$m['name']?></option>
+                  <?php } ?>
                   </select>
                 </div>
                 <!-- /.form-group -->
               </div>
+            <?php }else{ ?>
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Choose Permissions</label>
+                  <select class="duallistbox" multiple="multiple" name="permissions[]" required>
+                  <?php foreach ($menu as $key => $m) { ?>
+                    <option value="<?=$m['link']?>"><?=$m['name']?></option>
+                  <?php } ?>
+                  </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+            <?php } ?>
               <!-- /.col -->
             </div>
+            <button type="submit" class="btn btn-primary btn-sm" style="float: right">Submit</button>
             <!-- /.row -->
+          </form>
           </div>
           <!-- /.card-body -->
         </div>
         <!-- /.card -->
       </div><!-- /.container-fluid -->
     </section>
-    <!-- /.content -->
-    <section>
-      <div class="modal fade" data-backdrop="static" data-keyboard="false" id="add_group" tabindex = "-1" role = "dialog" aria-labelledby="myModalLabel" aria-hidden = "true"></div>
-    </section>
   </div>
 
-<script type="text/javascript">
+
+<!-- <script type="text/javascript">
 
 $(document).ready(function(){
 var dTable =  $('#example').DataTable({
@@ -146,30 +164,22 @@ var dTable =  $('#example').DataTable({
 });
 
 
-</script>
+</script> -->
 
 
 <script type="text/javascript">
-function GroupActivity(group_id)
+function Submit_Permissions()
 {
-  var status = 0 ;
-
-  if($("#group_status"+group_id).is(":checked")==true)
-  {
-    status = 1 ;
-  }
-
-  var data = new FormData();
-  data.append('group_id',group_id);
-  data.append('status',status);
-
+  var data = new FormData($('form#permissions')[0]);  
   var object = {
-      'url'  : "<?=base_url('settings/user_groups/GroupActivity')?>" ,
+      'url'  : "<?=base_url('settings/user_permissions/Submit_Permissions')?>" ,
       "data" : data,
       "type" : "post"
   } ;
 
   $response_object = AjaxUpdate(object);
+
+  return false;
 }
 </script>
 

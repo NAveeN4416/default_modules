@@ -35,7 +35,7 @@
           <table id="example" class="table table-bordered table-hover display" style="width:100%">
             <thead>
                 <tr>
-                    <th>group_name</th>
+                    <th>Groups Name</th>
                     <th>Status</th>
                     <th>Actions</th>
                 </tr>
@@ -44,9 +44,6 @@
             </tbody>
           </table>
         </div>
-
-      
-
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
@@ -61,7 +58,8 @@ $(document).ready(function(){
 var dTable =  $('#example').DataTable({
     ajax: {
       url: '<?=base_url('settings/user_groups/getgroups')?>',
-      dataSrc: 'data'
+      dataSrc: 'data',
+      type : 'post'
     },
     drawCallback: function(settings){
       $('.dataTables_length select, .dataTables_filter input').addClass('form-control');

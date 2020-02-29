@@ -20,6 +20,12 @@
   <!-- iCheck -->
   <link rel="stylesheet" href="<?=base_url()?>style/settings/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 
+  <!-- Select2 -->
+  <link rel="stylesheet" href="<?=base_url()?>style/settings/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>style/settings/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
+
+
   <!-- Bootstrap4 Duallistbox -->
   <link rel="stylesheet" href="<?=base_url()?>style/settings/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
 
@@ -43,6 +49,11 @@
 
   <link rel="stylesheet" type="text/css" href="<?=base_url()?>style/datatables.css"/>
 
+  <script type="text/javascript">
+    //Global Variables -- Common overall project
+    var CHECK_DB_FLAG = false ;
+    var STATE_CHANGED = false ;
+  </script>
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -61,6 +72,11 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="<?=base_url('settings/user_groups/')?>" class="nav-link" title="Groups & Permissions"> <i class="fa fa-users" aria-hidden="true"></i> Groups & <i class="fa fa-lock" aria-hidden="true"></i> Permissions </a>
       </li>
+
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="<?=base_url('settings/menu/')?>" class="nav-link" title="Groups & Permissions"> <i class="fas fa-chevron-circle-down"></i> Menu </a>
+      </li>
+
     </ul>
 
     <!-- Right navbar links -->

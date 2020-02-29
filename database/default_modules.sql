@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 13, 2020 at 02:09 PM
+-- Generation Time: Feb 29, 2020 at 01:23 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -34,7 +34,8 @@ CREATE TABLE `admin_menu` (
   `status` int(1) NOT NULL DEFAULT '0',
   `lang_key` varchar(50) NOT NULL,
   `icon` varchar(50) NOT NULL,
-  `is_parent` int(1) NOT NULL DEFAULT '0',
+  `is_parent` int(1) NOT NULL,
+  `parent_id` int(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -43,9 +44,13 @@ CREATE TABLE `admin_menu` (
 -- Dumping data for table `admin_menu`
 --
 
-INSERT INTO `admin_menu` (`id`, `name`, `slug`, `link`, `status`, `lang_key`, `icon`, `is_parent`, `created_at`, `updated_at`) VALUES
-(1, 'Dashboard', 'dashboard', 'admin/index', 1, 'dashboard', '', 0, '2020-02-07 06:41:12', '0000-00-00 00:00:00'),
-(2, 'Products', 'products', 'admin/products/listall', 1, 'products', '', 0, '2020-02-07 06:55:20', '0000-00-00 00:00:00');
+INSERT INTO `admin_menu` (`id`, `name`, `slug`, `link`, `status`, `lang_key`, `icon`, `is_parent`, `parent_id`, `created_at`, `updated_at`) VALUES
+(1, 'Dashbaord', 'dashbaord', 'admin/index', 1, 'dashboard', 'dashboard', 0, 0, '2020-02-07 06:41:12', '0000-00-00 00:00:00'),
+(2, 'Products', 'products', 'admin/products/listall', 1, 'products', 'products icon', 0, 0, '2020-02-07 06:55:20', '0000-00-00 00:00:00'),
+(3, 'Emails List', 'emails_list', 'admin/emails', 1, 'emails_list', 'info-circle', 1, 0, '2020-02-26 05:13:53', '0000-00-00 00:00:00'),
+(4, 'send emails', 'send_emails', 'acp/emails/send_emails', 1, 'send_emails', 'books', 0, 3, '2020-02-26 06:54:42', '0000-00-00 00:00:00'),
+(5, 'Email Subscribers', 'email_subscribers', 'admin/emails/subscribers', 1, 'email_subscribers', 'info-circle', 0, 3, '2020-02-26 10:04:58', '0000-00-00 00:00:00'),
+(6, 'Sent Emails', 'sent_emails', 'acp/courses/listall', 0, 'sent_emails', 'info-circle', 0, 3, '2020-02-26 10:15:58', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -80,7 +85,11 @@ CREATE TABLE `auth_groups` (
 
 INSERT INTO `auth_groups` (`id`, `group_name`, `status`, `created_at`) VALUES
 (1, 'admin', '1', '2020-02-07 05:42:42'),
-(2, 'developer', '1', '2020-02-07 06:56:09');
+(2, 'developer', '1', '2020-02-07 06:56:09'),
+(3, 'Manager', '1', '2020-02-19 06:38:34'),
+(4, 'HR Manager', '0', '2020-02-19 13:10:43'),
+(5, 'SubAdmin', '0', '2020-02-19 13:17:12'),
+(6, 'HR', '0', '2020-02-24 06:22:43');
 
 -- --------------------------------------------------------
 
@@ -91,7 +100,7 @@ INSERT INTO `auth_groups` (`id`, `group_name`, `status`, `created_at`) VALUES
 CREATE TABLE `auth_group_permissions` (
   `id` int(11) NOT NULL,
   `group_id` int(11) NOT NULL,
-  `permission_id` int(11) NOT NULL,
+  `permissions` text NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -99,34 +108,13 @@ CREATE TABLE `auth_group_permissions` (
 -- Dumping data for table `auth_group_permissions`
 --
 
-INSERT INTO `auth_group_permissions` (`id`, `group_id`, `permission_id`, `created_at`) VALUES
-(2, 2, 2, '2020-02-07 12:26:20'),
-(3, 2, 3, '2020-02-07 12:27:19');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `auth_permissions`
---
-
-CREATE TABLE `auth_permissions` (
-  `id` int(11) NOT NULL,
-  `menu_id` int(11) NOT NULL,
-  `can_view` int(11) NOT NULL,
-  `can_create` int(1) NOT NULL,
-  `can_update` int(1) NOT NULL,
-  `can_delete` int(1) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `auth_permissions`
---
-
-INSERT INTO `auth_permissions` (`id`, `menu_id`, `can_view`, `can_create`, `can_update`, `can_delete`, `created_at`) VALUES
-(1, 1, 1, 1, 1, 1, '2020-02-07 06:48:03'),
-(2, 2, 1, 0, 0, 0, '2020-02-07 06:55:38'),
-(3, 1, 1, 0, 0, 0, '2020-02-07 06:57:04');
+INSERT INTO `auth_group_permissions` (`id`, `group_id`, `permissions`, `created_at`) VALUES
+(1, 1, '{"permissions":["admin\\/index","admin\\/products\\/listall"]}', '2020-02-24 11:34:15'),
+(2, 2, '{"permissions":["admin\\/products\\/listall"]}', '2020-02-24 11:34:28'),
+(3, 5, '{"permissions":["admin\\/index","admin\\/products\\/listall"]}', '2020-02-24 11:34:44'),
+(4, 3, '{"permissions":["admin\\/index","admin\\/products\\/listall"]}', '2020-02-24 12:09:21'),
+(5, 4, '{"permissions":["admin\\/index","admin\\/products\\/listall"]}', '2020-02-25 16:12:59'),
+(6, 6, '{"permissions":["admin\\/index","admin\\/products\\/listall"]}', '2020-02-26 15:48:01');
 
 -- --------------------------------------------------------
 
@@ -639,14 +627,45 @@ CREATE TABLE `mobile_auth_tokens` (
 
 CREATE TABLE `mobile_configurations` (
   `id` int(11) NOT NULL,
-  `device_type` enum('Android','iOS') NOT NULL,
-  `mode` enum('Develpoment','Production') NOT NULL,
+  `device_type` int(11) NOT NULL,
   `configuration_dev` text NOT NULL,
   `configuration_prod` text NOT NULL,
-  `status` blob NOT NULL COMMENT '1=>App works, 0=>Apps won''t work here',
+  `mode` enum('Development','Production') NOT NULL,
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `mobile_configurations`
+--
+
+INSERT INTO `mobile_configurations` (`id`, `device_type`, `configuration_dev`, `configuration_prod`, `mode`, `modified_at`, `created_at`) VALUES
+(1, 1, 'ada', 'asd', 'Development', '2020-02-15 10:53:46', '0000-00-00 00:00:00'),
+(2, 2, 'fd', 'safd', 'Development', '2020-02-15 10:54:47', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mobile_devices`
+--
+
+CREATE TABLE `mobile_devices` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `slug` varchar(150) NOT NULL,
+  `icon_class` varchar(100) NOT NULL,
+  `status` enum('1','0') NOT NULL,
+  `order_in_list` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `mobile_devices`
+--
+
+INSERT INTO `mobile_devices` (`id`, `name`, `slug`, `icon_class`, `status`, `order_in_list`, `created_at`) VALUES
+(1, 'Android', 'android', 'fab fa-android', '1', 1, '2020-02-15 10:51:23'),
+(2, 'iOS', 'ios', 'fab fa-apple', '1', 2, '2020-02-15 10:51:23');
 
 -- --------------------------------------------------------
 
@@ -679,10 +698,12 @@ CREATE TABLE `site_configurations` (
   `address` text NOT NULL,
   `location` text NOT NULL,
   `lang` varchar(10) NOT NULL COMMENT 'en or ar or en-ar',
-  `mode` enum('Development','Production') NOT NULL COMMENT 'Modes => Development or Production',
   `smtp_credentials` text NOT NULL,
   `social_media` text NOT NULL,
+  `mode` enum('Development','Production') NOT NULL COMMENT 'Modes => Development or Production',
   `status` enum('1','0') NOT NULL COMMENT '1=>Active,0=>Under development',
+  `rest_mode` enum('Development','Production') NOT NULL,
+  `rest_status` enum('1','0') NOT NULL,
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -691,8 +712,8 @@ CREATE TABLE `site_configurations` (
 -- Dumping data for table `site_configurations`
 --
 
-INSERT INTO `site_configurations` (`id`, `title`, `description`, `email`, `phone`, `address`, `location`, `lang`, `mode`, `smtp_credentials`, `social_media`, `status`, `modified_at`, `created_at`) VALUES
-(1, 'Site Name', 'Site Description', 'yoursite@yopmail.com', '123456789', 'Addrress of your Company', 'Latitude & Longitude of your Company', 'en', 'Development', '', '', '1', '2020-02-13 09:36:31', '0000-00-00 00:00:00');
+INSERT INTO `site_configurations` (`id`, `title`, `description`, `email`, `phone`, `address`, `location`, `lang`, `smtp_credentials`, `social_media`, `mode`, `status`, `rest_mode`, `rest_status`, `modified_at`, `created_at`) VALUES
+(1, 'Site Name', 'Site Description', 'yoursite@yopmail.com', '123456789', 'Addrress of your Company', 'Latitude & Longitude of your Company', 'en', '', '', 'Development', '1', 'Development', '0', '2020-02-26 05:00:43', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -702,14 +723,25 @@ INSERT INTO `site_configurations` (`id`, `title`, `description`, `email`, `phone
 
 CREATE TABLE `third_party_configurations` (
   `id` int(11) NOT NULL,
+  `type` enum('SMS','PAYMENT','BOOKINGS') NOT NULL,
+  `icon_class` enum('far fa-money-bill-alt','fas fa-sms','fas fa-shopping-cart','') NOT NULL,
   `name` varchar(100) NOT NULL,
   `slug` varchar(100) NOT NULL,
-  `mode` enum('Development','Production') NOT NULL,
   `configuration_dev` text NOT NULL,
   `configuration_prod` text NOT NULL,
-  `status` int(1) NOT NULL DEFAULT '1' COMMENT '1=>Active,0=>InActive',
+  `mode` enum('Development','Production') NOT NULL,
+  `status` enum('1','0') NOT NULL COMMENT '1=>Active,0=>InActive',
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `third_party_configurations`
+--
+
+INSERT INTO `third_party_configurations` (`id`, `type`, `icon_class`, `name`, `slug`, `configuration_dev`, `configuration_prod`, `mode`, `status`, `modified_at`) VALUES
+(1, 'PAYMENT', 'far fa-money-bill-alt', 'Hyperpay', 'hyperpay', 'asdfs', 'sdf', 'Development', '1', '2020-02-15 11:57:18'),
+(2, 'SMS', 'fas fa-sms', 'Nexmo', 'nexmo', 'd', 'asdfa', 'Development', '1', '2020-02-15 11:58:18'),
+(3, 'BOOKINGS', 'fas fa-shopping-cart', 'Book Seat', 'book_seat', 'sd', 'fsdf', 'Development', '1', '2020-02-15 12:28:25');
 
 --
 -- Indexes for dumped tables
@@ -740,15 +772,7 @@ ALTER TABLE `auth_groups`
 ALTER TABLE `auth_group_permissions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `group_id` (`group_id`),
-  ADD KEY `group_id_2` (`group_id`),
-  ADD KEY `permission_id` (`permission_id`);
-
---
--- Indexes for table `auth_permissions`
---
-ALTER TABLE `auth_permissions`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `menu_id` (`menu_id`);
+  ADD KEY `group_id_2` (`group_id`);
 
 --
 -- Indexes for table `auth_users`
@@ -832,6 +856,13 @@ ALTER TABLE `mobile_auth_tokens`
 -- Indexes for table `mobile_configurations`
 --
 ALTER TABLE `mobile_configurations`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `device_type` (`device_type`);
+
+--
+-- Indexes for table `mobile_devices`
+--
+ALTER TABLE `mobile_devices`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -860,7 +891,7 @@ ALTER TABLE `third_party_configurations`
 -- AUTO_INCREMENT for table `admin_menu`
 --
 ALTER TABLE `admin_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `auth_blocked_users`
 --
@@ -870,17 +901,12 @@ ALTER TABLE `auth_blocked_users`
 -- AUTO_INCREMENT for table `auth_groups`
 --
 ALTER TABLE `auth_groups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `auth_group_permissions`
 --
 ALTER TABLE `auth_group_permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `auth_permissions`
---
-ALTER TABLE `auth_permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `auth_users`
 --
@@ -945,7 +971,12 @@ ALTER TABLE `mobile_auth_tokens`
 -- AUTO_INCREMENT for table `mobile_configurations`
 --
 ALTER TABLE `mobile_configurations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `mobile_devices`
+--
+ALTER TABLE `mobile_devices`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `notification_strings`
 --
@@ -960,7 +991,7 @@ ALTER TABLE `site_configurations`
 -- AUTO_INCREMENT for table `third_party_configurations`
 --
 ALTER TABLE `third_party_configurations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Constraints for dumped tables
 --
@@ -975,14 +1006,7 @@ ALTER TABLE `auth_blocked_users`
 -- Constraints for table `auth_group_permissions`
 --
 ALTER TABLE `auth_group_permissions`
-  ADD CONSTRAINT `auth_group_permissions_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `auth_groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `auth_group_permissions_ibfk_2` FOREIGN KEY (`permission_id`) REFERENCES `auth_permissions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `auth_permissions`
---
-ALTER TABLE `auth_permissions`
-  ADD CONSTRAINT `auth_permissions_ibfk_1` FOREIGN KEY (`menu_id`) REFERENCES `admin_menu` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `auth_group_permissions_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `auth_groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `auth_user_details`
@@ -1014,6 +1038,12 @@ ALTER TABLE `mobile_apis`
 --
 ALTER TABLE `mobile_auth_tokens`
   ADD CONSTRAINT `mobile_auth_tokens_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `auth_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `mobile_configurations`
+--
+ALTER TABLE `mobile_configurations`
+  ADD CONSTRAINT `mobile_configurations_ibfk_1` FOREIGN KEY (`device_type`) REFERENCES `mobile_devices` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

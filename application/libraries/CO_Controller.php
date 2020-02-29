@@ -82,7 +82,7 @@ class CO_Controller extends MY_Controller {
 
         $groups = $this->groups_obj->get_group($user_id);
         $permissions = $this->permissions_obj->get_group_permissions($groups['id']);
-        $permissions = $this->permissions_obj->get_permissions($permissions);
+        //$permissions = $this->permissions_obj->get_permissions($permissions);
 
         $this->groups = $groups;
         $this->permissions = $permissions;

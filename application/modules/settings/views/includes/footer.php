@@ -72,6 +72,14 @@
   $.widget.bridge('uibutton', $.ui.button)
   //Bootstrap Duallistbox
   $('.duallistbox').bootstrapDualListbox()
+
+  //Initialize Select2 Elements
+  $('.select2').select2()
+
+  //Initialize Select2 Elements
+  $('.select2bs4').select2({
+    theme: 'bootstrap4'
+  })
 </script>
 
 <script type="text/javascript">
@@ -349,6 +357,28 @@ function Set_ThirdPartyConfig(Thirdparty_name,config_id)
         });
 
     });
+</script>
+
+
+
+
+
+<script type="text/javascript">
+function Create_slug(string)
+{
+  var slug = string.trim(); //Remove white spaces
+  slug = slug.split(" ").join('_'); //Replace space with _
+  slug = slug.toLowerCase(); //To lower Case
+  
+  $("#display_slug").text(slug);
+  $("#input_slug").val(slug);
+
+  if(CHECK_DB_FLAG)
+  {
+    Check_Slug_InDB(slug);
+  }
+
+}
 </script>
 
 

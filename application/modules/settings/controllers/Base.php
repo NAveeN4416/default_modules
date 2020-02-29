@@ -53,6 +53,24 @@ class Base extends CO_Controller {
     $this->Load_View('site_config',$this->data);
   }
 
+  public function Check_Slug_InDB()
+  {
+    $post_data = $this->input->post();
+
+    if($post_data['slug'] && $post_data['table'])
+    {
+      $this->Ajax['status'] = 1 ;
+      $this->Ajax['message'] = $post_data ;
+    }
+    else
+    {
+      $this->Ajax['status'] = 0 ;
+      $this->Ajax['message'] = "Invalid data" ;
+    }
+
+    echo $this->AjaxResponse();
+  }
+
 
   public function Change_SiteStatus()
   {
