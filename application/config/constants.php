@@ -93,9 +93,6 @@ $GLOBALS['settings_styles'] = 'style/settings/';
 
 
 
-
-
-
 /**
 * Databases
 *
@@ -108,3 +105,7 @@ define('AUTH_GROUPS', 'auth_groups');
 define('MOBILE_DEVICES', 'mobile_devices');
 define('MOBILE_CONFIG', 'mobile_configurations');
 define('THIRD_PARYT_CONFIG', 'third_party_configurations');
+define('ADMIN_MENU', 'admin_menu');
+#define('AUTH_PERMISSIONS', 'auth_permissions');
+define('AUTH_GROUP_PERMISSIONS', 'auth_group_permissions');
+define('AUTH_USER_GROUPS', 'auth_user_groups');
