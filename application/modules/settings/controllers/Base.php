@@ -16,10 +16,7 @@ class Base extends CO_Controller {
     $this->controller_path = "settings/base/";
 
     $this->Check_And_Redirect();
-
-    //Ajax Attrs
-    $this->Ajax['status'] = 1 ;
-    $this->Ajax['message'] = "Success" ;
+    $this->SetAjax();
   }
 
   public function Check_And_Redirect()
@@ -35,6 +32,18 @@ class Base extends CO_Controller {
       redirect('settings/errors/Not_Authorised');
   }
 
+  public function SetAjax(){
+    //Ajax Attrs
+    $this->Ajax['status'] = 1 ;
+    $this->Ajax['message'] = "Success" ;
+  }
+
+  public function AjaxResponse(){
+
+    $send = $this->Ajax;
+
+    return json_encode($send);
+  }
 
   public function index()
   {
@@ -160,12 +169,7 @@ class Base extends CO_Controller {
     $this->load->view('includes/footer',$this->data);
   }
 
-  public function AjaxResponse(){
 
-    $send = $this->Ajax;
-
-    return json_encode($send);
-  }
 
 
   public function _remap($method, $args = array())

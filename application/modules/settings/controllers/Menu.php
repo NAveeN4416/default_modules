@@ -4,6 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 require_once(APPPATH.'modules/settings/controllers/Base.php');
 class Menu extends Base {
 
+	public $auth_classes = ["Auth_Class"];
+
 	public function __construct()
 	{
       // Construct the parent class
