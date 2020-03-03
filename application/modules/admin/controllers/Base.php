@@ -19,20 +19,28 @@ class Base extends CO_Controller {
     $this->Load_Menu();
   }
 
-  public function set_lang()
+  public function set_lang($lang="")
   {
-    if($this->session->userdata('lang'))
+    if($lang!="")
     {
-      $language = $this->session->userdata('lang');
+      $this->session->set_userdata('lang',$lang);
     }
     else
     {
-      $language = 'en';
-      $this->session->set_userdata('lang','en');
+      if($this->session->userdata('lang'))
+      {
+        $language = $this->session->userdata('lang');
+      }
+      else
+      {
+        $language = 'en';
+        $this->session->set_userdata('lang','en');
+      }
     }
 
     define('LANG',$language,true);
-    //$this->lang->load('main', $language);
+
+    return True ;
   }
 
 

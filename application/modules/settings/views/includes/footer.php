@@ -157,6 +157,37 @@ function Set_Site_Status(element)
 }
 
 
+function Set_Site_Database(element)
+{
+  var status = "Development" ;
+  var title = "db : default_modules_dev" ;
+  var db = "default_modules_dev" ;
+
+  if($("#site_database").is(":checked")==true)
+  {
+    var status = "Production" ;
+    var title = "db : default_modules" ;
+    var db = "default_modules" ;
+  }
+
+  $("#db_display").text(db);
+  $("#tooltip_message_db").attr('data-original-title',title);
+
+  var data = new FormData();
+
+  data.append('status',status);
+
+  var object = {
+      'url'  : "<?=base_url('settings/base/Change_SiteDatabase')?>" ,
+      "data" : data,
+      "type" : "post"
+  } ;
+
+  AjaxUpdate(object);
+}
+
+
+
 function Set_RestStatus(element)
 {
   var rest_status = 0 ;

@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `default_modules`
+-- Database: `default_modules_dev`
 --
 
 -- --------------------------------------------------------
@@ -640,8 +640,8 @@ CREATE TABLE `mobile_configurations` (
 --
 
 INSERT INTO `mobile_configurations` (`id`, `device_type`, `configuration_dev`, `configuration_prod`, `mode`, `modified_at`, `created_at`) VALUES
-(1, 1, 'ada', 'asd', 'Production', '2020-02-15 10:53:46', '0000-00-00 00:00:00'),
-(2, 2, 'fd', 'safd', 'Production', '2020-02-15 10:54:47', '0000-00-00 00:00:00');
+(1, 1, 'ada', 'asd', 'Development', '2020-02-15 10:53:46', '0000-00-00 00:00:00'),
+(2, 2, 'fd', 'safd', 'Development', '2020-02-15 10:54:47', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -714,7 +714,7 @@ CREATE TABLE `site_configurations` (
 --
 
 INSERT INTO `site_configurations` (`id`, `title`, `description`, `email`, `phone`, `address`, `location`, `lang`, `smtp_credentials`, `social_media`, `site_db`, `mode`, `status`, `rest_mode`, `rest_status`, `modified_at`, `created_at`) VALUES
-(1, 'Site Name', 'Site Description', 'yoursite@yopmail.com', '123456789', 'Addrress of your Company', 'Latitude & Longitude of your Company', 'en', '', '', 'Production', 'Production', '1', 'Production', '1', '2020-03-03 19:40:26', '0000-00-00 00:00:00');
+(1, 'Site Name', 'Site Description', 'yoursite@yopmail.com', '123456789', 'Addrress of your Company', 'Latitude & Longitude of your Company', 'en', '', '', 'Production', 'Production', '1', 'Development', '0', '2020-03-03 19:40:26', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -740,9 +740,9 @@ CREATE TABLE `third_party_configurations` (
 --
 
 INSERT INTO `third_party_configurations` (`id`, `type`, `icon_class`, `name`, `slug`, `configuration_dev`, `configuration_prod`, `mode`, `status`, `modified_at`) VALUES
-(1, 'PAYMENT', 'far fa-money-bill-alt', 'Hyperpay', 'hyperpay', 'asdfs', 'sdf', 'Production', '1', '2020-02-15 11:57:18'),
-(2, 'SMS', 'fas fa-sms', 'Nexmo', 'nexmo', 'd', 'asdfa', 'Production', '1', '2020-02-15 11:58:18'),
-(3, 'BOOKINGS', 'fas fa-shopping-cart', 'Book Seat', 'book_seat', 'sd', 'fsdf', 'Production', '1', '2020-02-15 12:28:25');
+(1, 'PAYMENT', 'far fa-money-bill-alt', 'Hyperpay', 'hyperpay', 'asdfs', 'sdf', 'Development', '1', '2020-02-15 11:57:18'),
+(2, 'SMS', 'fas fa-sms', 'Nexmo', 'nexmo', 'd', 'asdfa', 'Development', '1', '2020-02-15 11:58:18'),
+(3, 'BOOKINGS', 'fas fa-shopping-cart', 'Book Seat', 'book_seat', 'sd', 'fsdf', 'Development', '1', '2020-02-15 12:28:25');
 
 --
 -- Indexes for dumped tables

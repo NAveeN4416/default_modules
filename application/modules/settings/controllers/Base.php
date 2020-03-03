@@ -22,6 +22,7 @@ class Base extends CO_Controller {
     $this->Ajax['message'] = "Success" ;
   }
 
+
   public function Check_And_Redirect()
   {
     $this->superuser = $this->session->IS_SUPERUSER;
@@ -71,12 +72,22 @@ class Base extends CO_Controller {
     echo $this->AjaxResponse();
   }
 
-
   public function Change_SiteStatus()
   {
     $status = $this->input->post('status');
 
     $uflag = $this->DB_model->Update_SiteConfig(['status'=>$status]);
+
+    $response = ['status'=>$uflag,"message"=>"Success"] ;
+
+    echo json_encode($response);
+  }
+
+  public function Change_SiteDatabase()
+  {
+    $status = $this->input->post('status');
+
+    $uflag = $this->DB_model->Update_SiteDatabase(['site_db'=>$status]);
 
     $response = ['status'=>$uflag,"message"=>"Success"] ;
 

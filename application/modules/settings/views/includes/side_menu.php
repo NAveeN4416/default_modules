@@ -23,9 +23,6 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
-
-
           <li class="nav-header">Settings</li>
           <li class="nav-item">
             <a href="<?=base_url('settings/base/site_config')?>" class="nav-link">

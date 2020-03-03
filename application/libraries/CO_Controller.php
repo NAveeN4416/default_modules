@@ -9,6 +9,9 @@ class CO_Controller extends MY_Controller {
 		parent::__construct();
         $this->load->database();
 
+        //Choose Live or Production Database
+        $this->Load_Database();
+
         $this->load->library('session');
         $this->load->library('Auth_SessionVars');
         $this->load->library('Authentication');
@@ -20,11 +23,24 @@ class CO_Controller extends MY_Controller {
         $this->groups_obj 	  = new Groups();
         $this->permissions_obj = new Permissions(); 
 
-        
         $this->set_timezone();
 	}
 
+    //Loading Database as Selection from Developer
+    public function Load_Database()
+    {
+        $db_mode =  $this->db->get(SITE_CONFIG)->row_array()['site_db'];
 
+        if($db_mode=="Development")
+        {
+          $this->db = $this->load->database("development",True);
+          //echo "Development db loaded" ;exit;
+        }
+        else
+        {
+          $this->db = $this->load->database("default",True);
+        }
+    }
 
     public function set_timezone($time_zone="Asia/Calcutta")
     {
@@ -92,24 +108,6 @@ class CO_Controller extends MY_Controller {
 
         return $user;
     }
-
-
-	//Response outgoing <---> Request
-	public function load_pages($body,$data)
-	{
-  	  //if user logged in check for Mobile verified or not if not redirect
-      if($this->auth_level==1)
-      {
-       	$this->check_otp();
-      }
-
-	  $page_path =  'home/'.$body ;
-
-	  $this->load->view('home/includes/header2',$data);
-	  $this->load->view($page_path,$data);
-	  $this->load->view('home/includes/footer2',$data);
-	}
-
 }
 
 ?>

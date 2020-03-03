@@ -163,6 +163,35 @@
               </div>
             </div>
           </div>
+          <div class="col-md-4">
+            <div class="card card-secondary">
+              <div class="card-header">
+                <h3 class="card-title"><i class="fa fa-cog fa-spin fa-3x fa-fw" style="font-size: 25px;"></i> Database in use - (<span id="db_display"><?=$this->db->database?></span>) </h3>
+              </div>
+              <div class="card-body">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                  <li class="nav-item">
+                    <span class="nav-link">
+                      <i class="nav-icon fas fa-database"></i>
+                      <p class="text"> Change Database 
+                        <?php $site_db = ($site_config['site_db']=="Production")  ? 'checked' : '' ; ?>
+                        <span style="margin-left: 10%" data-placement="right" data-toggle="tooltip" id="tooltip_message_db">
+                          <input id="site_database" onchange="Set_Site_Database(this)" type="checkbox" name="my-checkbox" <?=$site_db?> data-bootstrap-switch data-toggle="toggle" data-on-text="Live" data-off-color="danger" data-on-color="success" data-off-text="Dev" data-handle-width="50">
+                          </span>
+                      </p>
+                    </span>
+                  </li>
+                  <li class="nav-item">
+                    <span class="nav-link">
+                      <p>Live db : default_modules</p><br>
+                      <p>Development db : default_modules_dev</p><br>
+                      <p style="color: red">Note : Reload once after changing Database</p>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
