@@ -216,11 +216,11 @@ function Set_RestStatus(element)
 
   if(rest_status==1)
   {
-    Show_Success("Rest Api's Active");
+    //Show_Success("Rest Api's Active");
     return;
   }
 
-  Show_Warning("Rest Api's InActive");
+  //Show_Warning("Rest Api's InActive");
 }
 
 
@@ -253,11 +253,11 @@ function Set_Site_Mode(element)
 
   if(mode==1)
   {
-    Show_Success(title);
+    //Show_Success(title);
     return;
   }
 
-  Show_Warning(title);
+  //Show_Warning(title);
 }
 
 
@@ -290,11 +290,11 @@ function Set_Rest_Mode(element)
 
   if(rest_mode==1)
   {
-    Show_Success(title);
+    //Show_Success(title);
     return;
   }
 
-  Show_Warning(title);
+  //Show_Warning(title);
 }
 
 
@@ -365,7 +365,7 @@ function Set_ThirdPartyConfig(Thirdparty_name,config_id)
 
         event.stopPropagation();
 
-        $modal.load('<?php echo site_url('settings/database/Get_Device_Form');?>', {id: id},
+        $modal.load('<?php echo site_url('settings/mobile/add_edit_mobile');?>', {id: id},
         function(){
         /*$('.modal').replaceWith('');*/
           $("#add_category").modal('show');
@@ -391,6 +391,16 @@ function Set_ThirdPartyConfig(Thirdparty_name,config_id)
 </script>
 
 
+<script type="text/javascript">
+  $('.add_mobile').on('click',function(event){ 
+      var id = $(this).data('id');
+      event.stopPropagation();
+      $("#add_mobile").load('<?php echo site_url('settings/mobile/add_edit_mobile');?>', {id: id},
+      function(){
+        $("#add_mobile").modal('show');
+      });
+  });
+</script>
 
 
 

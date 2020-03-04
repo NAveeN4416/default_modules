@@ -9,10 +9,10 @@
       </div>
       <div class="modal-body">
                       <!-- form start -->
-      <form role="form" id="submit_form" name="submit_form" action="<?=base_url('settings/database/Add_Device')?>" enctype="multipart/form-data" method="post">
+      <form role="form" id="submit_form" name="submit_form" onsubmit="Submit_Device()" action="#" enctype="multipart/form-data" method="post">
         <div class="card-body">
           <div class="form-group">
-            <input type="text" class="form-control" name="name" id="name" placeholder="Device Name" required>
+            <input type="text" onkeyup="Create_slug(this.value)" class="form-control" name="name" id="name" placeholder="Device Name" required>
           </div>
           <div class="form-group">
             <input type="text" class="form-control" name="icon_class" id="icon-class" placeholder="Icon  eg:fa fa-tv" required>
@@ -47,3 +47,42 @@
   </div>
 
 
+<script type="text/javascript">
+  function Submit_Device() 
+  {
+    var data = new FormData($('#submit_form')[0]);
+
+    if($("#input_slug").val()=='')
+    {
+      $("#error_p").text("Please Check Slug !");
+      return false ;
+    }
+
+    $("#error_p").text('');
+
+    var object = {
+        'url'  : "<?=base_url('settings/mobile/save_device')?>",
+        "data" : data,
+        "type" : "post"
+    } ;
+
+    $response_object = JSONparse(AjaxUpdate(object));
+
+    if($response_object.status=='1')
+    {
+      Show_Success($response_object.message);
+
+      $(".close").click();
+
+      setTimeout(function(){
+        location.reload();
+      },2000);
+    }
+    else
+    {
+      Show_Error($response_object.message);
+    }
+
+    return false;
+  }
+</script>

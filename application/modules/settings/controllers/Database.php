@@ -23,14 +23,6 @@ class Database extends Base {
     $this->Load_View('index',$this->data);
   }
 
-  public function mobile_config()
-  {
-    $this->data['page_name'] = 'mobile_config' ;
-
-    $this->Load_View('mobile/mobile_config',$this->data);
-  }
-
-
   public function Get_Device_Form()
   {
     $this->data['device'] = [] ;

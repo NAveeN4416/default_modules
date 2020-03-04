@@ -1,53 +1,53 @@
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Admin Menu</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Menu</li>
-            </ol>
-          </div>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Admin Menu</h1>
         </div>
-      </div><!-- /.container-fluid -->
-    </section>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Menu</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
 
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <div class="margin" style="float: right">
-          <button type="button" class="btn btn-sm btn-primary add_menu">
-            <i class="fa fa-plus" aria-hidden="true"></i> Add Menu
-          </button>
-        </div>
-        <br>
-        <div class="card-body">
-          <table id="example" class="table table-bordered table-hover display" style="width:100%">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Parent</th>
-                    <th>Link</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-    <section>
-      <div class="modal fade" data-backdrop="static" data-keyboard="false" id="add_menu" tabindex = "-1" role = "dialog" aria-labelledby="myModalLabel" aria-hidden = "true"></div>
-    </section>
-  </div>
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="margin" style="float: right">
+        <button type="button" class="btn btn-sm btn-primary add_menu">
+          <i class="fa fa-plus" aria-hidden="true"></i> Add Menu
+        </button>
+      </div>
+      <br>
+      <div class="card-body">
+        <table id="example" class="table table-bordered table-hover display" style="width:100%">
+          <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Parent</th>
+                  <th>Link</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+              </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+  <section>
+    <div class="modal fade" data-backdrop="static" data-keyboard="false" id="add_menu" tabindex = "-1" role = "dialog" aria-labelledby="myModalLabel" aria-hidden = "true"></div>
+  </section>
+</div>
 
 <script type="text/javascript">
   CHECK_DB_FLAG = true ;
