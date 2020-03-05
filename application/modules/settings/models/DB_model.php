@@ -9,6 +9,30 @@
 		parent::__construct();
 	}
 
+	public function GetData($table,$where='')
+	{
+		if($where)
+			$this->db->where($where);
+
+		return $this->db->get($table)->result_array();
+	}
+
+
+	public function get_mobile_config()
+	{
+		$configs = $this->db->get(MOBILE_CONFIG)->result_array();
+
+		return $this->_query_response($configs,MOBILE_CONFIG);
+	}
+
+	public function get_mobile_devices()
+	{
+		$configs = $this->db->get(MOBILE_DEVICES)->result_array();
+
+		return $this->_query_response($configs,MOBILE_DEVICES);	
+	}
+
+
 	public function get_db_tables()
 	{
 		return $this->db->list_tables();
@@ -27,7 +51,7 @@
 	public function Update_SiteDatabase($set)
 	{
 		// 1. Load Main database and update
-		// 2. Load Development Database update
+		// 2. Load Development database and update
 
 		$production_db = $this->load->database('default',True);
 		$development_db = $this->load->database('development',True);

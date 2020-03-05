@@ -18,6 +18,13 @@ class Database extends Base {
 
   public function index()
   {
+    $data = $this->DB_model->get_mobile_config();
+
+    echo "<pre>"; print_r($data);
+
+    exit;
+
+
     $this->data['page_name'] = 'dashboard';
 
     $this->Load_View('index',$this->data);
