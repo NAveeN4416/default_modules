@@ -26,8 +26,8 @@ class User_Permissions extends Base {
 
   	public function index()
   	{
-      $this->data['groups'] = $this->Groups_model->Get_groups();
-      $this->data['menu'] = $this->Permissions_model->get_menu();
+      $this->data['groups'] = $this->Groups_model->Get_Object(AUTH_GROUPS);
+      $this->data['menu'] = $this->Permissions_model->Get_Objects(ADMIN_MENU);
 
   		$this->Load_View('groups/permissions/permissions',$this->data);
   	}
@@ -50,10 +50,9 @@ class User_Permissions extends Base {
 
     public function edit_permissions($group_id)
     {
-      //$this->data['groups'] = $this->Groups_model->Get_groups();
-      $this->data['group'] = $this->Groups_model->get_group($group_id);
-      $this->data['menu'] = $this->Permissions_model->get_menu();
-      $permissions = $this->Permissions_model->get_permission($group_id);
+      $this->data['group'] = $this->Groups_model->Get_Object(AUTH_GROUPS,['id'=>$group_id]);
+      $this->data['menu'] = $this->Permissions_model->Get_Objects(ADMIN_MENU);
+      $permissions = $this->Permissions_model->Get_Object(AUTH_GROUP_PERMISSIONS,['group_id'=>$group_id]);
 
       if($permissions)
       {

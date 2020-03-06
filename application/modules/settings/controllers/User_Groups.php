@@ -25,7 +25,7 @@ class User_Groups extends Base {
 	{
 		$group_id = $this->input->post('id');
 
-		$group = @$this->Groups_model->get_group($group_id);
+		$group = @$this->Groups_model->GetData(AUTH_GROUPS,['id'=>$group_id])[0];
 
 		$this->load->view('groups/add_edit_group',$group);
 	}
@@ -51,8 +51,8 @@ class User_Groups extends Base {
 
 		$set['status'] = $postdata['status'];
 		$where['id'] = $postdata['group_id'];
-		
-		$uflag = $this->Groups_model->update_group($set,$where);
+
+		$uflag = $this->Groups_model->Set_Status(AUTH_GROUPS,$postdata['status'],$where);
 
 		if($uflag)
 		{
@@ -66,7 +66,7 @@ class User_Groups extends Base {
 
 	public function Get_GroupUsers($group_id)
 	{
-		$this->data['group_details'] = $this->Groups_model->get_group($group_id);
+		$this->data['group_details'] = $this->Groups_model->Get_Object(AUTH_GROUPS,['id'=>$group_id]);
 		$this->data['group_id'] = $group_id ;
 
 		$this->Load_View('groups/group_users',$this->data);
@@ -75,7 +75,7 @@ class User_Groups extends Base {
 
 	public function getgroups()
 	{
-		$groups = $this->Groups_model->Get_groups();
+		$groups = $this->Groups_model->Get_Objects(AUTH_GROUPS);
 
 		$data = [] ;
 
@@ -112,7 +112,7 @@ class User_Groups extends Base {
 
 	public function getusers($group_id)
 	{
-		$groups = $this->Groups_model->Get_groups();
+		$groups = $this->Groups_model->Get_Objects(AUTH_GROUPS);
 
 		$data = [] ;
 

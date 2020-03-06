@@ -19,6 +19,16 @@ class CO_Model extends MY_Model {
 		}
 	}
 
+	public function Get_Tables()
+	{
+		return $this->tables ;
+	}
+
+	public function Get_Fields($table)
+	{
+		return @$this->tables[$table] ;
+	}
+
 	public function Forward_Table_Schema($table)
 	{
 		$this->db->select("*")
@@ -39,7 +49,7 @@ class CO_Model extends MY_Model {
 		return $this->db->get()->result_array();
 	}
 
-	//Injecting foreign key tables
+	//Injecting foreign key objects
 	public function _query_response($data,$table,$meta_search=array())
 	{
 		//Backward Compatability
@@ -139,18 +149,39 @@ class CO_Model extends MY_Model {
         return $user;
 	}
 
-	public function Update_Table($table,$set,$where)
+	public function Delete_Objects($table,$where)
 	{
 		if(!$where)
-			return 0 ;
+			return 0;
+
+		return $this->db->where($where)->delete($table);
+	}
+
+	public function Update_Objects($table,$set,$where)
+	{
+		if(!$where)
+			return 0;
 
 		return $this->db->set($set)->where($where)->update($table);
 	}
 
 	public function Set_Status($table,$status,$where)
 	{
-		return $this->Update_Table($table,['status'=>$status],$where);
+		return $this->Update_Objects($table,['status'=>$status],$where);
+	}
+
+	public function Insert_Object($table,$data)
+	{
+		$this->db->insert($table,$data);
+		return $this->db->insert_id();
 	}
 
 }
+
 ?>
+
+
+
+
+
+
