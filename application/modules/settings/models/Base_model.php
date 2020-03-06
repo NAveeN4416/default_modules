@@ -10,11 +10,24 @@
 		parent::__construct();
 	}
 
+	public function Update_SiteDatabase($set)
+	{
+		// 1. Load Main database and update
+		// 2. Load Development database and update
+
+		$production_db = $this->load->database('default',True);
+		$development_db = $this->load->database('development',True);
+
+		$production_db->set($set)->update(SITE_CONFIG);	
+		$development_db->set($set)->update(SITE_CONFIG);
+
+		return True ;	
+	}
+
 	public function Get_groups()
 	{
 		return $this->db->get(AUTH_GROUPS)->result_array();
 	}
-
 
 	public function save_groups($data)
 	{

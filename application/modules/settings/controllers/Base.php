@@ -76,7 +76,7 @@ class Base extends CO_Controller {
   {
     $status = $this->input->post('status');
 
-    $uflag = $this->DB_model->Update_SiteConfig(['status'=>$status]);
+    $uflag = $this->DB_model->Set_Status(SITE_CONFIG,$status,['id',1]);
 
     $response = ['status'=>$uflag,"message"=>"Success"] ;
 

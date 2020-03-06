@@ -7,19 +7,19 @@ class CO_Model extends MY_Model {
 	public function __construct()
 	{
 		parent::__construct();
+
+		$this->database = $this->db->database ;
+		$tables = $this->db->list_tables() ;
+
+		$this->tables = array();
+
+		foreach ($tables as $key => $table) {
+			$fields = $this->db->list_fields($table,$this->database);
+			$this->tables[$table] = $fields ;
+		}
 	}
 
-	public function Get_User($user_id)
-	{
-		$user = $this->db->where('id',$user_id)->get('auth_users')->row_array();
-        $groups = $this->db->where('user_id',$user_id)->get('auth_user_groups')->result_array();
-	
-        $user['groups'] = $groups;
-
-        return $user;
-	}
-
-	public function Database_Schema($table)
+	public function Forward_Table_Schema($table)
 	{
 		$this->db->select("*")
 			     ->from('INFORMATION_SCHEMA.KEY_COLUMN_USAGE')
@@ -39,7 +39,8 @@ class CO_Model extends MY_Model {
 		return $this->db->get()->result_array();
 	}
 
-	public function _query_response($data,$table=NULL)
+	//Injecting foreign key tables
+	public function _query_response($data,$table,$meta_search=array())
 	{
 		//Backward Compatability
 		$column_schemas = $this->Backward_Table_Schema($table);
@@ -48,14 +49,22 @@ class CO_Model extends MY_Model {
 
 			foreach ($column_schemas as $j => $schema) {
 
+				//Reset array for every new query
+				$where = array() ;
+
 				$REFERENCED_TABLE_NAME = $schema['REFERENCED_TABLE_NAME'];
 				$REFERENCED_COLUMN_NAME = $schema['REFERENCED_COLUMN_NAME'];
 
 				if($REFERENCED_TABLE_NAME)
 				{
+					if(@$meta_search[$REFERENCED_TABLE_NAME])
+					{
+						$where = $meta_search[$REFERENCED_TABLE_NAME] ;
+					}
+
 					$where[$REFERENCED_COLUMN_NAME] = $record[$REFERENCED_COLUMN_NAME];
 
-					$refered_object = $this->GetData($REFERENCED_TABLE_NAME,$where)[0];
+					$refered_object = @$this->GetData($REFERENCED_TABLE_NAME,$where)[0];
 
 					$data[$key][$REFERENCED_TABLE_NAME] = $refered_object ;
 				}
@@ -64,14 +73,25 @@ class CO_Model extends MY_Model {
 
 
 		///Forward Compatability
-		$db_schema = $this->Database_Schema($table);
+		$db_schema = $this->Forward_Table_Schema($table);
 
 			foreach ($data as $key => $record) {
 
 				foreach ($db_schema as $j => $table_schema) {
 
+					//Reset array for every new query
+					$where = array() ;
+
+					//Getting referenced table and the column name(Foreign Key)
 					$REFERENCED_TABLE_NAME = $table_schema['TABLE_NAME'];
 					$REFERENCED_COLUMN_NAME = $table_schema['COLUMN_NAME'];
+
+
+					//Searching data in reference table
+					if(@$meta_search[$REFERENCED_TABLE_NAME])
+					{
+						$where = $meta_search[$REFERENCED_TABLE_NAME] ;
+					}
 
 					$where[$REFERENCED_COLUMN_NAME] = $record['id'];
 
@@ -82,6 +102,54 @@ class CO_Model extends MY_Model {
 			}
 
 		return $data ;
+	}
+
+	public function GetData($table,$where='')
+	{
+		if($where)
+			$this->db->where($where);
+
+		return $this->db->get($table)->result_array();
+	}
+
+	public function Get_Objects($table,$where=array(),$meta_search=array())
+	{
+		if($where)
+			$this->db->where($where);
+
+		$objects = $this->db->get($table)->result_array();
+
+		return $this->_query_response($objects,$table,$meta_search);
+	}
+
+	public function Get_Object($table,$where=array(),$meta_search=array())
+	{
+		$objects = $this->Get_Objects($table,$where,$meta_search) ;
+
+		return ($objects[0]) ? $objects[0] : array() ;
+	}
+
+	public function Get_User($user_id)
+	{
+		$user = $this->db->where('id',$user_id)->get('auth_users')->row_array();
+        $groups = $this->db->where('user_id',$user_id)->get('auth_user_groups')->result_array();
+	
+        $user['groups'] = $groups;
+
+        return $user;
+	}
+
+	public function Update_Table($table,$set,$where)
+	{
+		if(!$where)
+			return 0 ;
+
+		return $this->db->set($set)->where($where)->update($table);
+	}
+
+	public function Set_Status($table,$status,$where)
+	{
+		return $this->Update_Table($table,['status'=>$status],$where);
 	}
 
 }

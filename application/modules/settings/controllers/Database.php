@@ -17,8 +17,15 @@ class Database extends Base {
   }
 
   public function index()
-  {
-    $data = $this->DB_model->get_mobile_config();
+  { 
+    $meta_search = [
+                      MOBILE_CONFIG => [
+                                          'DATE(modified_at)' => '2020-02-15',
+                                        ],
+                  ];
+
+
+    $data = $this->DB_model->Get_Objects(MOBILE_DEVICES,[],$meta_search);
 
     echo "<pre>"; print_r($data);
 
