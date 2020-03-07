@@ -42,7 +42,7 @@ class Admin extends Base {
     }
 
     if(!$this->is_superuser){
-      redirect('admin/subadmin/');
+      redirect('settings/base');
     }
   }
 

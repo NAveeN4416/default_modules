@@ -5,7 +5,7 @@
     <a href="<?=base_url()?>settings/base" class="brand-link">
       <img src="<?=base_url()?>style/admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">Site Name Here</span>
+      <span class="brand-text font-weight-light">Site Name Here </span>
     </a>
 
     <!-- Sidebar -->
@@ -108,6 +108,16 @@
                 </ul>
               </li>
             <?php } } ?>
+          </li>
+
+          <li class="nav-header">Auth</li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?=base_url('admin/auth/logout')?>">
+              <p>
+                SignOut
+                <i style="font-size: 15px;color: red" class="fas fa-sign-out-alt" title="logout"></i>
+              </p>
+            </a>
           </li>
 
           <!--<li class="nav-header">LABELS</li>

@@ -26,15 +26,17 @@ class Auth extends Base {
         redirect('admin/subadmin/index');
 
 
-    echo "<a href='".base_url()."admin/auth/login'>Login</a>" ;
+      $this->load->view('login');
+    //echo "<a href='".base_url()."admin/auth/login'>Login</a>" ;
   }
 
   private function _Check_user($data)
   {
+    $post_data = $this->input->post();
   	$login_config = $this->Auth_model->login_config();
 
-    $where[$login_config['web_key']] = 'admin@gmail.com' ;
-    $where['password'] = base64_encode(123456) ;
+    $where[$login_config['web_key']] = $post_data['email'] ;
+    $where['password'] = base64_encode($post_data['password']) ;
 
   	$user = $this->db->where($where)->get('auth_users')->row_array();
 

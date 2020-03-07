@@ -22,6 +22,10 @@ class Base extends CO_Controller {
     $this->Ajax['message'] = "Success" ;
   }
 
+  public function Login()
+  {
+    $this->load->view('login');
+  }
 
   public function Check_And_Redirect()
   {

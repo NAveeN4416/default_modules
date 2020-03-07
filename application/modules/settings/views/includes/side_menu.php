@@ -38,16 +38,21 @@
               </p>
             </a>
           </li>
+
+          <li class="nav-header">Auth Links</li>
           <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
+            <a class="nav-link" href="<?=base_url('admin/auth/logout')?>">
               <p>
-                Gallery
+                SignOut
+                <i style="font-size: 15px;color: red" class="fas fa-sign-out-alt" title="logout"></i>
               </p>
             </a>
           </li>
+
         </ul>
+
       </nav>
+
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->

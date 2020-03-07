@@ -36,9 +36,9 @@
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-      </li>
+      </li>      
       <li class="nav-item d-none d-sm-inline-block">
-        <a target="_blank" href="<?=base_url('settings/base')?>" class="nav-link"> <i class="nav-icon fa fa-cog"></i> Settings</a>
+        <a target="_blank" href="<?=base_url('settings/base')?>" class="nav-link"> <i class="nav-icon fa fa-cog"></i> Settings </a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="index3.html" class="nav-link">Home</a>
