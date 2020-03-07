@@ -65,6 +65,8 @@
 <!-- Datables -->
 <script type="text/javascript" src="<?=base_url()?>style/datatables.js"></script>
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->

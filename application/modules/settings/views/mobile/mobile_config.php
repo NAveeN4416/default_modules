@@ -18,20 +18,41 @@
   </section>
   <!-- Main content -->
   <section class="content">
+          <!-- <button type="button" class="btn btn-primary add_mobile" style="float: right">
+        Add Device
+      </button><br> -->
+
     <div class="container-fluid">
-    <button type="button" class="btn btn-default add_mobile">
-      Launch Default Modal
-    </button>
       <div class="row">
-        <div class="col-md-4">
+      <?php foreach ($mobiles as $key => $mobile) { ?>  
+        <div class="col-md-6">
           <div class="card card-secondary">
             <div class="card-header">
-              <h3 class="card-title">Android Attributes</h3>
-            </div>
+              <h3 class="card-title"><i class="nav-icon <?=$mobile['icon_class']?>"></i> <?=$mobile['name']?> Attributes <button onclick="Accept_Attrs()">Accept Attrs</button></h3>
+            </div> 
             <div class="card-body">
+              <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item"> <b>Development</b> 
+                  <span class="nav-link">
+                    <?php $config = json_decode($mobile['mobile_configurations'][0]['configuration_dev'],True); 
+                        foreach ($config as $key => $value) { ?>
+                      <p class="text"><?=$key?> : <?=$value?></p><br>
+                    <?php } ?>
+                  </span>
+                </li>
+                <li class="nav-item"> <b>Production</b>
+                  <span class="nav-link"> 
+                    <?php $config = json_decode($mobile['mobile_configurations'][0]['configuration_prod'],True); 
+                        foreach ($config as $key => $value) { ?>
+                      <p class="text"><?=$key?> : <?=$value?></p><br>
+                    <?php } ?>
+                  </span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
+      <?php } ?>
       </div>
     </div><!-- /.container-fluid -->
   </section>
@@ -42,6 +63,37 @@
 </div>
 
 
+<script type="text/javascript">
+function Accept_Attrs()
+{
+
+  var popup  = window.open("https://sweetalert.js.org/docs/#methods", "www.google.com","width=100, height=100");
 
 
+  popup.onClose = function () { popup.opener.location.reload(); }
+
+/*  var key = prompt("Please enter key");
+  var password = prompt("Please enter password");
+  var link = prompt("Please enter link");
+
+  var message = "You entered :" + key + password + link ;
+
+swal(message, {
+  //buttons: false,
+  //timer: 3000,
+  icon: "success",
+  buttons: ["Stop", "Do it!"],
+},);*/
+}
+</script>
+
+<style type="text/css">
+
+.swal-footer {
+  background-color: rgb(245, 248, 250);
+  margin-top: 32px;
+  border-top: 1px solid #E9EEF1;
+  overflow: hidden;
+}
+</style>
 
