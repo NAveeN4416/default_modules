@@ -4,6 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CO_Controller extends MY_Controller {
 
+    public $extra_session_vars = array() ; 
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -18,7 +20,7 @@ class CO_Controller extends MY_Controller {
         $this->load->library('Groups');
         $this->load->library('Permissions');
 
-        $this->Auth = new Authentication(); 
+        //$this->Auth = new Authentication(); 
         $this->auth_vars = new Auth_SessionVars();
         $this->groups_obj 	  = new Groups();
         $this->permissions_obj = new Permissions(); 
@@ -55,10 +57,10 @@ class CO_Controller extends MY_Controller {
         try
         {
             $user = $this->get_user($user_id);
-            $session_data = $this->set_session_data($user);
+            $session_data = $this->_set_session_data($user);
             //Setting Session data
             $this->session->set_userdata($session_data);
-
+            $this->_set_loggedin_flag(1);
             return true;
         }
         catch(Exception $e){
@@ -66,8 +68,13 @@ class CO_Controller extends MY_Controller {
         }
     }
 
+    private function _set_loggedin_flag($flag)
+    {
+        $user_id = $this->session->userdata($this->auth_vars->auth_user_id());
+        $this->db->set('is_logged_in',$flag)->where('id',$user_id)->update(USERS);
+    }
 
-    public function set_session_data($user)
+    private function _set_session_data($user)
     {
         $set = [] ;
 
@@ -86,6 +93,14 @@ class CO_Controller extends MY_Controller {
         }
 
         return $set ;
+    }
+
+
+    public function logout()
+    {
+        $this->_set_loggedin_flag(0);
+        $this->session->sess_destroy();
+        redirect('admin/auth');
     }
 
     //Getting data for setting session

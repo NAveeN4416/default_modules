@@ -160,7 +160,7 @@ class Admin extends Base {
   }
 
 
-//SAVING pARAMS
+//SAVING Params
   public function save_params()
   {
     $data = $this->input->post('data');

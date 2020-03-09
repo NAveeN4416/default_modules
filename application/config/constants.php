@@ -109,3 +109,16 @@ define('ADMIN_MENU', 'admin_menu');
 #define('AUTH_PERMISSIONS', 'auth_permissions');
 define('AUTH_GROUP_PERMISSIONS', 'auth_group_permissions');
 define('AUTH_USER_GROUPS', 'auth_user_groups');
+
+
+
+
+
+
+/**
+* Error Messages
+*
+**/
+define("INVALID_CREDENTIALS", "INVALID CREDENTIALS");
+define("INVALID_PASSWORD", "INVALID PASSWORD");
+define("ALREADY_LOGGED_IN", "SORRY USER WITH THESE CREDENTIALS ALREADY LOGGEDIN !");

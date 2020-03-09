@@ -9,6 +9,12 @@
 		parent::__construct();
 	}
 
+	public function Get_User($where)
+	{
+		return $this->db->where($where)->get(USERS)->row_array();
+	}
+
+
 	public function login_config()
 	{
 		return $this->db->get(LOGIN_CONFIG)->row_array();

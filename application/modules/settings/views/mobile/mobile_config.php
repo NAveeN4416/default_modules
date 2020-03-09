@@ -18,11 +18,12 @@
   </section>
   <!-- Main content -->
   <section class="content">
-          <!-- <button type="button" class="btn btn-primary add_mobile" style="float: right">
-        Add Device
-      </button><br> -->
-
     <div class="container-fluid">
+      <div class="row">
+        <button type="button" class="btn btn-primary add_mobile">
+         + Add Device
+        </button>
+      </div><br>
       <div class="row">
       <?php foreach ($mobiles as $key => $mobile) { ?>  
         <div class="col-md-6">
@@ -31,6 +32,7 @@
               <h3 class="card-title"><i class="nav-icon <?=$mobile['icon_class']?>"></i> <?=$mobile['name']?> Attributes <button onclick="Accept_Attrs()">Accept Attrs</button></h3>
             </div> 
             <div class="card-body">
+              <?php if(!$mobile['mobile_configurations']) { continue; } ?>
               <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item"> <b>Development</b> 
                   <span class="nav-link">
@@ -67,23 +69,18 @@
 function Accept_Attrs()
 {
 
-  var popup  = window.open("https://sweetalert.js.org/docs/#methods", "www.google.com","width=100, height=100");
-
-
-  popup.onClose = function () { popup.opener.location.reload(); }
-
 /*  var key = prompt("Please enter key");
   var password = prompt("Please enter password");
   var link = prompt("Please enter link");
-
-  var message = "You entered :" + key + password + link ;
+*/
+  var message = "You entered :";
 
 swal(message, {
   //buttons: false,
-  //timer: 3000,
+  timer: 3000,
   icon: "success",
   buttons: ["Stop", "Do it!"],
-},);*/
+},);
 }
 </script>
 

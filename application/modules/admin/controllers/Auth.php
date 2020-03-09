@@ -13,6 +13,7 @@ class Auth extends Base {
     $this->controller = "auth";
     $this->controller_path = "admin/auth/";
 
+    $this->load->model("Auth_model");
   }
 
   public function index()
@@ -25,21 +26,31 @@ class Auth extends Base {
       if($this->role=='developer')
         redirect('admin/subadmin/index');
 
-
-      $this->load->view('login');
-    //echo "<a href='".base_url()."admin/auth/login'>Login</a>" ;
+    $this->data['message'] = @$this->session->flashdata('message');
+    $this->load->view('login',$this->data);
   }
 
-  private function _Check_user($data)
+  private function _Check_user($post_data)
   {
-    $post_data = $this->input->post();
   	$login_config = $this->Auth_model->login_config();
 
     $where[$login_config['web_key']] = $post_data['email'] ;
-    $where['password'] = base64_encode($post_data['password']) ;
 
-  	$user = $this->db->where($where)->get('auth_users')->row_array();
+  	$user = $this->Auth_model->Get_User($where);
 
+    //if user not found
+    if(!$user)
+    {
+      return INVALID_CREDENTIALS ;
+    }
+
+    //if password is incorrect
+    if(base64_encode($post_data['password'])!=$user['password'])
+    {
+      return INVALID_PASSWORD ;
+    }
+
+    //Return user details
   	return $user ;
   }
 
@@ -47,44 +58,61 @@ class Auth extends Base {
   {
     $post_data = $this->input->post();
     
-    $user = $this->_Check_user($post_data);
-
-    if($user)
+    if(!$post_data)
     {
-    	$flag = $this->authenticate($user['id']);
+      redirect('admin/auth');
+    }
+
+    $user_flag = $this->_Check_user($post_data);
+
+    //if anything wrong
+    if($user_flag==INVALID_CREDENTIALS || $user_flag==INVALID_PASSWORD)
+    {
+      $this->session->set_flashdata("message",$user_flag);
+      redirect('admin/auth');
+    }
+
+    if($user_flag)
+    {
+    	$flag = $this->authenticate($user_flag['id']);
 
 	    if($flag)
 	    {
 	      redirect('admin');
 	    }
     }
-
-    echo "User not found !";
   }
 
-
-  public function Ajax_login()
+  public function Ajax_Login()
   {
     $post_data = $this->input->post();
     
-    $login_config = $this->Auth_model->login_config();
-
-    $where[$login_config['web_key']] = 'admin@gmail.com' ;
-    $where['password'] = base64_encode(123456) ;
-
-    $user = $this->db->where($where)->get('auth_users')->row_array();
-
-    if($user)
+    if(!$post_data)
     {
-    	$flag = $this->authenticate($user['id']);
+      redirect('admin/auth');
+    }
+
+    $user_flag = $this->_Check_user($post_data);
+
+    //if anything wrong
+    if($user_flag==INVALID_CREDENTIALS || $user_flag==INVALID_PASSWORD)
+    {
+      echo json_encode(['status'=>0,"message"=>$user_flag]);
+      return;
+    }
+
+    if($user_flag)
+    {
+    	$flag = $this->authenticate($user_flag['id']);
 
 	    if($flag)
 	    {
-	      echo json_encode(['satus'=>1,"message"=>"Success"]);
+	      echo json_encode(['status'=>1,"message"=>"Success"]);
+        return;
 	    }
     }
 
-    echo json_encode(['satus'=>0,"message"=>"User not found!"]);
+    echo json_encode(['status'=>0,"message"=>"User not found!"]);
   }
 
 }

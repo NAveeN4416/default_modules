@@ -19,9 +19,15 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition login-page">
+<?php if($message==INVALID_CREDENTIALS){ ?>  
+  <div class="alert alert-warning"><?=$message?></div>
+<?php } ?>
+<?php if($message==INVALID_PASSWORD){ ?>  
+  <div class="alert alert-warning"><?=$message?></div>
+<?php } ?>
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Login</b></a>
+    <a href="javascript:location.reload()"><b>Login</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="card">

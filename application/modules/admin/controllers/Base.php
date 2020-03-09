@@ -43,13 +43,6 @@ class Base extends CO_Controller {
     return True ;
   }
 
-
-  public function logout()
-  {
-    $this->session->sess_destroy();
-    redirect('admin/auth');
-  }
-
   public function initilize_session()
   {
     $this->is_authenticated = ($this->session->is_authenticated) ? true : false ;
