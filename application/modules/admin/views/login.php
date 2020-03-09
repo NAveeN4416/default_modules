@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Login</title>
+  <title>Login - Backend</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -27,7 +27,7 @@
 <?php } ?>
 <div class="login-box">
   <div class="login-logo">
-    <a href="javascript:location.reload()"><b>Login</b></a>
+    <a href="../../index2.html"><b>Login</b>Backend</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -54,9 +54,9 @@
           <div class="col-8">
             <div class="icheck-primary">
               <input type="checkbox" id="remember">
-              <label for="remember">
-                Remember Me
-              </label>
+              <p class="mb-1">
+                <a href="forgot-password.html">forgot password ?</a>
+              </p>
             </div>
           </div>
           <!-- /.col -->

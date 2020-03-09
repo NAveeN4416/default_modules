@@ -63,9 +63,9 @@
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-      </li>
+      </li> -->
       <li class="nav-item d-none d-sm-inline-block">
         <a href="<?=base_url('admin')?>" class="nav-link" title="Admin Panel"> <i class="nav-icon fa fa-user"></i></a>
       </li>

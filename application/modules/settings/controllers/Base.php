@@ -30,6 +30,7 @@ class Base extends CO_Controller {
   public function Check_And_Redirect()
   {
     $this->superuser = $this->session->IS_SUPERUSER;
+    $this->username = $this->session->USERNAME;
     $this->is_authenticated = $this->session->is_authenticated;
     $this->role = $this->superuser ? 'developer' :  $this->session->GROUP_NAME;
 
