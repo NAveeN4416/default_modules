@@ -66,7 +66,7 @@
 <script type="text/javascript" src="<?=base_url()?>style/datatables.js"></script>
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+<script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 
 
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -82,6 +82,9 @@
   $('.select2bs4').select2({
     theme: 'bootstrap4'
   })
+
+  //Ckeditor
+  CKEDITOR.replace('api_description');
 </script>
 
 <script type="text/javascript">
@@ -403,8 +406,6 @@ function Set_ThirdPartyConfig(Thirdparty_name,config_id)
       });
   });
 </script>
-
-
 
 <script type="text/javascript">
 function Create_slug(string)

@@ -16,7 +16,7 @@
           <img src="<?=base_url()?>style/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Admin</a>
+          <a style="cursor: pointer;" href="javascript:location.reload()" class="d-block"><?=$this->username?></a>
         </div>
       </div>
 
@@ -29,6 +29,12 @@
               <i class="nav-icon fa fa-cog"></i>
               <p>Configurations
               </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?=base_url('settings/mobile_services')?>" class="nav-link">
+              <i class="nav-icon fas fa-taxi"></i>
+              <p>Mobile Services</p>
             </a>
           </li>
           <li class="nav-item">
