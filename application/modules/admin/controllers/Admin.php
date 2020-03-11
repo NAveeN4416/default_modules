@@ -37,13 +37,8 @@ class Admin extends Base {
 
   public function Check_Authentication()
   {
-    if(!$this->is_authenticated){
+    if(!$this->is_authenticated || !$this->is_superuser)
       redirect(AUTH_CONTROLLER_PATH);
-    }
-
-    if(!$this->is_superuser){
-      redirect('settings/base');
-    }
   }
 
 	public function index()
@@ -55,7 +50,6 @@ class Admin extends Base {
 		$this->load->view('index',$this->data);
     $this->load->view('includes/footer',$this->data);
 	}
-
 
   public function check()
   {

@@ -13,14 +13,20 @@ class Subadmin extends Base {
     $this->controller = "subadmin";
     $this->controller_path = "admin/subadmin/";
 
-    if(!$this->is_authenticated || $this->is_superuser){
-      redirect('admin/base/login_page');
-    }
+    $this->Check_Authentication();
+  }
+
+  public function Check_Authentication()
+  {
+    if(!$this->is_authenticated || $this->role!="HR")
+      redirect(AUTH_CONTROLLER_PATH);
   }
 
   public function index()
   {
     $this->data['page_name'] = 'dashboard' ;
+
+    //echo "Welcom to subadmin Dashboard" ; exit;
 
     $this->load->view('includes/header',$this->data);
     $this->load->view('includes/side_menu',$this->data);

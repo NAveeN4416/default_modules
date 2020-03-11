@@ -218,3 +218,13 @@ ERROR - 2020-03-11 14:02:41 --> 404 Page Not Found: /index
 ERROR - 2020-03-11 14:02:42 --> 404 Page Not Found: /index
 ERROR - 2020-03-11 14:06:35 --> 404 Page Not Found: ../modules/authentication/controllers/Auth/forgot-password.html
 ERROR - 2020-03-11 14:06:44 --> 404 Page Not Found: ../modules/authentication/controllers/Auth/forgot-password.html
+ERROR - 2020-03-11 20:48:48 --> Severity: error --> Exception: Call to private method Base::_Check_user() from context 'Auth' C:\xampp\htdocs\default_modules\application\modules\authentication\controllers\Auth.php 62
+ERROR - 2020-03-11 16:19:55 --> 404 Page Not Found: /index
+ERROR - 2020-03-11 16:19:56 --> 404 Page Not Found: /index
+ERROR - 2020-03-11 20:50:34 --> Severity: Notice --> Use of undefined constant AUTH_USERS - assumed 'AUTH_USERS' C:\xampp\htdocs\default_modules\application\modules\settings\models\Groups_model.php 51
+ERROR - 2020-03-11 20:53:29 --> Severity: Notice --> Use of undefined constant AUTH_USERS - assumed 'AUTH_USERS' C:\xampp\htdocs\default_modules\application\modules\settings\models\Groups_model.php 51
+ERROR - 2020-03-11 20:53:54 --> Severity: Notice --> Use of undefined constant AUTH_USERS - assumed 'AUTH_USERS' C:\xampp\htdocs\default_modules\application\modules\settings\models\Groups_model.php 51
+ERROR - 2020-03-11 16:34:28 --> Severity: error --> Exception: syntax error, unexpected ':', expecting ',' or ';' C:\xampp\htdocs\default_modules\application\modules\admin\controllers\Subadmin.php 25
+ERROR - 2020-03-11 21:06:08 --> 404 Page Not Found: 
+ERROR - 2020-03-11 16:59:36 --> 404 Page Not Found: /index
+ERROR - 2020-03-11 16:59:37 --> 404 Page Not Found: /index

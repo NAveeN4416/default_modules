@@ -12,10 +12,19 @@ class Base extends CO_Controller {
 
     $this->load->model('Admin_model');
     $this->site_config = $this->Admin_model->Get_Site_Config();
-    $this->set_lang();
 
     $this->initilize_session();
+    $this->set_lang();
     $this->Load_Menu();
+  }
+
+  public function initilize_session()
+  {
+    $this->is_authenticated = ($this->session->is_authenticated) ? true : false ;
+    $this->is_superuser = ($this->session->IS_SUPERUSER) ? true : false ;
+    $this->is_active = ($this->session->IS_ACTIVE) ? true : false ;
+    $this->role = ($this->session->GROUP_NAME) ? $this->session->GROUP_NAME : '' ;
+    $this->username = ($this->session->USERNAME) ? $this->session->USERNAME : NULL ;
   }
 
   public function set_lang($lang="")
@@ -41,16 +50,6 @@ class Base extends CO_Controller {
 
     return True ;
   }
-
-  public function initilize_session()
-  {
-    $this->is_authenticated = ($this->session->is_authenticated) ? true : false ;
-    $this->is_superuser = ($this->session->IS_SUPERUSER) ? true : false ;
-    $this->is_active = ($this->session->IS_ACTIVE) ? true : false ;
-    $this->role = ($this->session->GROUP_NAME) ? $this->session->GROUP_NAME : '' ;
-    $this->username = ($this->session->USERNAME) ? $this->session->USERNAME : NULL ;
-  }
-
 
   public function Load_Menu()
   {

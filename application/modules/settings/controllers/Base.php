@@ -12,10 +12,10 @@ class Base extends CO_Controller {
     $this->load->library('session');
     $this->load->model('DB_model');
 
+    $this->Check_Authentication();
+
     $this->controller = "base";
     $this->controller_path = "settings/base/";
-
-    $this->Check_And_Redirect();
 
     //Ajax Attrs
     $this->Ajax['status'] = 1 ;
@@ -27,7 +27,7 @@ class Base extends CO_Controller {
     $this->load->view('login');
   }
 
-  public function Check_And_Redirect()
+  public function Check_Authentication()
   {
     $this->superuser = $this->session->IS_SUPERUSER;
     $this->username = $this->session->USERNAME;

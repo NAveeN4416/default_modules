@@ -14,8 +14,27 @@ class Base extends CO_Controller {
     $this->site_config = $this->Auth_model->Get_Site_Config();
   }
 
+  public function Check_Authentication()
+  {
+    $this->is_authenticated = @$this->session->is_authenticated ;
+    $this->is_superuser = @$this->session->IS_SUPERUSER ;
+    $this->role = @$this->session->GROUP_NAME ;
 
-  private function _Check_user($post_data)
+    if(@$this->is_authenticated)
+    {
+      if(@$this->is_superuser)
+        redirect(ADMIN_CONTROLLER_PATH);
+
+      if(@$this->role=='developer')
+        redirect(DEVELOPER_CONTROLLER_PATH);
+
+      if(@$this->role=='HR')
+        redirect(ADMIN_CONTROLLER_PATH.'Subadmin/');
+    }
+  }
+
+
+  public function _Check_user($post_data)
   {
     $login_config = $this->Auth_model->login_config();
 

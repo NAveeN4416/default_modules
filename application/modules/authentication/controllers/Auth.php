@@ -19,18 +19,7 @@ class Auth extends Base {
 
   public function index()
   {
-    $this->is_authenticated = @$this->session->is_authenticated ;
-    $this->is_superuser = @$this->session->IS_SUPERUSER ;
-    $this->role = @$this->session->GROUP_NAME ;
-
-    if(@$this->is_authenticated)
-    {
-      if(@$this->is_superuser)
-        redirect(ADMIN_CONTROLLER_PATH);
-
-      if(@$this->role=='developer')
-        redirect(DEVELOPER_CONTROLLER_PATH);
-    }
+    $this->Check_Authentication();
 
     $this->data['message'] = @$this->session->flashdata('message');
     $this->load->view('login',$this->data);
@@ -74,6 +63,13 @@ class Auth extends Base {
 
 	    if($flag)
 	    {
+        $this->is_authenticated = @$this->session->is_authenticated ;
+        $this->is_superuser = @$this->session->IS_SUPERUSER ;
+        $this->role = @$this->session->GROUP_NAME ;
+
+        if(@$this->role=='HR')
+          redirect(ADMIN_CONTROLLER_PATH.'Subadmin/');
+
 	      redirect('admin/');
 	    }
     }
