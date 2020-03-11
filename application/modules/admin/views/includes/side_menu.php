@@ -112,7 +112,7 @@
 
           <li class="nav-header">Auth</li>
           <li class="nav-item">
-            <a class="nav-link" href="<?=base_url('admin/auth/logout')?>">
+            <a class="nav-link" href="<?=base_url(AUTH_CONTROLLER_PATH)?>logout">
               <p>
                 SignOut
                 <i style="font-size: 15px;color: red" class="fas fa-sign-out-alt" title="logout"></i>

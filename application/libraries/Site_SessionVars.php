@@ -8,16 +8,6 @@ class Site_SessionVars {
 		//pass
 	}
 
-	public function auth_groups()
-	{
-    	return 'GROUPS';
-	}
-
-	public function auth_permissions()
-	{
-    	return 'PERMISSIONS';
-	}
-
 	public function auth_role()
 	{
     	return 'USER_ROLE';

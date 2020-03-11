@@ -10,9 +10,8 @@ class Base extends CO_Controller {
     // Construct the parent class
     parent::__construct();
 
-    $this->load->model('Auth_model');
     $this->load->model('Admin_model');
-    $this->site_config = $this->Auth_model->Get_Site_Config();
+    $this->site_config = $this->Admin_model->Get_Site_Config();
     $this->set_lang();
 
     $this->initilize_session();

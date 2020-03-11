@@ -59,6 +59,12 @@
     var STATE_CHANGED = false ;
   </script>
 
+  <style type="text/css">
+    body{
+      font-size: 16px !important
+    }
+  </style>
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">

@@ -35,7 +35,7 @@ class Base extends CO_Controller {
     $this->role = $this->superuser ? 'developer' :  $this->session->GROUP_NAME;
 
     if(!$this->is_authenticated)
-      redirect('admin');
+      redirect(AUTH_CONTROLLER_PATH);
 
     if($this->role!='developer')
       redirect('settings/errors/Not_Authorised');

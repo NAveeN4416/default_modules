@@ -16,11 +16,9 @@ class CO_Controller extends MY_Controller {
 
         $this->load->library('session');
         $this->load->library('Auth_SessionVars');
-        $this->load->library('Authentication');
         $this->load->library('Groups');
         $this->load->library('Permissions');
 
-        //$this->Auth = new Authentication(); 
         $this->auth_vars = new Auth_SessionVars();
         $this->groups_obj 	  = new Groups();
         $this->permissions_obj = new Permissions(); 
@@ -47,60 +45,6 @@ class CO_Controller extends MY_Controller {
     public function set_timezone($time_zone="Asia/Calcutta")
     {
     	date_default_timezone_set($time_zone) ;
-    }
-
-    public function authenticate($user_id=0)
-    {
-        if(!$user_id)
-            return false;
-
-        try
-        {
-            $user = $this->get_user($user_id);
-            $session_data = $this->_set_session_data($user);
-            //Setting Session data
-            $this->session->set_userdata($session_data);
-            $this->_set_loggedin_flag(1);
-            return true;
-        }
-        catch(Exception $e){
-            return false ;
-        }
-    }
-
-    private function _set_loggedin_flag($flag)
-    {
-        $user_id = $this->session->userdata($this->auth_vars->auth_user_id());
-        $this->db->set('is_logged_in',$flag)->where('id',$user_id)->update(USERS);
-    }
-
-    private function _set_session_data($user)
-    {
-        $set = [] ;
-
-        $set[$this->auth_vars->auth_user_id()] = $user['id'] ;
-        $set[$this->auth_vars->auth_username()] = $user['username'] ;
-        $set[$this->auth_vars->auth_email()] = $user['email'] ;
-        $set[$this->auth_vars->is_active()] = $user['is_active'] ;
-        $set[$this->auth_vars->is_superuser()] = $user['is_superuser'] ;
-        $set[$this->auth_vars->auth_group()] = $this->groups_obj->get_group_details($user['groups']['group_id'])['group_name'] ;
-        $set[$this->auth_vars->auth_groups()] = $user['groups'] ;
-        $set[$this->auth_vars->auth_permissions()] = $user['permissions'] ;
-        $set[$this->auth_vars->is_authenticated()] = true ;
-
-        foreach ($this->extra_session_vars as $key => $value) {
-            $set[$key] = $value ;
-        }
-
-        return $set ;
-    }
-
-
-    public function logout()
-    {
-        $this->_set_loggedin_flag(0);
-        $this->session->sess_destroy();
-        redirect('admin/auth');
     }
 
     //Getting data for setting session

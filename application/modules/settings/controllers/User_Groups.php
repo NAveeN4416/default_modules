@@ -11,8 +11,9 @@ class User_Groups extends Base {
 	    $this->load->model('DB_model');
 	    $this->load->model('Groups_model');
 
-	  	$this->controller_path = "settings/user_groups";
-	  	$this->controller = "user_groups";
+	    $this->controller = "user_groups/";
+	  	$this->controller_path = "settings/user_groups/";
+	  	
 	  	$this->data = [] ;
 	}
 
@@ -63,16 +64,6 @@ class User_Groups extends Base {
 		echo $this->AjaxResponse();
 	}
 
-
-	public function Get_GroupUsers($group_id)
-	{
-		$this->data['group_details'] = $this->Groups_model->Get_Object(AUTH_GROUPS,['id'=>$group_id]);
-		$this->data['group_id'] = $group_id ;
-
-		$this->Load_View('groups/group_users',$this->data);
-	}
-
-
 	public function Get_Groups()
 	{
 		$groups = $this->Groups_model->Get_groups();
@@ -111,6 +102,51 @@ class User_Groups extends Base {
 
 
 
+///Group Users============================================
+	public function Get_GroupUsers($group_id)
+	{
+		$this->data['group_details'] = $this->Groups_model->Get_Object(AUTH_GROUPS,['id'=>$group_id]);
+		$this->data['group_id'] = $group_id ;
+
+		$this->Load_View('groups/group_users',$this->data);
+	}
+
+	public function add_edit_user()
+	{
+		$user_id = $this->input->post('id');
+		$group_id = $this->input->post('group_id');
+
+		$user = @$this->Groups_model->Get_Object(AUTH_USERS,['id'=>$user_id])[0];
+		$user['group_id'] = $group_id ;
+
+		$this->load->view('groups/add_user',$user);
+	}
+
+	public function save_user()
+	{
+		$user_data = $this->input->post('user');
+		$group_id = $this->input->post('group_id');
+
+		$user_data['password'] = base64_encode($user_data['password']);
+
+		$flag = $this->Groups_model->save_user($user_data);
+
+		$user_id = $this->Groups_model->Get_Insert_Id();
+
+		if($user_id)
+		{
+			$insert['group_id'] = $group_id ;
+			$insert['user_id'] = $user_id ;
+
+			$this->Groups_model->Insert_Object(AUTH_USER_GROUPS,$insert);
+		}
+
+		$this->Ajax['status'] = "1";
+		$this->Ajax['message'] = "Success";
+
+		echo  $this->AjaxResponse();
+	}
+
 	public function Get_Group_Users()
 	{
 		$group_id = $this->input->post('group_id');
@@ -138,7 +174,7 @@ class User_Groups extends Base {
 			$row['username'] = $user['auth_users']['username'];
 			$row['email'] = $user['auth_users']['email'];
 			$row['phone'] = $user['auth_users']['phone'];
-			$row['status'] =  "<input onchange='GroupActivity(".$user['auth_users']['id'].")' id='group_status".$user['auth_users']['id']."' type='checkbox' ".$status." name='my-checkbox' data-bootstrap-switch data-toggle='toggle' data-on-text='On' data-off-color='warning' data-on-color='success' data-off-text='Off' data-handle-width='10'>"  ; //$group['status'];
+			$row['status'] =  "<input onchange='UserActivity(".$user['auth_users']['id'].")' id='user_status".$user['auth_users']['id']."' type='checkbox' ".$status." name='my-checkbox' data-bootstrap-switch data-toggle='toggle' data-on-text='On' data-off-color='warning' data-on-color='success' data-off-text='Off' data-handle-width='10'>"  ; //$group['status'];
 			$row['created_at'] = $user['auth_users']['created_at'];
 			$row['actions'] = "actions";
 
@@ -185,6 +221,27 @@ class User_Groups extends Base {
 		$this->Ajax['data'] = $data ;
 		$this->Ajax['recordsTotal'] = 10 ;
 		$this->Ajax['recordsFiltered'] = 10 ;
+
+		echo $this->AjaxResponse();
+	}
+
+	public function UserActivity()
+	{
+		$this->Ajax['status'] = 0;
+		$this->Ajax['message'] = "Something went wrong !";
+
+		$postdata = $this->input->post();
+
+		$set['is_active'] = $postdata['status'];
+		$where['id'] = $postdata['user_id'];
+
+		$uflag = $this->Groups_model->Update_Objects(USERS,$set,$where);
+
+		if($uflag)
+		{
+			$this->Ajax['status'] = 1;
+			$this->Ajax['message'] = "Success";
+		}
 
 		echo $this->AjaxResponse();
 	}

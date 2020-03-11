@@ -19,11 +19,8 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition login-page">
-<?php if($message==INVALID_CREDENTIALS){ ?>  
-  <div class="alert alert-warning"><?=$message?></div>
-<?php } ?>
-<?php if($message==INVALID_PASSWORD){ ?>  
-  <div class="alert alert-warning"><?=$message?></div>
+<?php if(@$message){ ?>  
+  <div class="badge badge-info"><?=ucfirst(strtolower(@$message))?></div>
 <?php } ?>
 <div class="login-box">
   <div class="login-logo">
@@ -33,7 +30,7 @@
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
-      <form action="<?=base_url('admin/auth/login')?>" method="post" name="login" id="login">
+      <form action="<?=base_url($this->controller_path)?>login" method="post" name="login" id="login">
         <div class="input-group mb-3">
           <input type="email" class="form-control" placeholder="Email" name="email" required>
           <div class="input-group-append">
@@ -55,7 +52,7 @@
             <div class="icheck-primary">
               <input type="checkbox" id="remember">
               <p class="mb-1">
-                <a href="forgot-password.html">forgot password ?</a>
+                <a href="<?=base_url($this->controller_path)?>Forgot_Password">forgot password ?</a>
               </p>
             </div>
           </div>

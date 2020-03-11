@@ -39,4 +39,16 @@
 	{
 		$user_ids = $this->db->where('group_id',$group_id)->get(AUTH_USER_GROUPS)->result_array();
 	}
+
+	public function save_user($data)
+	{
+		if(isset($data['id']) && $data['id']!='' && $data['id']!=0)
+		{
+			$this->db->where('id',$data['id']);
+			return $this->db->set($data)->update(AUTH_USERS);
+		}
+
+		return $this->db->insert(AUTH_USERS,$data);
+	}
+
 }

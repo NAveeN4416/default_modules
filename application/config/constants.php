@@ -102,14 +102,13 @@ define('USER_DETAILS', 'auth_user_details');
 define('LOGIN_CONFIG', 'login_config');
 define('SITE_CONFIG', 'site_configurations');
 define('AUTH_GROUPS', 'auth_groups');
+define('AUTH_USER_GROUPS', 'auth_user_groups');
 define('MOBILE_DEVICES', 'mobile_devices');
 define('MOBILE_CONFIG', 'mobile_configurations');
 define('THIRD_PARYT_CONFIG', 'third_party_configurations');
 define('ADMIN_MENU', 'admin_menu');
 define('MOBILE_APIS', 'mobile_apis');
-#define('AUTH_PERMISSIONS', 'auth_permissions');
 define('AUTH_GROUP_PERMISSIONS', 'auth_group_permissions');
-define('AUTH_USER_GROUPS', 'auth_user_groups');
 
 
 
@@ -120,6 +119,19 @@ define('AUTH_USER_GROUPS', 'auth_user_groups');
 * Error Messages
 *
 **/
-define("INVALID_CREDENTIALS", "INVALID CREDENTIALS");
-define("INVALID_PASSWORD", "INVALID PASSWORD");
+define("INVALID_CREDENTIALS", "INVALID CREDENTIALS !");
+define("INVALID_PASSWORD", "INVALID PASSWORD !");
 define("ALREADY_LOGGED_IN", "SORRY USER WITH THESE CREDENTIALS ALREADY LOGGEDIN !");
+define("USER_INACTIVE", "SORRY YOUR STATUS IS INACTIVE !");
+define("LOGOUT_SUCCESS", "YOUR SESSION HAS BEEN ENDED ");
+
+
+
+
+/**
+* Controller paths
+*
+**/
+define("AUTH_CONTROLLER_PATH", "authentication/auth/");
+define("ADMIN_CONTROLLER_PATH", "admin/");
+define("DEVELOPER_CONTROLLER_PATH", "settings/base");

@@ -19,6 +19,11 @@ class CO_Model extends MY_Model {
 		}
 	}
 
+	public function Get_Insert_Id()
+	{
+		return $this->db->insert_id();
+	}
+
 	public function Get_Tables()
 	{
 		return $this->tables ;

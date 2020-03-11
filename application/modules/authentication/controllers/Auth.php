@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-require_once(APPPATH.'modules/admin/controllers/Base.php');
+require_once(APPPATH.'modules/authentication/controllers/Base.php');
 
 class Auth extends Base {
 
@@ -9,50 +9,46 @@ class Auth extends Base {
   {
     // Construct the parent class
     parent::__construct();
+    $this->load->library('Auth_SessionVars');
 
-    $this->controller = "auth";
-    $this->controller_path = "admin/auth/";
+    $this->controller = 'auth/' ;
+    $this->controller_path = AUTH_CONTROLLER_PATH ;
 
     $this->load->model("Auth_model");
   }
 
   public function index()
   {
-    if($this->is_authenticated)
+    $this->is_authenticated = @$this->session->is_authenticated ;
+    $this->is_superuser = @$this->session->IS_SUPERUSER ;
+    $this->role = @$this->session->GROUP_NAME ;
 
-      if($this->is_superuser)
-        redirect('admin/index');
+    if(@$this->is_authenticated)
+    {
+      if(@$this->is_superuser)
+        redirect(ADMIN_CONTROLLER_PATH);
 
-      if($this->role=='developer')
-        redirect('admin/subadmin/index');
+      if(@$this->role=='developer')
+        redirect(DEVELOPER_CONTROLLER_PATH);
+    }
 
     $this->data['message'] = @$this->session->flashdata('message');
     $this->load->view('login',$this->data);
   }
 
-  private function _Check_user($post_data)
+
+  public function Forgot_Password()
   {
-  	$login_config = $this->Auth_model->login_config();
-
-    $where[$login_config['web_key']] = $post_data['email'] ;
-
-  	$user = $this->Auth_model->Get_User($where);
-
-    //if user not found
-    if(!$user)
-    {
-      return INVALID_CREDENTIALS ;
-    }
-
-    //if password is incorrect
-    if(base64_encode($post_data['password'])!=$user['password'])
-    {
-      return INVALID_PASSWORD ;
-    }
-
-    //Return user details
-  	return $user ;
+    $this->data['message'] = @$this->session->flashdata('message');
+    $this->load->view('forgot_password',$this->data);
   }
+
+  public function Send_Verification_Code()
+  {
+    $this->data['message'] = @$this->session->flashdata('message');
+    $this->load->view('change_password',$this->data);
+  }
+
 
   public function login()
   {
@@ -60,16 +56,16 @@ class Auth extends Base {
     
     if(!$post_data)
     {
-      redirect('admin/auth');
+      redirect($this->controller_path);
     }
 
     $user_flag = $this->_Check_user($post_data);
 
     //if anything wrong
-    if($user_flag==INVALID_CREDENTIALS || $user_flag==INVALID_PASSWORD)
+    if($user_flag==INVALID_CREDENTIALS || $user_flag==INVALID_PASSWORD || $user_flag==USER_INACTIVE)
     {
       $this->session->set_flashdata("message",$user_flag);
-      redirect('admin/auth');
+      redirect($this->controller_path);
     }
 
     if($user_flag)
@@ -78,7 +74,7 @@ class Auth extends Base {
 
 	    if($flag)
 	    {
-	      redirect('admin');
+	      redirect('admin/');
 	    }
     }
   }
@@ -89,7 +85,7 @@ class Auth extends Base {
     
     if(!$post_data)
     {
-      redirect('admin/auth');
+      redirect($this->controller_path);
     }
 
     $user_flag = $this->_Check_user($post_data);

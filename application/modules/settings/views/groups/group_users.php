@@ -50,7 +50,7 @@
     </section>
     <!-- /.content -->
     <section>
-      <div class="modal fade" data-backdrop="static" data-keyboard="false" id="add_group" tabindex = "-1" role = "dialog" aria-labelledby="myModalLabel" aria-hidden = "true"></div>
+      <div class="modal fade" data-backdrop="static" data-keyboard="false" id="add_user" tabindex = "-1" role = "dialog" aria-labelledby="myModalLabel" aria-hidden = "true"></div>
     </section>
   </div>
 
@@ -70,12 +70,13 @@ var dTable =  $('#example').DataTable({
         $(this).bootstrapSwitch('state', $(this).prop('checked'));
       });
 
-      var $modal = $('#add_group');
-      $('.add_group').on('click',function(event){ 
+      var $modal = $('#add_user');
+      $('.add_user').on('click',function(event){ 
           var id = $(this).data('id');
+          var group_id = "<?=$group_id?>";
           event.stopPropagation();
 
-          $modal.load('<?php echo site_url('settings/user_groups/add_edit_group');?>', {id: id},
+          $modal.load('<?php echo site_url('settings/user_groups/add_edit_user');?>', {id: id,group_id:group_id},
           function(){
           /*$('.modal').replaceWith('');*/
             $modal.modal('show');
@@ -119,21 +120,21 @@ var dTable =  $('#example').DataTable({
 
 
 <script type="text/javascript">
-function GroupActivity(group_id)
+function UserActivity(user_id)
 {
   var status = 0 ;
 
-  if($("#group_status"+group_id).is(":checked")==true)
+  if($("#user_status"+user_id).is(":checked")==true)
   {
     status = 1 ;
   }
 
   var data = new FormData();
-  data.append('group_id',group_id);
+  data.append('user_id',user_id);
   data.append('status',status);
 
   var object = {
-      'url'  : "<?=base_url('settings/user_groups/GroupActivity')?>" ,
+      'url'  : "<?=base_url($this->controller_path)?>UserActivity" ,
       "data" : data,
       "type" : "post"
   } ;

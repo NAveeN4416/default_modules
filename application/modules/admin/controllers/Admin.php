@@ -27,8 +27,8 @@ class Admin extends Base {
     // Construct the parent class
     parent::__construct();
 
-    $this->controller = "admin";
-    $this->controller_path = "admin/";
+    $this->controller = 'admin/' ;
+    $this->controller_path = ADMIN_CONTROLLER_PATH;
 
     $this->Check_Authentication();
 
@@ -38,7 +38,7 @@ class Admin extends Base {
   public function Check_Authentication()
   {
     if(!$this->is_authenticated){
-      redirect('admin/auth');
+      redirect(AUTH_CONTROLLER_PATH);
     }
 
     if(!$this->is_superuser){
