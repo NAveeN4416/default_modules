@@ -28,6 +28,9 @@ class Mobile_Services extends Base {
 
 	public function add_edit_service($service_id=0)
 	{
+		if($service_id)
+			$this->data = $this->Mobile_Services_model->Get_Object(MOBILE_APIS,['id'=>$service_id]);
+
     	$this->Load_View('mobile_services/add_service',$this->data);
 	}
 
@@ -42,18 +45,17 @@ class Mobile_Services extends Base {
 		echo  $this->AjaxResponse();
 	}
 
-	public function GroupActivity()
+	public function Change_Service_Status()
 	{
 		$this->Ajax['status'] = 0;
 		$this->Ajax['message'] = "Something went wrong !";
 
-
 		$postdata = $this->input->post();
 
 		$set['status'] = $postdata['status'];
-		$where['id'] = $postdata['group_id'];
+		$where['id'] = $postdata['service_id'];
 		
-		$uflag = $this->Groups_model->update_group($set,$where);
+		$uflag = $this->Mobile_Services_model->Update_Objects(MOBILE_APIS,$set,$where);
 
 		if($uflag)
 		{

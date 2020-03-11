@@ -27,7 +27,7 @@
 <?php } ?>
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Login</b>Backend</a>
+    <a href="javascript:location.reload()"><b>Login</b>Backend</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">

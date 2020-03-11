@@ -26,8 +26,8 @@
               <i class="fa fa-lock" aria-hidden="true"></i> Manage Permissions
             </button>
           </a> -->
-          <button type="button" class="btn btn-sm btn-primary add_group">
-            <i class="fa fa-plus" aria-hidden="true"></i> Add group
+          <button type="button" class="btn btn-sm btn-primary add_user">
+            <i class="fa fa-plus" aria-hidden="true"></i> Add User
           </button>
         </div>
         <br>
@@ -35,7 +35,9 @@
           <table id="example" class="table table-bordered table-hover display" style="width:100%">
             <thead>
                 <tr>
-                    <th>Groups Name</th>
+                    <th>User Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
                     <th>Status</th>
                     <th>Actions</th>
                 </tr>
@@ -57,7 +59,8 @@
 $(document).ready(function(){
 var dTable =  $('#example').DataTable({
     ajax: {
-      url: '<?=base_url('settings/user_groups/getgroups')?>',
+      url: '<?=base_url($this->controller_path.'/Get_Group_Users')?>',
+      data:{'group_id':'<?=$group_id?>'},
       dataSrc: 'data',
       type : 'post'
     },
@@ -82,7 +85,9 @@ var dTable =  $('#example').DataTable({
 
     },
     columns: [
-                { data: 'group_name' },
+                { data: 'username' },
+                { data: 'email' },
+                { data: 'phone' },
                 { data: 'status' },
                 { data: 'actions' },
             ],

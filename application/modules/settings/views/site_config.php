@@ -68,7 +68,7 @@
               </div>
               <div class="card-body">
               <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                  <?php foreach ($mobile_configs as $key => $mobile) { ?>
+                  <?php foreach ($mobile_configs as $key => $mobile) { if(!$mobile['config']){ continue; } ?>
                   <li class="nav-item">
                     <span class="nav-link">
                       <i class="nav-icon <?=$mobile['icon_class']?>"></i>

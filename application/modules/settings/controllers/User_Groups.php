@@ -73,9 +73,9 @@ class User_Groups extends Base {
 	}
 
 
-	public function getgroups()
+	public function Get_Groups()
 	{
-		$groups = $this->Groups_model->Get_Objects(AUTH_GROUPS);
+		$groups = $this->Groups_model->Get_groups();
 
 		$data = [] ;
 
@@ -98,6 +98,49 @@ class User_Groups extends Base {
 			$row['status'] =  "<input onchange='GroupActivity(".$group['id'].")' id='group_status".$group['id']."' type='checkbox' ".$status." name='my-checkbox' data-bootstrap-switch data-toggle='toggle' data-on-text='On' data-off-color='warning' data-on-color='success' data-off-text='Off' data-handle-width='10'>"  ; //$group['status'];
 			$row['created_at'] = $group['created_at'];
 			$row['actions'] = $actions;
+
+			$data[] = $row ;
+		}
+
+		$this->Ajax['data'] = $data ;
+		$this->Ajax['recordsTotal'] = 10 ;
+		$this->Ajax['recordsFiltered'] = 10 ;
+
+		echo $this->AjaxResponse();
+	}
+
+
+
+	public function Get_Group_Users()
+	{
+		$group_id = $this->input->post('group_id');
+		$users = $this->Groups_model->Get_Objects(AUTH_USER_GROUPS,['group_id'=>$group_id]);
+
+		//print_r($users); exit;
+
+		$data = [] ;
+
+		foreach ($users as $key => $user) {
+
+			$this->load->library('parser');
+
+			$actions = [
+							"edit_class" => "add_group",
+							"group_id"=> $user['auth_users']['id'],
+							"delete_class" => "delete_group" 
+						] ;
+
+			//$actions = $this->parser->parse('groups/snippets/actions',$actions,TRUE);
+			$status = ($user['auth_users']['is_active']==1) ? 'checked' : '' ;
+
+			$row = [] ;
+
+			$row['username'] = $user['auth_users']['username'];
+			$row['email'] = $user['auth_users']['email'];
+			$row['phone'] = $user['auth_users']['phone'];
+			$row['status'] =  "<input onchange='GroupActivity(".$user['auth_users']['id'].")' id='group_status".$user['auth_users']['id']."' type='checkbox' ".$status." name='my-checkbox' data-bootstrap-switch data-toggle='toggle' data-on-text='On' data-off-color='warning' data-on-color='success' data-off-text='Off' data-handle-width='10'>"  ; //$group['status'];
+			$row['created_at'] = $user['auth_users']['created_at'];
+			$row['actions'] = "actions";
 
 			$data[] = $row ;
 		}

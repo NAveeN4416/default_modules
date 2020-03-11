@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 03, 2020 at 08:58 PM
+-- Generation Time: Mar 11, 2020 at 05:03 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -61,8 +61,7 @@ INSERT INTO `admin_menu` (`id`, `name`, `slug`, `link`, `status`, `lang_key`, `i
 CREATE TABLE `auth_blocked_users` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `web` enum('blocked','not blocked') NOT NULL,
-  `mobile` enum('blocked','not blocked') NOT NULL,
+  `type` enum('WEB','API') NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -87,9 +86,9 @@ INSERT INTO `auth_groups` (`id`, `group_name`, `status`, `created_at`) VALUES
 (1, 'admin', '1', '2020-02-07 05:42:42'),
 (2, 'developer', '1', '2020-02-07 06:56:09'),
 (3, 'Manager', '1', '2020-02-19 06:38:34'),
-(4, 'HR Manager', '0', '2020-02-19 13:10:43'),
-(5, 'SubAdmin', '0', '2020-02-19 13:17:12'),
-(6, 'HR', '0', '2020-02-24 06:22:43');
+(4, 'HR Manager', '1', '2020-02-19 13:10:43'),
+(5, 'SubAdmin', '1', '2020-02-19 13:17:12'),
+(6, 'HR', '1', '2020-02-24 06:22:43');
 
 -- --------------------------------------------------------
 
@@ -110,7 +109,7 @@ CREATE TABLE `auth_group_permissions` (
 
 INSERT INTO `auth_group_permissions` (`id`, `group_id`, `permissions`, `created_at`) VALUES
 (1, 1, '{"permissions":["admin\\/index","admin\\/products\\/listall"]}', '2020-02-24 11:34:15'),
-(2, 2, '{"permissions":["admin\\/products\\/listall"]}', '2020-02-24 11:34:28'),
+(2, 2, '{"permissions":["1","2","3","4","5","6"]}', '2020-02-24 11:34:28'),
 (3, 5, '{"permissions":["admin\\/index","admin\\/products\\/listall"]}', '2020-02-24 11:34:44'),
 (4, 3, '{"permissions":["admin\\/index","admin\\/products\\/listall"]}', '2020-02-24 12:09:21'),
 (5, 4, '{"permissions":["1","2","3","4","5","6"]}', '2020-02-25 16:12:59'),
@@ -132,6 +131,7 @@ CREATE TABLE `auth_users` (
   `is_superuser` int(1) NOT NULL DEFAULT '0',
   `is_active` int(11) NOT NULL DEFAULT '0',
   `is_staff` int(11) NOT NULL DEFAULT '0',
+  `is_logged_in` int(1) NOT NULL,
   `last_login` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
@@ -141,9 +141,9 @@ CREATE TABLE `auth_users` (
 -- Dumping data for table `auth_users`
 --
 
-INSERT INTO `auth_users` (`id`, `username`, `name`, `email`, `phone`, `password`, `is_superuser`, `is_active`, `is_staff`, `last_login`, `created_at`, `modified_at`) VALUES
-(1, 'Admin', 'Admin', 'admin@gmail.com', '99519293', 'MTIzNDU2', 1, 1, 1, '2020-02-03 06:47:02', '2020-02-03 06:44:30', '0000-00-00 00:00:00'),
-(2, 'Developer', 'Developer', 'developer@gmail.com', '9999999999', 'MTIzNDU2', 0, 1, 1, '2020-02-03 06:47:02', '2020-02-03 06:44:30', '0000-00-00 00:00:00');
+INSERT INTO `auth_users` (`id`, `username`, `name`, `email`, `phone`, `password`, `is_superuser`, `is_active`, `is_staff`, `is_logged_in`, `last_login`, `created_at`, `modified_at`) VALUES
+(1, 'Admin', 'Admin', 'modules@yopmail.com', '99519293', 'MTIzNDU2', 1, 1, 1, 0, '2020-03-09 19:06:38', '2020-02-03 06:44:30', '0000-00-00 00:00:00'),
+(2, 'Developer', 'Developer', 'modulesdeveloper@yopmail.com', '9999999999', 'MTIzNDU2', 0, 1, 1, 1, '2020-03-09 19:07:07', '2020-02-03 06:44:30', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -584,13 +584,23 @@ CREATE TABLE `mobile_apis` (
   `api_description` text NOT NULL,
   `api_method` varchar(100) NOT NULL,
   `http_method` varchar(100) NOT NULL,
-  `status` blob NOT NULL COMMENT '1=> Works fine, 0=>Won''t Work',
-  `default_authentication` enum('Authentication Required','Authentication Not Required') NOT NULL COMMENT '1=>Authentication Required, 2=>No Authentication Required',
-  `authentication_type` int(11) NOT NULL,
+  `status` enum('Active','InActive') NOT NULL COMMENT '1=> Works fine, 0=>Won''t Work',
+  `default_authentication` enum('YES','NO') NOT NULL COMMENT '1=>Authentication Required, 2=>No Authentication Required',
+  `authentication_type` int(11) NOT NULL DEFAULT '0',
   `check_permissions` enum('Yes','No') NOT NULL,
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `mobile_apis`
+--
+
+INSERT INTO `mobile_apis` (`id`, `api_name`, `api_description`, `api_method`, `http_method`, `status`, `default_authentication`, `authentication_type`, `check_permissions`, `modified_at`, `created_at`) VALUES
+(2, 'Get Products List', '<p>Description goes here</p>\n', 'Get_Products', 'get', 'Active', 'YES', 0, 'Yes', '2020-03-09 18:06:48', '0000-00-00 00:00:00'),
+(3, 'Get Cities', '<h2>Structure<a href="https://developers.shopware.com/developers-guide/rest-api/api-resource-article/#structure">Anchor link for: structure</a></h2>\n\n<p>In this part, we will have a look at the data provided by this resource and its structure. You will be guided through all seven different operations separately.</p>\n\n<h3>GET<a href="https://developers.shopware.com/developers-guide/rest-api/api-resource-article/#get">Anchor link for: get</a></h3>\n\n<p>Required Parameters<a href="https://developers.shopware.com/developers-guide/rest-api/api-resource-article/#required-parameters">Anchor link for: required parameters</a></p>\n\n<p>This API call requires one of the following parameters to be defined:</p>\n\n<table>\n	<thead>\n		<tr>\n			<th>Identifier</th>\n			<th>Parameter</th>\n			<th>DB column</th>\n			<th>Example call</th>\n		</tr>\n	</thead>\n	<tbody>\n		<tr>\n			<td>Article Id</td>\n			<td>id</td>\n			<td>s_articles.id</td>\n			<td>/api/articles/2</td>\n		</tr>\n		<tr>\n			<td>Detail Number</td>\n			<td>number</td>\n			<td>s_articles.ordernumber</td>\n			<td>/api/articles/SW10003?useNumberAsId=true</td>\n		</tr>\n	</tbody>\n</table>\n\n<ul>\n	<li><strong>useNumberAsId=true</strong>&nbsp;- This tells the API to query the product&#39;s data by its detail number, instead of its actual identifier. Otherwise, the syntax is just&nbsp;<strong>/api/articles/id</strong>. It&#39;s not possible to provide both parameters at the same time.</li>\n</ul>\n\n<p>Optional Parameters<a href="https://developers.shopware.com/developers-guide/rest-api/api-resource-article/#optional-parameters">Anchor link for: optional parameters</a></p>\n\n<p>Optional parameters can be provided:</p>\n\n<ul>\n	<li>language&nbsp;<code>id</code>&nbsp;or&nbsp;<code>shop</code>&nbsp;(from&nbsp;<code>s_core_shops</code>). If used, the returned info will be provided in the specified language (if available)</li>\n	<li><code>considerTaxInput</code>: By default, all returned prices are net values. If the boolean&nbsp;<code>considerTaxInput</code>&nbsp;is set to true, gross values will be returned instead.</li>\n</ul>\n', 'Get_Cities', 'get', 'Active', 'YES', 0, 'Yes', '2020-03-09 18:10:20', '0000-00-00 00:00:00'),
+(4, 'Get Countries', '<p><strong><em>Response :</em></strong></p>\n\n<p>&nbsp;</p>\n\n<pre>\n{\n    &quot;glossary&quot;: {\n        &quot;title&quot;: &quot;example glossary&quot;,\n		&quot;GlossDiv&quot;: {\n            &quot;title&quot;: &quot;S&quot;,\n			&quot;GlossList&quot;: {\n                &quot;GlossEntry&quot;: {\n                    &quot;ID&quot;: &quot;SGML&quot;,\n					&quot;SortAs&quot;: &quot;SGML&quot;,\n					&quot;GlossTerm&quot;: &quot;Standard Generalized Markup Language&quot;,\n					&quot;Acronym&quot;: &quot;SGML&quot;,\n					&quot;Abbrev&quot;: &quot;ISO 8879:1986&quot;,\n					&quot;GlossDef&quot;: {\n                        &quot;para&quot;: &quot;A meta-markup language, used to create markup languages such as DocBook.&quot;,\n						&quot;GlossSeeAlso&quot;: [&quot;GML&quot;, &quot;XML&quot;]\n                    },\n					&quot;GlossSee&quot;: &quot;markup&quot;\n                }\n            }\n        }\n    }\n}</pre>\n\n<p>&nbsp;</p>\n', 'Get_Countries', 'get', 'Active', 'YES', 0, 'No', '2020-03-09 18:36:25', '0000-00-00 00:00:00'),
+(5, 'Get Customers', '<p><strong><em>Response:</em></strong></p>\n\n<p>&nbsp;</p>\n\n<pre>\n<code>{\n  &quot;squadName&quot;: &quot;Super hero squad&quot;,\n  &quot;homeTown&quot;: &quot;Metro City&quot;,\n  &quot;formed&quot;: 2016,\n  &quot;secretBase&quot;: &quot;Super tower&quot;,\n  &quot;active&quot;: true,\n  &quot;members&quot;: [\n    {\n      &quot;name&quot;: &quot;Molecule Man&quot;,\n      &quot;age&quot;: 29,\n      &quot;secretIdentity&quot;: &quot;Dan Jukes&quot;,\n      &quot;powers&quot;: [\n        &quot;Radiation resistance&quot;,\n        &quot;Turning tiny&quot;,\n        &quot;Radiation blast&quot;\n      ]\n    },\n    {\n      &quot;name&quot;: &quot;Madame Uppercut&quot;,\n      &quot;age&quot;: 39,\n      &quot;secretIdentity&quot;: &quot;Jane Wilson&quot;,\n      &quot;powers&quot;: [\n        &quot;Million tonne punch&quot;,\n        &quot;Damage resistance&quot;,\n        &quot;Superhuman reflexes&quot;\n      ]\n    },\n    {\n      &quot;name&quot;: &quot;Eternal Flame&quot;,\n      &quot;age&quot;: 1000000,\n      &quot;secretIdentity&quot;: &quot;Unknown&quot;,\n      &quot;powers&quot;: [\n        &quot;Immortality&quot;,\n        &quot;Heat Immunity&quot;,\n        &quot;Inferno&quot;,\n        &quot;Teleportation&quot;,\n        &quot;Interdimensional travel&quot;\n      ]\n    }\n  ]\n}</code></pre>\n', 'Get_Customers', 'POST', 'Active', 'YES', 0, 'Yes', '2020-03-09 18:38:16', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -602,7 +612,7 @@ CREATE TABLE `mobile_authentications` (
   `id` int(11) NOT NULL,
   `authentication_name` int(11) NOT NULL,
   `authentication_type` int(11) NOT NULL,
-  `status` blob NOT NULL COMMENT '1=>Active, 0=>InActive',
+  `status` enum('ACTIVE','INACTIVE') NOT NULL COMMENT '1=>Active, 0=>InActive',
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -631,6 +641,7 @@ CREATE TABLE `mobile_configurations` (
   `configuration_dev` text NOT NULL,
   `configuration_prod` text NOT NULL,
   `mode` enum('Development','Production') NOT NULL,
+  `status` int(1) NOT NULL,
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -639,9 +650,9 @@ CREATE TABLE `mobile_configurations` (
 -- Dumping data for table `mobile_configurations`
 --
 
-INSERT INTO `mobile_configurations` (`id`, `device_type`, `configuration_dev`, `configuration_prod`, `mode`, `modified_at`, `created_at`) VALUES
-(1, 1, 'ada', 'asd', 'Production', '2020-02-15 10:53:46', '0000-00-00 00:00:00'),
-(2, 2, 'fd', 'safd', 'Production', '2020-02-15 10:54:47', '0000-00-00 00:00:00');
+INSERT INTO `mobile_configurations` (`id`, `device_type`, `configuration_dev`, `configuration_prod`, `mode`, `status`, `modified_at`, `created_at`) VALUES
+(1, 1, '{\n  "name": "Android",\n  "password": "12345678",\n  "key": "sdbgfhjgugr7wergfyusdvfsd",\n  "link": "https://www.google.com/"\n}', '{\n  "name": "Android",\n  "password": "12345678",\n  "key": "sdbgfhjgugr7wergfyusdvfsd",\n  "link": "https://www.google.com/"\n}', 'Production', 1, '2020-02-15 10:53:46', '0000-00-00 00:00:00'),
+(2, 2, '{\n  "name": "iOS",\n  "password": "12345678",\n  "key": "sdbgfhjgugr7wergfyusdvfsd",\n  "link": "https://www.google.com/",\n  "pem_file": "https://www.volivesolutions.com/project_name/file_name"\n}', '{\n  "name": "iOS",\n  "password": "12345678",\n  "key": "sdbgfhjgugr7wergfyusdvfsd",\n  "link": "https://www.google.com/",\n  "pem_file": "https://www.volivesolutions.com/project_name/file_name"\n}', 'Production', 1, '2020-02-15 10:54:47', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -665,7 +676,8 @@ CREATE TABLE `mobile_devices` (
 
 INSERT INTO `mobile_devices` (`id`, `name`, `slug`, `icon_class`, `status`, `order_in_list`, `created_at`) VALUES
 (1, 'Android', 'android', 'fab fa-android', '1', 1, '2020-02-15 10:51:23'),
-(2, 'iOS', 'ios', 'fab fa-apple', '1', 2, '2020-02-15 10:51:23');
+(2, 'iOS', 'ios', 'fab fa-apple', '1', 2, '2020-02-15 10:51:23'),
+(3, 'Black Berry', '', 'fa fa-tv', '1', 0, '2020-03-08 14:22:24');
 
 -- --------------------------------------------------------
 
@@ -714,7 +726,7 @@ CREATE TABLE `site_configurations` (
 --
 
 INSERT INTO `site_configurations` (`id`, `title`, `description`, `email`, `phone`, `address`, `location`, `lang`, `smtp_credentials`, `social_media`, `site_db`, `mode`, `status`, `rest_mode`, `rest_status`, `modified_at`, `created_at`) VALUES
-(1, 'Site Name', 'Site Description', 'yoursite@yopmail.com', '123456789', 'Addrress of your Company', 'Latitude & Longitude of your Company', 'en', '', '', 'Production', 'Production', '1', 'Production', '1', '2020-03-03 19:40:26', '0000-00-00 00:00:00');
+(1, 'Site Name', 'Site Description', 'yoursite@yopmail.com', '123456789', 'Addrress of your Company', 'Latitude & Longitude of your Company', 'en', '', '', 'Development', 'Production', '1', 'Production', '1', '2020-03-10 09:00:44', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -837,8 +849,7 @@ ALTER TABLE `login_config`
 -- Indexes for table `mobile_apis`
 --
 ALTER TABLE `mobile_apis`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `authentication_type` (`authentication_type`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `mobile_authentications`
@@ -957,7 +968,7 @@ ALTER TABLE `login_config`
 -- AUTO_INCREMENT for table `mobile_apis`
 --
 ALTER TABLE `mobile_apis`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `mobile_authentications`
 --
@@ -977,7 +988,7 @@ ALTER TABLE `mobile_configurations`
 -- AUTO_INCREMENT for table `mobile_devices`
 --
 ALTER TABLE `mobile_devices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `notification_strings`
 --
@@ -1027,12 +1038,6 @@ ALTER TABLE `auth_user_groups`
 --
 ALTER TABLE `cities`
   ADD CONSTRAINT `cities_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `mobile_apis`
---
-ALTER TABLE `mobile_apis`
-  ADD CONSTRAINT `mobile_apis_ibfk_1` FOREIGN KEY (`authentication_type`) REFERENCES `mobile_authentications` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `mobile_auth_tokens`

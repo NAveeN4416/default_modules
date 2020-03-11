@@ -360,6 +360,34 @@ function Set_ThirdPartyConfig(Thirdparty_name,config_id)
 <!-- Site Config Page END -->
 
 
+<script type="text/javascript">
+function Set_Service_Status(service_id)
+{
+  var status = "InActive" ;
+  var title = "InActive" ;
+
+  if($(".service_status_"+service_id).is(":checked")==true)
+  {
+    var status = "Active" ;
+    var title = "Active" ;
+  }
+
+  $("#service_status_message").attr('data-original-title',title);
+
+  var data = new FormData();
+
+  data.append('service_id',service_id);
+  data.append('status',status);
+
+  var object = {
+      'url'  : "<?=base_url($this->controller_path)?>/Change_Service_Status" ,
+      "data" : data,
+      "type" : "post"
+  } ;
+
+  $response_object = AjaxUpdate(object);
+}
+</script>
 
 <script type="text/javascript">
     var $modal = $('#add_category');

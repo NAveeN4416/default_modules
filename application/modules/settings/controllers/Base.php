@@ -56,6 +56,9 @@ class Base extends CO_Controller {
     $this->data['mobile_configs'] =  $this->DB_model->get_MobileConfig();
     $this->data['thirdparty_configs'] =  $this->DB_model->get_thirdparty_config();
 
+    //echo "<pre>"; echo $this->db->database; echo "<br>";print_r($this->data);exit;
+
+
     $this->Load_View('site_config',$this->data);
   }
 

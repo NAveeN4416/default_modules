@@ -57,7 +57,7 @@
 $(document).ready(function(){
 var dTable =  $('#example').DataTable({
     ajax: {
-      url: '<?=base_url('settings/user_groups/getgroups')?>',
+      url: '<?=base_url($this->controller_path)?>/Get_Groups',
       dataSrc: 'data',
       type : 'post'
     },
