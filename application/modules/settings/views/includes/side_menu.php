@@ -32,6 +32,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="<?=base_url('settings/mobile_authentications')?>" class="nav-link">
+              <i class="nav-icon fa fa-key" aria-hidden="true"></i>
+              <p>Mobile Authentications</p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="<?=base_url('settings/mobile_services')?>" class="nav-link">
               <i class="nav-icon fas fa-taxi"></i>
               <p>Mobile Services</p>
