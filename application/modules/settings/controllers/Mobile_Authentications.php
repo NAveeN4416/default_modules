@@ -10,8 +10,8 @@ class Mobile_Authentications extends Base {
 	   	parent::__construct();
 	    $this->load->model('Mobile_Authentications_model');
 
-	  	$this->controller_path = "settings/mobile_authentications";
-	  	$this->controller = "mobile_authentications";
+	  	$this->controller_path = "settings/mobile_authentications/";
+	  	$this->controller = "mobile_authentications/";
 
 	  	$this->data = [] ;
 	  	$this->data['main_page'] = 'mobile_authentications' ;
@@ -19,27 +19,30 @@ class Mobile_Authentications extends Base {
 
 	public function index()
 	{
-    	//$this->data['services_list'] = $this->Mobile_Services_model->Get_Objects(MOBILE_APIS);
+    	$this->data['list'] = $this->Mobile_Authentications_model->Get_Objects(MOBILE_AUTHENTICATIONS);
 
     	$this->Load_View('mobile_authentications/list',$this->data);
 	}
 
 
-	public function add_edit_service($service_id=0)
+	public function add_edit_authentication()
 	{
-		if($service_id)
-			$this->data = $this->Mobile_Services_model->Get_Object(MOBILE_APIS,['id'=>$service_id]);
+		$authentication_id = $this->input->post('id');
 
-    	$this->Load_View('mobile_authentications/add_service',$this->data);
+		if($authentication_id)
+			$this->data = $this->Mobile_Authentications_model->Get_Object(MOBILE_AUTHENTICATIONS,['id'=>$authentication_id]);
+
+    	$this->load->view('mobile_authentications/add_authentication',$this->data);
 	}
 
-	public function save_service()
+	public function save_authentication()
 	{
-		$device = $this->input->post();
+		$authentication = $this->input->post();
 
-		$flag = $this->Mobile_Services_model->save_service($device);
+		$flag = $this->Mobile_Authentications_model->save(MOBILE_AUTHENTICATIONS,$authentication);
 
-		$this->Ajax['message'] = "Success";
+		$this->Ajax['status'] = 0 ;
+		$this->Ajax['message'] = "Error";
 
 		echo  $this->AjaxResponse();
 	}

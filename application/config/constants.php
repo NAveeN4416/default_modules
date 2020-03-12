@@ -105,6 +105,7 @@ define('AUTH_GROUPS', 'auth_groups');
 define('AUTH_USER_GROUPS', 'auth_user_groups');
 define('MOBILE_DEVICES', 'mobile_devices');
 define('MOBILE_CONFIG', 'mobile_configurations');
+define('MOBILE_AUTHENTICATIONS', 'mobile_authentications');
 define('THIRD_PARYT_CONFIG', 'third_party_configurations');
 define('ADMIN_MENU', 'admin_menu');
 define('MOBILE_APIS', 'mobile_apis');

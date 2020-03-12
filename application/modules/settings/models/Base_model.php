@@ -10,6 +10,12 @@
 		parent::__construct();
 	}
 
+	public function Check_Slug_InDB($table,$slug)
+	{
+		return $this->db->where('slug',$slug)->get($table)->num_rows();
+	}
+
+
 	public function Update_SiteDatabase($set)
 	{
 		// 1. Load Main database and update

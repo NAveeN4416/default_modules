@@ -425,6 +425,23 @@ function Set_Service_Status(service_id)
 
 
 <script type="text/javascript">
+    var $modal = $('#add_authentication');
+
+    $('.add_authentication').on('click',function(event){ 
+        var id = $(this).data('id');
+        event.stopPropagation();
+
+        $modal.load('<?php echo site_url($this->controller_path).'/add_edit_authentication';?>', {id: id},
+        function(){
+        /*$('.modal').replaceWith('');*/
+          $modal.modal('show');
+        });
+
+    });
+</script>
+
+
+<script type="text/javascript">
   $('.add_mobile').on('click',function(event){ 
       var id = $(this).data('id');
       event.stopPropagation();
@@ -451,7 +468,6 @@ function Create_slug(string)
   {
     Check_Slug_InDB(slug);
   }
-
 }
 </script>
 

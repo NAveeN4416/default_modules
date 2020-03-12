@@ -17,15 +17,15 @@
 		return $this->db->get(MOBILE_APIS)->result_array();
 	}
 
-	public function save_service($data)
+	public function save($table,$data)
 	{
 		if(isset($data['id']) && $data['id']!='' && $data['id']!=0)
 		{
 			$this->db->where('id',$data['id']);
-			return $this->db->set($data)->update(MOBILE_APIS);
+			return $this->db->set($data)->update($table);
 		}
 
-		return $this->db->insert(MOBILE_APIS,$data);
+		return $this->db->insert($table,$data);
 	}
 
 }

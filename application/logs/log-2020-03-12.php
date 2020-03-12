@@ -42,3 +42,32 @@ ERROR - 2020-03-12 14:33:36 --> Severity: Notice --> Undefined variable: service
 ERROR - 2020-03-12 14:33:36 --> Severity: Warning --> Invalid argument supplied for foreach() C:\xampp\htdocs\default_modules\application\modules\settings\views\mobile_authentications\services_list.php 129
 ERROR - 2020-03-12 14:33:46 --> Severity: Notice --> Undefined variable: services_list C:\xampp\htdocs\default_modules\application\modules\settings\views\mobile_authentications\services_list.php 125
 ERROR - 2020-03-12 14:33:46 --> Severity: Warning --> Invalid argument supplied for foreach() C:\xampp\htdocs\default_modules\application\modules\settings\views\mobile_authentications\services_list.php 125
+ERROR - 2020-03-12 18:38:07 --> 404 Page Not Found: ../modules/settings/controllers//index
+ERROR - 2020-03-12 18:38:07 --> 404 Page Not Found: ../modules/settings/controllers//index
+ERROR - 2020-03-12 18:38:08 --> 404 Page Not Found: ../modules/settings/controllers//index
+ERROR - 2020-03-12 18:38:08 --> 404 Page Not Found: ../modules/settings/controllers//index
+ERROR - 2020-03-12 18:38:29 --> 404 Page Not Found: ../modules/settings/controllers//index
+ERROR - 2020-03-12 18:38:30 --> 404 Page Not Found: ../modules/settings/controllers//index
+ERROR - 2020-03-12 18:38:30 --> 404 Page Not Found: ../modules/settings/controllers//index
+ERROR - 2020-03-12 18:38:30 --> 404 Page Not Found: ../modules/settings/controllers//index
+ERROR - 2020-03-12 18:41:10 --> 404 Page Not Found: ../modules/settings/controllers//index
+ERROR - 2020-03-12 18:41:10 --> 404 Page Not Found: ../modules/settings/controllers//index
+ERROR - 2020-03-12 18:41:10 --> 404 Page Not Found: ../modules/settings/controllers//index
+ERROR - 2020-03-12 18:41:10 --> 404 Page Not Found: ../modules/settings/controllers//index
+ERROR - 2020-03-12 23:11:44 --> Severity: Notice --> Undefined variable: parents C:\xampp\htdocs\default_modules\application\modules\settings\views\mobile_authentications\add_authentication.php 30
+ERROR - 2020-03-12 23:11:44 --> Severity: Warning --> Invalid argument supplied for foreach() C:\xampp\htdocs\default_modules\application\modules\settings\views\mobile_authentications\add_authentication.php 30
+ERROR - 2020-03-12 23:28:21 --> 404 Page Not Found: 
+ERROR - 2020-03-12 23:31:45 --> 404 Page Not Found: 
+ERROR - 2020-03-12 19:03:17 --> 404 Page Not Found: ../modules/settings/controllers//index
+ERROR - 2020-03-12 19:03:55 --> 404 Page Not Found: ../modules/settings/controllers//index
+ERROR - 2020-03-12 19:04:25 --> 404 Page Not Found: ../modules/settings/controllers//index
+ERROR - 2020-03-12 23:42:07 --> Severity: Notice --> Undefined property: Base::$Base_Model C:\xampp\htdocs\default_modules\application\modules\settings\controllers\Base.php 72
+ERROR - 2020-03-12 23:42:07 --> Severity: error --> Exception: Call to a member function Check_Slug_InDB() on null C:\xampp\htdocs\default_modules\application\modules\settings\controllers\Base.php 72
+ERROR - 2020-03-12 23:42:48 --> Severity: Notice --> Undefined property: Base::$Base_Model C:\xampp\htdocs\default_modules\application\modules\settings\controllers\Base.php 72
+ERROR - 2020-03-12 23:42:48 --> Severity: error --> Exception: Call to a member function Check_Slug_InDB() on null C:\xampp\htdocs\default_modules\application\modules\settings\controllers\Base.php 72
+ERROR - 2020-03-12 23:43:34 --> Severity: Notice --> Undefined property: Base::$Base_Model C:\xampp\htdocs\default_modules\application\modules\settings\controllers\Base.php 73
+ERROR - 2020-03-12 23:43:34 --> Severity: error --> Exception: Call to a member function Check_Slug_InDB() on null C:\xampp\htdocs\default_modules\application\modules\settings\controllers\Base.php 73
+ERROR - 2020-03-12 23:45:23 --> Severity: Notice --> Undefined variable: slug C:\xampp\htdocs\default_modules\application\modules\settings\models\Base_model.php 15
+ERROR - 2020-03-12 23:46:34 --> Severity: Notice --> Undefined variable: slug C:\xampp\htdocs\default_modules\application\modules\settings\models\Base_model.php 15
+ERROR - 2020-03-12 23:53:03 --> Severity: Notice --> Undefined property: Mobile_Authentications::$Mobile_Services_model C:\xampp\htdocs\default_modules\application\modules\settings\controllers\Mobile_Authentications.php 22
+ERROR - 2020-03-12 23:53:03 --> Severity: error --> Exception: Call to a member function Get_Objects() on null C:\xampp\htdocs\default_modules\application\modules\settings\controllers\Mobile_Authentications.php 22

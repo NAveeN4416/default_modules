@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2020 at 05:03 AM
+-- Generation Time: Mar 12, 2020 at 08:07 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `default_modules`
+-- Database: `default_modules_dev`
 --
 
 -- --------------------------------------------------------
@@ -86,7 +86,7 @@ INSERT INTO `auth_groups` (`id`, `group_name`, `status`, `created_at`) VALUES
 (1, 'admin', '1', '2020-02-07 05:42:42'),
 (2, 'developer', '1', '2020-02-07 06:56:09'),
 (3, 'Manager', '1', '2020-02-19 06:38:34'),
-(4, 'HR Manager', '1', '2020-02-19 13:10:43'),
+(4, 'HR', '1', '2020-02-19 13:10:43'),
 (5, 'SubAdmin', '1', '2020-02-19 13:17:12'),
 (6, 'HR', '1', '2020-02-24 06:22:43');
 
@@ -142,8 +142,12 @@ CREATE TABLE `auth_users` (
 --
 
 INSERT INTO `auth_users` (`id`, `username`, `name`, `email`, `phone`, `password`, `is_superuser`, `is_active`, `is_staff`, `is_logged_in`, `last_login`, `created_at`, `modified_at`) VALUES
-(1, 'Admin', 'Admin', 'modules@yopmail.com', '99519293', 'MTIzNDU2', 1, 1, 1, 0, '2020-03-09 19:06:38', '2020-02-03 06:44:30', '0000-00-00 00:00:00'),
-(2, 'Developer', 'Developer', 'modulesdeveloper@yopmail.com', '9999999999', 'MTIzNDU2', 0, 1, 1, 1, '2020-03-09 19:07:07', '2020-02-03 06:44:30', '0000-00-00 00:00:00');
+(1, 'Admin', 'Admin', 'modules@yopmail.com', '99519293', 'MTIzNDU2', 1, 1, 1, 0, '2020-03-12 19:06:57', '2020-02-03 06:44:30', '0000-00-00 00:00:00'),
+(2, 'Developer', 'Developer', 'modulesdeveloper@yopmail.com', '9999999999', 'MTIzNDU2', 0, 1, 1, 1, '2020-03-11 15:21:09', '2020-02-03 06:44:30', '0000-00-00 00:00:00'),
+(3, 'Developer2', 'Developer2', 'modulesdeveloper2@yopmail.com', '9999999999', 'MTIzNDU2', 0, 1, 1, 1, '2020-03-11 16:00:12', '2020-02-03 06:44:30', '0000-00-00 00:00:00'),
+(4, 'Developer3', '', 'developer3@yopmail.com', '5478963210', 'MTIzNDU2', 0, 1, 0, 0, '2020-03-11 16:00:21', '2020-03-11 15:20:34', '0000-00-00 00:00:00'),
+(5, 'HR', '', 'hr@yopmail.com', '5478963210', 'MTIzNDU2', 0, 1, 0, 0, '2020-03-11 16:03:29', '2020-03-11 15:23:29', '0000-00-00 00:00:00'),
+(6, 'hr2', '', 'hr2@yopmail.com', '5478963210', 'MTIzNDU2', 0, 0, 0, 0, '2020-03-11 15:24:00', '2020-03-11 15:23:54', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -181,7 +185,11 @@ CREATE TABLE `auth_user_groups` (
 --
 
 INSERT INTO `auth_user_groups` (`id`, `group_id`, `user_id`, `created_at`) VALUES
-(2, 2, 2, '2020-02-07 06:58:18');
+(2, 2, 2, '2020-02-07 06:58:18'),
+(3, 2, 3, '2020-02-07 06:58:18'),
+(4, 2, 4, '2020-03-11 15:20:35'),
+(5, 4, 5, '2020-03-11 15:23:29'),
+(6, 4, 6, '2020-03-11 15:23:54');
 
 -- --------------------------------------------------------
 
@@ -597,10 +605,10 @@ CREATE TABLE `mobile_apis` (
 --
 
 INSERT INTO `mobile_apis` (`id`, `api_name`, `api_description`, `api_method`, `http_method`, `status`, `default_authentication`, `authentication_type`, `check_permissions`, `modified_at`, `created_at`) VALUES
-(2, 'Get Products List', '<p>Description goes here</p>\n', 'Get_Products', 'get', 'Active', 'YES', 0, 'Yes', '2020-03-09 18:06:48', '0000-00-00 00:00:00'),
-(3, 'Get Cities', '<h2>Structure<a href="https://developers.shopware.com/developers-guide/rest-api/api-resource-article/#structure">Anchor link for: structure</a></h2>\n\n<p>In this part, we will have a look at the data provided by this resource and its structure. You will be guided through all seven different operations separately.</p>\n\n<h3>GET<a href="https://developers.shopware.com/developers-guide/rest-api/api-resource-article/#get">Anchor link for: get</a></h3>\n\n<p>Required Parameters<a href="https://developers.shopware.com/developers-guide/rest-api/api-resource-article/#required-parameters">Anchor link for: required parameters</a></p>\n\n<p>This API call requires one of the following parameters to be defined:</p>\n\n<table>\n	<thead>\n		<tr>\n			<th>Identifier</th>\n			<th>Parameter</th>\n			<th>DB column</th>\n			<th>Example call</th>\n		</tr>\n	</thead>\n	<tbody>\n		<tr>\n			<td>Article Id</td>\n			<td>id</td>\n			<td>s_articles.id</td>\n			<td>/api/articles/2</td>\n		</tr>\n		<tr>\n			<td>Detail Number</td>\n			<td>number</td>\n			<td>s_articles.ordernumber</td>\n			<td>/api/articles/SW10003?useNumberAsId=true</td>\n		</tr>\n	</tbody>\n</table>\n\n<ul>\n	<li><strong>useNumberAsId=true</strong>&nbsp;- This tells the API to query the product&#39;s data by its detail number, instead of its actual identifier. Otherwise, the syntax is just&nbsp;<strong>/api/articles/id</strong>. It&#39;s not possible to provide both parameters at the same time.</li>\n</ul>\n\n<p>Optional Parameters<a href="https://developers.shopware.com/developers-guide/rest-api/api-resource-article/#optional-parameters">Anchor link for: optional parameters</a></p>\n\n<p>Optional parameters can be provided:</p>\n\n<ul>\n	<li>language&nbsp;<code>id</code>&nbsp;or&nbsp;<code>shop</code>&nbsp;(from&nbsp;<code>s_core_shops</code>). If used, the returned info will be provided in the specified language (if available)</li>\n	<li><code>considerTaxInput</code>: By default, all returned prices are net values. If the boolean&nbsp;<code>considerTaxInput</code>&nbsp;is set to true, gross values will be returned instead.</li>\n</ul>\n', 'Get_Cities', 'get', 'Active', 'YES', 0, 'Yes', '2020-03-09 18:10:20', '0000-00-00 00:00:00'),
-(4, 'Get Countries', '<p><strong><em>Response :</em></strong></p>\n\n<p>&nbsp;</p>\n\n<pre>\n{\n    &quot;glossary&quot;: {\n        &quot;title&quot;: &quot;example glossary&quot;,\n		&quot;GlossDiv&quot;: {\n            &quot;title&quot;: &quot;S&quot;,\n			&quot;GlossList&quot;: {\n                &quot;GlossEntry&quot;: {\n                    &quot;ID&quot;: &quot;SGML&quot;,\n					&quot;SortAs&quot;: &quot;SGML&quot;,\n					&quot;GlossTerm&quot;: &quot;Standard Generalized Markup Language&quot;,\n					&quot;Acronym&quot;: &quot;SGML&quot;,\n					&quot;Abbrev&quot;: &quot;ISO 8879:1986&quot;,\n					&quot;GlossDef&quot;: {\n                        &quot;para&quot;: &quot;A meta-markup language, used to create markup languages such as DocBook.&quot;,\n						&quot;GlossSeeAlso&quot;: [&quot;GML&quot;, &quot;XML&quot;]\n                    },\n					&quot;GlossSee&quot;: &quot;markup&quot;\n                }\n            }\n        }\n    }\n}</pre>\n\n<p>&nbsp;</p>\n', 'Get_Countries', 'get', 'Active', 'YES', 0, 'No', '2020-03-09 18:36:25', '0000-00-00 00:00:00'),
-(5, 'Get Customers', '<p><strong><em>Response:</em></strong></p>\n\n<p>&nbsp;</p>\n\n<pre>\n<code>{\n  &quot;squadName&quot;: &quot;Super hero squad&quot;,\n  &quot;homeTown&quot;: &quot;Metro City&quot;,\n  &quot;formed&quot;: 2016,\n  &quot;secretBase&quot;: &quot;Super tower&quot;,\n  &quot;active&quot;: true,\n  &quot;members&quot;: [\n    {\n      &quot;name&quot;: &quot;Molecule Man&quot;,\n      &quot;age&quot;: 29,\n      &quot;secretIdentity&quot;: &quot;Dan Jukes&quot;,\n      &quot;powers&quot;: [\n        &quot;Radiation resistance&quot;,\n        &quot;Turning tiny&quot;,\n        &quot;Radiation blast&quot;\n      ]\n    },\n    {\n      &quot;name&quot;: &quot;Madame Uppercut&quot;,\n      &quot;age&quot;: 39,\n      &quot;secretIdentity&quot;: &quot;Jane Wilson&quot;,\n      &quot;powers&quot;: [\n        &quot;Million tonne punch&quot;,\n        &quot;Damage resistance&quot;,\n        &quot;Superhuman reflexes&quot;\n      ]\n    },\n    {\n      &quot;name&quot;: &quot;Eternal Flame&quot;,\n      &quot;age&quot;: 1000000,\n      &quot;secretIdentity&quot;: &quot;Unknown&quot;,\n      &quot;powers&quot;: [\n        &quot;Immortality&quot;,\n        &quot;Heat Immunity&quot;,\n        &quot;Inferno&quot;,\n        &quot;Teleportation&quot;,\n        &quot;Interdimensional travel&quot;\n      ]\n    }\n  ]\n}</code></pre>\n', 'Get_Customers', 'POST', 'Active', 'YES', 0, 'Yes', '2020-03-09 18:38:16', '0000-00-00 00:00:00');
+(2, 'Get Products Lists', '<p>Description goes heres</p>\n', 'Get_Products', 'get', 'Active', 'YES', 1, 'No', '2020-03-09 18:06:48', '0000-00-00 00:00:00'),
+(3, 'Get Cities', '<h2>Structure<a href="https://developers.shopware.com/developers-guide/rest-api/api-resource-article/#structure">Anchor link for: structure</a></h2>\n\n<p>In this part, we will have a look at the data provided by this resource and its structure. You will be guided through all seven different operations separately.</p>\n\n<h3>GET<a href="https://developers.shopware.com/developers-guide/rest-api/api-resource-article/#get">Anchor link for: get</a></h3>\n\n<p>Required Parameters<a href="https://developers.shopware.com/developers-guide/rest-api/api-resource-article/#required-parameters">Anchor link for: required parameters</a></p>\n\n<p>This API call requires one of the following parameters to be defined:</p>\n\n<table>\n	<thead>\n		<tr>\n			<th>Identifier</th>\n			<th>Parameter</th>\n			<th>DB column</th>\n			<th>Example call</th>\n		</tr>\n	</thead>\n	<tbody>\n		<tr>\n			<td>Article Id</td>\n			<td>id</td>\n			<td>s_articles.id</td>\n			<td>/api/articles/2</td>\n		</tr>\n		<tr>\n			<td>Detail Number</td>\n			<td>number</td>\n			<td>s_articles.ordernumber</td>\n			<td>/api/articles/SW10003?useNumberAsId=true</td>\n		</tr>\n	</tbody>\n</table>\n\n<ul>\n	<li><strong>useNumberAsId=true</strong>&nbsp;- This tells the API to query the product&#39;s data by its detail number, instead of its actual identifier. Otherwise, the syntax is just&nbsp;<strong>/api/articles/id</strong>. It&#39;s not possible to provide both parameters at the same time.</li>\n</ul>\n\n<p>Optional Parameters<a href="https://developers.shopware.com/developers-guide/rest-api/api-resource-article/#optional-parameters">Anchor link for: optional parameters</a></p>\n\n<p>Optional parameters can be provided:</p>\n\n<ul>\n	<li>language&nbsp;<code>id</code>&nbsp;or&nbsp;<code>shop</code>&nbsp;(from&nbsp;<code>s_core_shops</code>). If used, the returned info will be provided in the specified language (if available)</li>\n	<li><code>considerTaxInput</code>: By default, all returned prices are net values. If the boolean&nbsp;<code>considerTaxInput</code>&nbsp;is set to true, gross values will be returned instead.</li>\n</ul>\n', 'Get_Cities', 'get', 'Active', 'YES', 1, 'Yes', '2020-03-09 18:10:20', '0000-00-00 00:00:00'),
+(4, 'Get Countries', '<p><strong><em>Response :</em></strong></p>\n\n<p>&nbsp;</p>\n\n<pre>\n{\n    &quot;glossary&quot;: {\n        &quot;title&quot;: &quot;example glossary&quot;,\n		&quot;GlossDiv&quot;: {\n            &quot;title&quot;: &quot;S&quot;,\n			&quot;GlossList&quot;: {\n                &quot;GlossEntry&quot;: {\n                    &quot;ID&quot;: &quot;SGML&quot;,\n					&quot;SortAs&quot;: &quot;SGML&quot;,\n					&quot;GlossTerm&quot;: &quot;Standard Generalized Markup Language&quot;,\n					&quot;Acronym&quot;: &quot;SGML&quot;,\n					&quot;Abbrev&quot;: &quot;ISO 8879:1986&quot;,\n					&quot;GlossDef&quot;: {\n                        &quot;para&quot;: &quot;A meta-markup language, used to create markup languages such as DocBook.&quot;,\n						&quot;GlossSeeAlso&quot;: [&quot;GML&quot;, &quot;XML&quot;]\n                    },\n					&quot;GlossSee&quot;: &quot;markup&quot;\n                }\n            }\n        }\n    }\n}</pre>\n\n<p>&nbsp;</p>\n', 'Get_Countries', 'get', 'Active', 'YES', 1, 'No', '2020-03-09 18:36:25', '0000-00-00 00:00:00'),
+(5, 'Get Customers', '<p><strong><em>Response:</em></strong></p>\n\n<p>&nbsp;</p>\n\n<pre>\n<code>{\n  &quot;squadName&quot;: &quot;Super hero squad&quot;,\n  &quot;homeTown&quot;: &quot;Metro City&quot;,\n  &quot;formed&quot;: 2016,\n  &quot;secretBase&quot;: &quot;Super tower&quot;,\n  &quot;active&quot;: true,\n  &quot;members&quot;: [\n    {\n      &quot;name&quot;: &quot;Molecule Man&quot;,\n      &quot;age&quot;: 29,\n      &quot;secretIdentity&quot;: &quot;Dan Jukes&quot;,\n      &quot;powers&quot;: [\n        &quot;Radiation resistance&quot;,\n        &quot;Turning tiny&quot;,\n        &quot;Radiation blast&quot;\n      ]\n    },\n    {\n      &quot;name&quot;: &quot;Madame Uppercut&quot;,\n      &quot;age&quot;: 39,\n      &quot;secretIdentity&quot;: &quot;Jane Wilson&quot;,\n      &quot;powers&quot;: [\n        &quot;Million tonne punch&quot;,\n        &quot;Damage resistance&quot;,\n        &quot;Superhuman reflexes&quot;\n      ]\n    },\n    {\n      &quot;name&quot;: &quot;Eternal Flame&quot;,\n      &quot;age&quot;: 1000000,\n      &quot;secretIdentity&quot;: &quot;Unknown&quot;,\n      &quot;powers&quot;: [\n        &quot;Immortality&quot;,\n        &quot;Heat Immunity&quot;,\n        &quot;Inferno&quot;,\n        &quot;Teleportation&quot;,\n        &quot;Interdimensional travel&quot;\n      ]\n    }\n  ]\n}</code></pre>\n', 'Get_Customers', 'POST', 'Active', 'YES', 1, 'Yes', '2020-03-09 18:38:16', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -610,11 +618,23 @@ INSERT INTO `mobile_apis` (`id`, `api_name`, `api_description`, `api_method`, `h
 
 CREATE TABLE `mobile_authentications` (
   `id` int(11) NOT NULL,
-  `authentication_name` int(11) NOT NULL,
-  `authentication_type` int(11) NOT NULL,
-  `status` enum('ACTIVE','INACTIVE') NOT NULL COMMENT '1=>Active, 0=>InActive',
+  `authentication_name` text NOT NULL,
+  `slug` varchar(100) NOT NULL,
+  `icon` varchar(50) NOT NULL,
+  `authentication_type` varchar(50) NOT NULL,
+  `status` enum('Active','InActive') NOT NULL COMMENT '1=>Active, 0=>InActive',
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `mobile_authentications`
+--
+
+INSERT INTO `mobile_authentications` (`id`, `authentication_name`, `slug`, `icon`, `authentication_type`, `status`, `modified_at`) VALUES
+(1, 'No Authentication', 'no_authentication', 'fa fa-globe', 'No Authentication', 'Active', '2020-03-12 18:15:29'),
+(2, 'Basic Authentication', 'basic_authentication', 'fas fa-user-secret', 'Basic Authentication', 'Active', '2020-03-12 18:19:43'),
+(3, 'Token  Authentication', 'token__authentication', 'fa fa-id-card', 'Token Authentication', 'Active', '2020-03-12 18:20:20'),
+(4, 'Header Authentication', 'header_authentication', 'fas fa-tv', 'Header Authentication', 'Active', '2020-03-12 18:27:54');
 
 -- --------------------------------------------------------
 
@@ -652,7 +672,7 @@ CREATE TABLE `mobile_configurations` (
 
 INSERT INTO `mobile_configurations` (`id`, `device_type`, `configuration_dev`, `configuration_prod`, `mode`, `status`, `modified_at`, `created_at`) VALUES
 (1, 1, '{\n  "name": "Android",\n  "password": "12345678",\n  "key": "sdbgfhjgugr7wergfyusdvfsd",\n  "link": "https://www.google.com/"\n}', '{\n  "name": "Android",\n  "password": "12345678",\n  "key": "sdbgfhjgugr7wergfyusdvfsd",\n  "link": "https://www.google.com/"\n}', 'Production', 1, '2020-02-15 10:53:46', '0000-00-00 00:00:00'),
-(2, 2, '{\n  "name": "iOS",\n  "password": "12345678",\n  "key": "sdbgfhjgugr7wergfyusdvfsd",\n  "link": "https://www.google.com/",\n  "pem_file": "https://www.volivesolutions.com/project_name/file_name"\n}', '{\n  "name": "iOS",\n  "password": "12345678",\n  "key": "sdbgfhjgugr7wergfyusdvfsd",\n  "link": "https://www.google.com/",\n  "pem_file": "https://www.volivesolutions.com/project_name/file_name"\n}', 'Production', 1, '2020-02-15 10:54:47', '0000-00-00 00:00:00');
+(2, 2, '{\n  "name": "iOS",\n  "password": "12345678",\n  "key": "sdbgfhjgugr7wergfyusdvfsd",\n  "link": "https://www.google.com/",\n  "pem_file": "https://www.volivesolutions.com/project_name/file_name"\n}', '{\n  "name": "iOS",\n  "password": "12345678",\n  "key": "sdbgfhjgugr7wergfyusdvfsd",\n  "link": "https://www.google.com/",\n  "pem_file": "https://www.volivesolutions.com/project_name/file_name"\n}', 'Development', 1, '2020-02-15 10:54:47', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -677,7 +697,8 @@ CREATE TABLE `mobile_devices` (
 INSERT INTO `mobile_devices` (`id`, `name`, `slug`, `icon_class`, `status`, `order_in_list`, `created_at`) VALUES
 (1, 'Android', 'android', 'fab fa-android', '1', 1, '2020-02-15 10:51:23'),
 (2, 'iOS', 'ios', 'fab fa-apple', '1', 2, '2020-02-15 10:51:23'),
-(3, 'Black Berry', '', 'fa fa-tv', '1', 0, '2020-03-08 14:22:24');
+(3, 'Black Berry', '', 'fa fa-tv', '1', 0, '2020-03-08 14:22:24'),
+(4, 'Track Two', '', 'fa fa-tv', '1', 0, '2020-03-10 09:01:54');
 
 -- --------------------------------------------------------
 
@@ -752,9 +773,9 @@ CREATE TABLE `third_party_configurations` (
 --
 
 INSERT INTO `third_party_configurations` (`id`, `type`, `icon_class`, `name`, `slug`, `configuration_dev`, `configuration_prod`, `mode`, `status`, `modified_at`) VALUES
-(1, 'PAYMENT', 'far fa-money-bill-alt', 'Hyperpay', 'hyperpay', 'asdfs', 'sdf', 'Production', '1', '2020-02-15 11:57:18'),
+(1, 'PAYMENT', 'far fa-money-bill-alt', 'Hyperpay', 'hyperpay', 'asdfs', 'sdf', 'Development', '1', '2020-02-15 11:57:18'),
 (2, 'SMS', 'fas fa-sms', 'Nexmo', 'nexmo', 'd', 'asdfa', 'Production', '1', '2020-02-15 11:58:18'),
-(3, 'BOOKINGS', 'fas fa-shopping-cart', 'Book Seat', 'book_seat', 'sd', 'fsdf', 'Production', '1', '2020-02-15 12:28:25');
+(3, 'BOOKINGS', 'fas fa-shopping-cart', 'Book Seat', 'book_seat', 'sd', 'fsdf', 'Development', '1', '2020-02-15 12:28:25');
 
 --
 -- Indexes for dumped tables
@@ -849,7 +870,8 @@ ALTER TABLE `login_config`
 -- Indexes for table `mobile_apis`
 --
 ALTER TABLE `mobile_apis`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `authentication_type` (`authentication_type`);
 
 --
 -- Indexes for table `mobile_authentications`
@@ -923,7 +945,7 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT for table `auth_users`
 --
 ALTER TABLE `auth_users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `auth_user_details`
 --
@@ -933,7 +955,7 @@ ALTER TABLE `auth_user_details`
 -- AUTO_INCREMENT for table `auth_user_groups`
 --
 ALTER TABLE `auth_user_groups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `chat_threads`
 --
@@ -973,7 +995,7 @@ ALTER TABLE `mobile_apis`
 -- AUTO_INCREMENT for table `mobile_authentications`
 --
 ALTER TABLE `mobile_authentications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `mobile_auth_tokens`
 --
@@ -988,7 +1010,7 @@ ALTER TABLE `mobile_configurations`
 -- AUTO_INCREMENT for table `mobile_devices`
 --
 ALTER TABLE `mobile_devices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `notification_strings`
 --
@@ -1038,6 +1060,12 @@ ALTER TABLE `auth_user_groups`
 --
 ALTER TABLE `cities`
   ADD CONSTRAINT `cities_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `mobile_apis`
+--
+ALTER TABLE `mobile_apis`
+  ADD CONSTRAINT `mobile_authentications_link` FOREIGN KEY (`authentication_type`) REFERENCES `mobile_authentications` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `mobile_auth_tokens`

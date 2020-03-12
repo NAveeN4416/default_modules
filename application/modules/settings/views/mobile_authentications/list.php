@@ -8,7 +8,7 @@
 }
 </style>
 
-  <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -31,59 +31,65 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <div class="container">
-
+          <div class="row" style="float: right;">
+            <button type="button" class="btn btn-primary add_authentication" >
+             + Add Authentication
+            </button>
+          </div><br>
           <div class="row">
-
+          <?php foreach ($list as $key => $record) { ?>
             <div class="col-12 col-sm-6 col-md-3 car_hover">
               <div class="info-box">
-                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-globe"></i></span>
+                <span class="info-box-icon bg-info elevation-1"><i class="<?=$record['icon']?>"></i></span>
                 <div class="info-box-content">
-                  <span class="info-box-text">No Authentication</span>
-                  <span class="info-box-number badge badge-success">Active</span>
-                  <span class="info-box-number">Services - 10</span>
+                  <span class="info-box-text"><?=$record['authentication_name']?></span>
+                  <span class="info-box-number badge badge-success"><?=$record['status']?></span>
+                  <span class="info-box-number">Services - <?=count($record['mobile_apis'])?></span>
                 </div>
                 <!-- /.info-box-content -->
               </div>
               <!-- /.info-box -->
             </div>
-
-            <div class="col-12 col-sm-6 col-md-3 car_hover">
-              <div class="info-box mb-3">
-                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-secret"></i></span>
-                <div class="info-box-content">
-                  <span class="info-box-text">Basic Authentication</span>
-                  <span class="info-box-number badge badge-success">Active</span>
-                  <span class="info-box-number">Services - 10</span>
-                </div>
-                <!-- /.info-box-content -->
-              </div>
-              <!-- /.info-box -->
-            </div>
-
-            <div class="col-12 col-sm-6 col-md-3 car_hover">
-              <div class="info-box mb-3">
-                <span class="info-box-icon bg-warning elevation-1"><i class="fa fa-id-card"></i></span>
-                <div class="info-box-content">
-                  <span class="info-box-text">Token Authentication</span>
-                  <span class="info-box-number badge badge-danger">InActive</span>
-                  <span class="info-box-number">Services - 10</span>
-                </div>
-                <!-- /.info-box-content -->
-              </div>
-              <!-- /.info-box -->
-            </div>
-
-        </div>
-
+          <?php } ?>
         </div>
       </div><!-- /.container-fluid -->
     </section>
 
-
+    
 
     <section>
-      <div class="modal fade" data-backdrop="static" data-keyboard="false" id="add_service" tabindex = "-1" role = "dialog" aria-labelledby="myModalLabel" aria-hidden = "true"></div>
+      <div class="modal fade" data-backdrop="static" data-keyboard="false" id="add_authentication" tabindex = "-1" role = "dialog" aria-labelledby="myModalLabel" aria-hidden = "true">
+      </div>
     </section>
     <!-- /.content -->
   </div>
+
+
+<script type="text/javascript"> 
+  function Check_Slug_InDB(slug)
+  {
+    var data = new FormData();
+    data.append('slug',slug);
+    data.append('table','<?=MOBILE_AUTHENTICATIONS?>');
+
+    var object = {
+        'url'  : "<?=base_url('settings/base/Check_Slug_InDB')?>" ,
+        "data" : data,
+        "type" : "post"
+    } ;
+
+    $response_object = JSON.parse(AjaxUpdate(object));
+    //console.log($response_object);
+    if($response_object.status==0)
+    {
+      $("#error_p").text("Record with this name already exist !");
+      $("#input_slug").val('');
+      $("#display_slug").text('');
+    }
+    else
+    {
+      $("#error_p").text("");
+    }
+
+  }
+</script>

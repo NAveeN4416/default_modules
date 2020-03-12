@@ -11,6 +11,7 @@ class Base extends CO_Controller {
     parent::__construct();
     $this->load->library('session');
     $this->load->model('DB_model');
+    $this->load->model('Base_model');
 
     $this->Check_Authentication();
 
@@ -68,8 +69,18 @@ class Base extends CO_Controller {
 
     if($post_data['slug'] && $post_data['table'])
     {
-      $this->Ajax['status'] = 1 ;
-      $this->Ajax['message'] = $post_data ;
+      $check_flag = $this->Base_model->Check_Slug_InDB(MOBILE_AUTHENTICATIONS,$post_data['slug']);
+
+      if($check_flag)
+      {
+        $this->Ajax['status'] = 0 ;
+        $this->Ajax['message'] = "Slug already exists !" ;
+      }
+      else
+      {
+        $this->Ajax['status'] = 1 ;
+        $this->Ajax['message'] = "Success" ;
+      }
     }
     else
     {
