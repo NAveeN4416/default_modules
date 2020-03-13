@@ -71,6 +71,15 @@
                   </div>
                 </div>
                 <div class="form-group">
+                  <label for="inputState">Authentication Type</label>
+                  <select id="inputState" class="form-control" name="authentication_type" required>
+                    <option value="">--Select--</option>
+                    <?php foreach ($authentications as $key => $authentication) { ?>
+                      <option value="<?=$authentication['id']?>" <?php echo (@$authentication['id']==@$authentication_type) ? 'selected' : '' ;?>><?=$authentication['authentication_name']?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+                <div class="form-group">
                   <label for="inputAddress">Service Description</label>
                   <textarea name="api_description" id="api_description" class="form-control"><?=@$api_description?></textarea>
                 </div>
@@ -103,7 +112,7 @@
     $("#error_p").text('');
 
     var object = {
-        'url'  : "<?=base_url($this->controller_path)?>/save_service",
+        'url'  : "<?=base_url($this->controller_path)?>save_service",
         "data" : data,
         "type" : "post"
     } ;
@@ -117,7 +126,7 @@
       $(".close").click();
 
       setTimeout(function(){
-        location.reload();
+        //location.reload();
       },2000);
     }
     else

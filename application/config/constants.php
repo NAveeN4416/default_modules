@@ -106,13 +106,11 @@ define('AUTH_USER_GROUPS', 'auth_user_groups');
 define('MOBILE_DEVICES', 'mobile_devices');
 define('MOBILE_CONFIG', 'mobile_configurations');
 define('MOBILE_AUTHENTICATIONS', 'mobile_authentications');
+define('MOBILE_AUTH_TOKENS', 'mobile_auth_tokens');
 define('THIRD_PARYT_CONFIG', 'third_party_configurations');
 define('ADMIN_MENU', 'admin_menu');
 define('MOBILE_APIS', 'mobile_apis');
 define('AUTH_GROUP_PERMISSIONS', 'auth_group_permissions');
-
-
-
 
 
 

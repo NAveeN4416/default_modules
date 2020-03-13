@@ -69,6 +69,7 @@ class CO_Model extends MY_Model {
 
 				$REFERENCED_TABLE_NAME = $schema['REFERENCED_TABLE_NAME'];
 				$REFERENCED_COLUMN_NAME = $schema['REFERENCED_COLUMN_NAME'];
+				$COLUMN_NAME = $schema['COLUMN_NAME'];
 
 				if($REFERENCED_TABLE_NAME)
 				{
@@ -77,7 +78,7 @@ class CO_Model extends MY_Model {
 						$where = $meta_search[$REFERENCED_TABLE_NAME] ;
 					}
 
-					$where[$REFERENCED_COLUMN_NAME] = $record[$REFERENCED_COLUMN_NAME];
+					$where[$REFERENCED_COLUMN_NAME] = $record[$COLUMN_NAME];
 
 					$refered_object = @$this->GetData($REFERENCED_TABLE_NAME,$where)[0];
 
@@ -154,14 +155,34 @@ class CO_Model extends MY_Model {
         return $user;
 	}
 
-	public function Delete_Objects($table,$where)
-	{
-		if(!$where)
-			return 0;
 
-		return $this->db->where($where)->delete($table);
+	//Updates only Status at where conditions in the supplie table
+	public function Set_Status($table,$status,$where)
+	{
+		return $this->Update_Objects($table,['status'=>$status],$where);
 	}
 
+	//Only Inserts and returns insert id
+	public function Insert_Object($table,$data)
+	{
+		$this->db->insert($table,$data);
+		return $this->db->insert_id();
+	}
+
+	//Inserts or Updates the `record` if data has truth value of `id`
+	public function Upsert_Object($table,$data)
+	{
+		if(isset($data['id']) && $data['id']!='' && $data['id']!=0)
+		{
+			$this->db->where('id',$data['id']);
+			return $this->db->set($data)->update($table);
+		}
+
+		$this->db->insert($table,$data);
+		return $this->db->insert_id();
+	}
+
+	//Updates the table with the `set` object at `where` conditions
 	public function Update_Objects($table,$set,$where)
 	{
 		if(!$where)
@@ -170,17 +191,14 @@ class CO_Model extends MY_Model {
 		return $this->db->set($set)->where($where)->update($table);
 	}
 
-	public function Set_Status($table,$status,$where)
+	//Deletes the racords in the `table` at `where` conditions
+	public function Delete_Objects($table,$where)
 	{
-		return $this->Update_Objects($table,['status'=>$status],$where);
-	}
+		if(!$where)
+			return 0;
 
-	public function Insert_Object($table,$data)
-	{
-		$this->db->insert($table,$data);
-		return $this->db->insert_id();
+		return $this->db->where($where)->delete($table);
 	}
-
 }
 
 ?>

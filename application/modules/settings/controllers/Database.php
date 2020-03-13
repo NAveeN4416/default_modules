@@ -37,20 +37,6 @@ class Database extends Base {
     $this->Load_View('index',$this->data);
   }
 
-  public function Get_Device_Form()
-  {
-    $this->data['device'] = [] ;
-
-    $this->load->view("mobile/add_device",$this->data);
-  }
-
-
-  public function Add_Device()
-  {
-    print_r($_POST);
-  }
-
-
   public function db_constants()
   {
   	$this->data['tables'] = $this->DB_model->get_db_tables();

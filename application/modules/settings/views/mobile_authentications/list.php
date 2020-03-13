@@ -31,26 +31,37 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-          <div class="row" style="float: right;">
-            <button type="button" class="btn btn-primary add_authentication" >
-             + Add Authentication
-            </button>
-          </div><br>
-          <div class="row">
-          <?php foreach ($list as $key => $record) { ?>
-            <div class="col-12 col-sm-6 col-md-3 car_hover">
-              <div class="info-box">
-                <span class="info-box-icon bg-info elevation-1"><i class="<?=$record['icon']?>"></i></span>
-                <div class="info-box-content">
-                  <span class="info-box-text"><?=$record['authentication_name']?></span>
-                  <span class="info-box-number badge badge-success"><?=$record['status']?></span>
-                  <span class="info-box-number">Services - <?=count($record['mobile_apis'])?></span>
-                </div>
-                <!-- /.info-box-content -->
+        <div class="row">
+          <button type="button" class="btn btn-primary add_authentication" >
+           + Add Authentication
+          </button>
+        </div><br>
+        <div class="row">
+
+          <div class="col-md-12">
+            <!-- Input addon -->
+            <div class="card card-info">
+              <div class="card-header">
+                <h3 class="card-title">Authentications List</h3>
               </div>
-              <!-- /.info-box -->
+              <div class="card-body">
+                <?php foreach ($list as $key => $record) { ?>
+                  <div class="col-12 col-md-3 car_hover">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-info elevation-1"><i class="<?=$record['icon']?>"></i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text"><?=$record['authentication_name']?></span>
+                        <span class="info-box-number badge badge-success"><?=$record['status']?></span>
+                        <span class="info-box-number">Services - <?=count($record['mobile_apis'])?></span>
+                      </div>
+                      <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                  </div>
+                <?php } ?>                
+              </div>
             </div>
-          <?php } ?>
+          </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>

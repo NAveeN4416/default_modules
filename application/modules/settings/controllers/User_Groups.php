@@ -35,7 +35,7 @@ class User_Groups extends Base {
 	{
 		$group = $this->input->post();
 
-		$flag = $this->Groups_model->save_groups($group);
+		$flag = $this->Groups_model->Upsert_Object(AUTH_GROUPS,$group);
 
 		$this->Ajax['message'] = "Success";
 
@@ -66,7 +66,7 @@ class User_Groups extends Base {
 
 	public function Get_Groups()
 	{
-		$groups = $this->Groups_model->Get_groups();
+		$groups = $this->Groups_model->Get_Objects(AUTH_GROUPS);
 
 		$data = [] ;
 
@@ -129,7 +129,7 @@ class User_Groups extends Base {
 
 		$user_data['password'] = base64_encode($user_data['password']);
 
-		$flag = $this->Groups_model->save_user($user_data);
+		$flag = $this->Groups_model->Upsert_Object(AUTH_USERS,$user_data);
 
 		$user_id = $this->Groups_model->Get_Insert_Id();
 

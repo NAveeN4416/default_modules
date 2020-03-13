@@ -19,10 +19,7 @@ class Mobile extends Base {
 	public function index()
 	{
     	$this->data['page_name'] = 'mobile_config' ;
-
     	$this->data['mobiles'] = $this->Mobile_Model->Get_Objects(MOBILE_DEVICES);
-
-    	//echo "<pre>"; print_r($this->data);exit;
 
     	$this->Load_View('mobile/mobile_config',$this->data);
 	}

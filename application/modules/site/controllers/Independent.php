@@ -1,5 +1,8 @@
 <?php
-class Independent extends CI_Controller
+
+require_once(APPPATH.'modules/site/controllers/Base.php');
+
+class Independent extends Base
 {
     public function __construct() 
     {
@@ -18,10 +21,10 @@ class Independent extends CI_Controller
         return $this->load->view('under_development');
     }
 
-    private function __Site_Status()
+    public function __Site_Status()
     {
         $status = $this->site_config['status'];
-        
+
         if($status==1)
         {
           return redirect('site');

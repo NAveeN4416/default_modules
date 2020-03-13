@@ -181,7 +181,7 @@ class Base extends CO_Controller {
     echo json_encode($response);
   }
 
-  /*------------Overload this method as you want in your subclass--------------*/
+  /*------------Overload these method as you want in your subclass--------------*/
   public function Load_View($body,$context=array())
   {
     $this->load->view('includes/header',$this->data);

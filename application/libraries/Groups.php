@@ -28,9 +28,18 @@ class Groups {
         //Get the CodeIgniter reference
         $this->_CI = &get_instance();
 
-        $this->_CI->load->database();
-        $this->_CI->load->library('session');
+        $db_mode =  $this->_CI->db->get(SITE_CONFIG)->row_array()['site_db'];
+        if($db_mode=="Development")
+        {
+          $this->_CI->db = $this->_CI->load->database("development",True);
+          //echo "Development db loaded" ;exit;
+        }
+        else
+        {
+          $this->_CI->db = $this->_CI->load->database("default",True);
+        }
 
+        $this->_CI->load->library('session');
     }
 
     public function get_groups($user_id)
@@ -48,9 +57,7 @@ class Groups {
 
     public function get_group($user_id)
     {
-        $user_group = $this->_CI->db->where('user_id',$user_id)->get('auth_user_groups')->row_array();
-
-        return $user_group ;
+        return $this->_CI->db->where('user_id',$user_id)->get('auth_user_groups')->row_array();
     }
 
 
