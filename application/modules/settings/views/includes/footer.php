@@ -387,7 +387,38 @@ function Set_Service_Status(service_id)
 
   $response_object = AjaxUpdate(object);
 }
+
+
+function Set_Device_Status(device_id)
+{
+  var status = "InActive" ;
+  var title = "InActive" ;
+
+  if($(".device_status_"+device_id).is(":checked")==true)
+  {
+    var status = "Active" ;
+    var title = "Active" ;
+  }
+
+  $("#device_status_message").attr('data-original-title',title);
+
+  var data = new FormData();
+
+  data.append('device_id',device_id);
+  data.append('status',status);
+
+  var object = {
+      'url'  : "<?=base_url($this->controller_path)?>/Change_Device_Status" ,
+      "data" : data,
+      "type" : "post"
+  } ;
+
+  $response_object = AjaxUpdate(object);
+}
+
 </script>
+
+
 
 <script type="text/javascript">
     var $modal = $('#add_category');
@@ -469,6 +500,63 @@ function Create_slug(string)
     Check_Slug_InDB(slug);
   }
 }
+
+function Delete_Record(main_key,sub_key)
+{
+
+  if(confirm("Delete this record ?"))
+  {
+    var data = new FormData();
+    data.append('main_key',main_key);
+    data.append('sub_key',sub_key);
+
+    var object = {
+        'url'  : "<?=base_url($this->controller_path)?>Delete_Record" ,
+        "data" : data,
+        "type" : "post"
+    } ;
+
+    $response_object = AjaxUpdate(object);
+
+    if($response_object)
+    {
+      swal.stopLoading();
+      swal("Record Deleted Successfully !",{
+          icon : "success",
+          buttons: false
+      });
+    }
+  }
+}
+
+
+
+function Restore_Record(main_key,sub_key)
+{
+  if(confirm("Restore this record ?"))
+  {
+    var data = new FormData();
+    data.append('main_key',main_key);
+    data.append('sub_key',sub_key);
+
+    var object = {
+        'url'  : "<?=base_url($this->controller_path)?>Restore_Record" ,
+        "data" : data,
+        "type" : "post"
+    } ;
+
+    $response_object = AjaxUpdate(object);
+
+    if($response_object)
+    {
+      swal.stopLoading();
+      swal("Record Restored Successfully !, Please refresh the page",{
+          icon : "success",
+          buttons: false
+      });
+    }
+  }
+}
 </script>
 
 
@@ -492,7 +580,7 @@ function Show_Error(msg)
 //Overload this with custom method
 function AjaxBeforeSend()
 {
-  console.log("Requesting Server");
+  console.log("Requesting Server.....");
 }
 
 //Overload this method with custom method

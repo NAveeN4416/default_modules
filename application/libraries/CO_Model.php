@@ -142,7 +142,7 @@ class CO_Model extends MY_Model {
 	{
 		$objects = $this->Get_Objects($table,$where,$meta_search) ;
 
-		return ($objects[0]) ? $objects[0] : array() ;
+		return (@$objects[0]) ? $objects[0] : array() ;
 	}
 
 	public function Get_User($user_id)

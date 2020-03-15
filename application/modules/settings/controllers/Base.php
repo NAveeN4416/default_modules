@@ -197,6 +197,40 @@ class Base extends CO_Controller {
     return json_encode($send);
   }
 
+  public function Delete_Record()
+  {
+    $table = base64_decode($this->input->post('main_key'));
+    $record_id = base64_decode($this->input->post('sub_key'));
+
+    $set['is_deleted'] = 'YES' ;
+    $set['status'] = 'InActive' ;
+    $where['id'] = $record_id ;
+
+    $flag = $this->Base_model->Update_Objects($table,$set,$where);
+
+    $this->Ajax['status'] = 1;
+    $this->Ajax['message'] = 'Success' ;
+
+    echo $this->AjaxResponse();
+  }
+
+  public function Restore_Record()
+  {
+    $table = base64_decode($this->input->post('main_key'));
+    $record_id = base64_decode($this->input->post('sub_key'));
+
+    $set['is_deleted'] = 'NO' ;
+    //$set['status'] = 'Active' ;
+    $where['id'] = $record_id ;
+
+    $flag = $this->Base_model->Update_Objects($table,$set,$where);
+
+    $this->Ajax['status'] = 1;
+    $this->Ajax['message'] = 'Success' ;
+
+    echo $this->AjaxResponse();
+  }
+
 
   public function _remap($method, $args = array())
   {

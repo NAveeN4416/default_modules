@@ -11,14 +11,22 @@ class Menu extends Base {
 	    $this->load->model('DB_model');
 	    $this->load->model('Menu_model');
 
-	  	$this->controller_path = "settings/menu";
+	  	$this->controller_path = "settings/menu/";
 	  	$this->controller = "menu";
 	  	$this->data = [] ;
 	}
 
 	public function index()
 	{
+		//$parents = $this->Menu_model->Get_ParentMenu();
 		$this->Load_View('menu/manage_menu');
+	}
+
+	public function Menu_Structure()
+	{
+		$this->data['menu_structure'] = $this->Menu_model->Get_MenuStructure();
+
+		$this->Load_View('menu/menu_structure',$this->data);
 	}
 
 	public function add_edit_menu()

@@ -24,6 +24,11 @@
         <button type="button" class="btn btn-sm btn-primary add_menu">
           <i class="fa fa-plus" aria-hidden="true"></i> Add Menu
         </button>
+        <a href="<?=base_url($this->controller_path)?>Menu_Structure" target="_blank">
+          <button type="button" class="btn btn-sm btn-primary">
+            <i class="fa fa-eye" aria-hidden="true"></i> Menu Structure
+          </button>
+        </a>
       </div>
       <br>
       <div class="card-body">

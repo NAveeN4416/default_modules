@@ -10,20 +10,20 @@
       <div class="modal-body">
                       <!-- form start -->
       <form role="form" id="submit_form" name="submit_form" onsubmit="Submit_Device()" action="#" enctype="multipart/form-data" method="post">
+        <input type="hidden" name="id" value="<?=$id?>">
         <div class="card-body">
           <div class="form-group">
-            <input type="text" onkeyup="Create_slug(this.value)" class="form-control" name="name" id="name" placeholder="Device Name" required>
+            <input type="text" onkeyup="Create_slug(this.value)" value="<?=@$name?>" class="form-control" name="name" id="name" placeholder="Device Name" required>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" name="icon_class" id="icon-class" placeholder="Icon  eg:fa fa-tv" required>
+            <input type="text" class="form-control" value="<?=@$icon_class?>" name="icon_class" id="icon-class" placeholder="Icon  eg:fa fa-tv" required>
             <sub>displays icon like this <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></sub>
-            
           </div>
           <div class="form-group">
             <select class="custom-select" required name="status">
               <option value="">--Select Status--</option>
-              <option value="1">Active</option>
-              <option value="2">InActive</option>
+              <option value="Active" <?=(@$status=='Active')?'selected':''?>>Active</option>
+              <option value="InActive" <?=(@$status=='InActive')?'selected':''?>>InActive</option>
             </select>
           </div>
           <div class="form-check">

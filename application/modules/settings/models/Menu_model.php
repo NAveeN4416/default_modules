@@ -17,7 +17,6 @@
 		return $this->db->get(ADMIN_MENU)->result_array();
 	}
 
-
 	public function Get_ParentMenu($id='')
 	{
 		$this->db->where('parent_id',0);
@@ -26,6 +25,17 @@
 			return $this->db->where('id',$id)->get(ADMIN_MENU)->row_array();
 
 		return $this->db->get(ADMIN_MENU)->result_array();
+	}
+
+	public function Get_MenuStructure()
+	{
+		$parent_structure = $this->Get_ParentMenu();
+
+		foreach ($parent_structure as $key => $parent) {
+			$parent_structure[$key]['child_menu'] = $this->db->where('parent_id',$parent['id'])->get(ADMIN_MENU)->result_array();
+		}
+
+		return $parent_structure ;
 	}
 
 	public function save_menu($data)

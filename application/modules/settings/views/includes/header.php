@@ -60,7 +60,10 @@
   </script>
 
   <style type="text/css">
-    body{
+    body {
+      background: #eee;
+      font-family: "times new roman", serif;
+      line-height: 30px;
       font-size: 16px !important
     }
   </style>

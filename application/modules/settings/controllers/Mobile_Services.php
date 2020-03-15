@@ -22,6 +22,9 @@ class Mobile_Services extends Base {
 	{
     	$this->data['services_list'] = $this->Mobile_Services_model->Get_Objects(MOBILE_APIS);
 
+    	//echo "<pre>"; print_r($this->data);exit;
+
+
     	$this->Load_View('mobile_services/services_list',$this->data);
 	}
 

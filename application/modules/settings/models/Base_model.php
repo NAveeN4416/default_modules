@@ -15,7 +15,6 @@
 		return $this->db->where('slug',$slug)->get($table)->num_rows();
 	}
 
-
 	public function Update_SiteDatabase($set)
 	{
 		// 1. Load Main database and update

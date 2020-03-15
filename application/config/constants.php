@@ -125,8 +125,6 @@ define("USER_INACTIVE", "SORRY YOUR STATUS IS INACTIVE !");
 define("LOGOUT_SUCCESS", "YOUR SESSION HAS BEEN ENDED ");
 
 
-
-
 /**
 * Controller paths
 *
@@ -134,3 +132,23 @@ define("LOGOUT_SUCCESS", "YOUR SESSION HAS BEEN ENDED ");
 define("AUTH_CONTROLLER_PATH", "authentication/auth/");
 define("ADMIN_CONTROLLER_PATH", "admin/");
 define("DEVELOPER_CONTROLLER_PATH", "settings/base");
+
+
+/**
+* API's  Constants
+*
+**/
+define("SUCCESS", "success");
+
+
+
+
+
+
+
+
+
+
+
+
+

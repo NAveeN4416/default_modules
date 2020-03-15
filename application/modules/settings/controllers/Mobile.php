@@ -11,7 +11,7 @@ class Mobile extends Base {
 	    $this->load->model('DB_model');
 	    $this->load->model('Mobile_Model');
 
-	  	$this->controller_path = "settings/mobile";
+	  	$this->controller_path = "settings/mobile/";
 	  	$this->controller = "mobile";
 	  	$this->data = [] ;
 	}
@@ -21,13 +21,13 @@ class Mobile extends Base {
     	$this->data['page_name'] = 'mobile_config' ;
     	$this->data['mobiles'] = $this->Mobile_Model->Get_Objects(MOBILE_DEVICES);
 
-    	$this->Load_View('mobile/mobile_config',$this->data);
+    	$this->Load_View('mobile/mobile_platforms',$this->data);
 	}
-
 
 	public function add_edit_mobile()
 	{
-    	$this->data['device'] = [] ;
+		$id = $this->input->post('id');
+    	$this->data = $this->Mobile_Model->Get_Object(MOBILE_DEVICES,['id'=>$id]) ;
 
     	$this->load->view("mobile/add_device",$this->data);
 	}
@@ -36,116 +36,54 @@ class Mobile extends Base {
 	{
 		$device = $this->input->post();
 
-		$flag = $this->Mobile_Model->save_device($device);
+		$flag = $this->Mobile_Model->Upsert_Object(MOBILE_DEVICES,$device);
 
 		$this->Ajax['message'] = "Success";
 
 		echo  $this->AjaxResponse();
 	}
 
-	public function GroupActivity()
+	public function Change_Device_Status()
 	{
 		$this->Ajax['status'] = 0;
 		$this->Ajax['message'] = "Something went wrong !";
 
-
 		$postdata = $this->input->post();
 
 		$set['status'] = $postdata['status'];
-		$where['id'] = $postdata['group_id'];
+		$where['id'] = $postdata['device_id'];
 		
-		$uflag = $this->Groups_model->update_group($set,$where);
+		$uflag = $this->Mobile_Model->Update_Objects(MOBILE_DEVICES,$set,$where);
 
 		if($uflag)
 		{
-			$this->Ajax['status'] = 1;
+			$this->Ajax['status'] = 1 ;
 			$this->Ajax['message'] = "Success";
 		}
 
 		echo $this->AjaxResponse();
 	}
 
-
-	public function Get_GroupUsers($group_id)
+	public function Edit_Configuration($device_id)
 	{
-		$this->data['group_details'] = $this->Groups_model->get_group($group_id);
-		$this->data['group_id'] = $group_id ;
+		$device = $this->Mobile_Model->Get_Object(MOBILE_DEVICES,['id'=>$device_id]);
+		$config = $device['mobile_configurations'][0];
 
-		$this->Load_View('groups/group_users',$this->data);
+		$this->data['device_id'] = $device_id ;
+		$this->data['device_name'] = $device['name'] ;
+		$this->data['config_dev'] = json_decode($config['configuration_dev'],True);
+		$this->data['config_prod'] = json_decode($config['configuration_prod'],True);
+
+		//echo "<pre>"; print_r($this->data);exit;
+
+		$this->Load_View('mobile/update_config',$this->data);
 	}
 
-
-	public function getgroups()
+	public function Update_Configuration()
 	{
-		$groups = $this->Groups_model->Get_groups();
-
-		$data = [] ;
-
-		foreach ($groups as $key => $group) {
-
-			$this->load->library('parser');
-
-			$actions = [
-							"edit_class" => "add_group",
-							"group_id"=> $group['id'],
-							"delete_class" => "delete_group" 
-						] ;
-
-			$actions = $this->parser->parse('groups/snippets/actions',$actions,TRUE);
-			$status = ($group['status']==1) ? 'checked' : '' ;
-
-			$row = [] ;
-
-			$row['group_name'] = $group['group_name'];
-			$row['status'] =  "<input onchange='GroupActivity(".$group['id'].")' id='group_status".$group['id']."' type='checkbox' ".$status." name='my-checkbox' data-bootstrap-switch data-toggle='toggle' data-on-text='On' data-off-color='warning' data-on-color='success' data-off-text='Off' data-handle-width='10'>"  ; //$group['status'];
-			$row['created_at'] = $group['created_at'];
-			$row['actions'] = $actions;
-
-			$data[] = $row ;
-		}
-
-		$this->Ajax['data'] = $data ;
-		$this->Ajax['recordsTotal'] = 10 ;
-		$this->Ajax['recordsFiltered'] = 10 ;
-
-		echo $this->AjaxResponse();
+		echo "<pre>"; 
+		print_r($_POST);
+		print_r($_FILES);
+		exit;
 	}
-
-
-	public function getusers($group_id)
-	{
-		$groups = $this->Groups_model->Get_groups();
-
-		$data = [] ;
-
-		foreach ($groups as $key => $group) {
-
-			$this->load->library('parser');
-
-			$actions = [
-							"edit_class" => "add_group",
-							"group_id"=> $group['id'],
-							"delete_class" => "delete_group" 
-						] ;
-
-			$actions = $this->parser->parse('groups/snippets/actions',$actions,TRUE);
-			$status = ($group['status']==1) ? 'checked' : '' ;
-
-			$row = [] ;
-
-			$row['group_name'] = $group['group_name'];
-			$row['status'] =  "<input onchange='GroupActivity(".$group['id'].")' id='group_status".$group['id']."' type='checkbox' ".$status." name='my-checkbox' data-bootstrap-switch data-toggle='toggle' data-on-text='On' data-off-color='warning' data-on-color='success' data-off-text='Off' data-handle-width='10'>"  ; //$group['status'];
-			$row['created_at'] = $group['created_at'];
-			$row['actions'] = $actions;
-
-			$data[] = $row ;
-		}
-
-		$this->Ajax['data'] = $data ;
-		$this->Ajax['recordsTotal'] = 10 ;
-		$this->Ajax['recordsFiltered'] = 10 ;
-
-		echo $this->AjaxResponse();
-	}
-
 }
