@@ -52,6 +52,7 @@ class Base extends CO_Controller {
 
   public function site_config()
   {
+    $this->data['page_name'] = 'site_config' ;
     $this->data['site_config'] = $this->DB_model->get_site_config();
     $this->data['page_name'] = 'site_config' ;
     $this->data['mobile_configs'] =  $this->DB_model->get_MobileConfig();

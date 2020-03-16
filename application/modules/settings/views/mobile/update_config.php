@@ -39,16 +39,40 @@
                   <div class="form-group col-md-4">
                     <label for="inputEmail4">Key</label>
                     <div id="dev_keys">
-                      <input type="text" class="form-control" required placeholder="eg : Password" name="dev_keys[]">
+                      <?php if($config_dev){ foreach ($config_dev as $key => $value) {                           
+                         if(file_exists($value))
+                          {  
+                            continue;
+                          } ?>
+                        <input type="text" class="form-control" value="<?=$key?>" placeholder="eg : Password" name="dev_keys[]"><br>
+                      <?php } } ?>
+                        <input type="text" class="form-control" placeholder="eg : Password" name="dev_keys[]">
                     </div>
                   </div>
-                  <div class="form-group col-md-4">
+                  <div class="form-group col-md-8">
                     <label for="inputEmail4">Values</label>
                     <div id="dev_values">
-                      <input type="text" class="form-control" required placeholder="eg: *******" name="dev_values[]">
+                      <?php 
+                        $selected_dev_files= []; 
+                        if($config_dev){
+                        foreach ($config_dev as $key => $value) { 
+                          if(file_exists($value))
+                          { 
+                            $selected_dev_files[] = $value ; 
+                            continue;
+                          } ?>
+                        <input type="text" class="form-control" value="<?=$value?>" placeholder="eg : Password" name="dev_values[]"><br>
+                      <?php } } ?>
+                      <input type="text" class="form-control" placeholder="eg: *******" name="dev_values[]">
                     </div>
                   </div>
                 </div>
+                <div class="form-row">
+                  <input type="file" name="dev_files[]" multiple>
+                </div>
+                  <?php foreach ($selected_dev_files as $key => $file) { ?>
+                    <a href="<?=base_url($value)?>"><?=$file?></a><br>
+                  <?php } ?>
               </div>
             </div>
              <div class="card">
@@ -66,16 +90,42 @@
                   <div class="form-group col-md-4">
                     <label for="inputEmail4">Key</label>
                     <div id="prod_keys">
-                      <input type="text" class="form-control" required placeholder="eg : Password" name="prod_keys[]">
+                      <?php if($config_prod){   foreach($config_prod as $key=>$value){
+                          if(file_exists($value))
+                          {  
+                            continue;
+                          } ?>
+                        <input type="text" class="form-control" value="<?=$key?>" placeholder="eg : Password" name="prod_keys[]"><br>
+                      <?php } } ?>
+                      <input type="text" class="form-control" placeholder="eg : Password" name="prod_keys[]">
                     </div>
                   </div>
-                  <div class="form-group col-md-4">
+                  <div class="form-group col-md-8">
                     <label for="inputEmail4">Values</label>
                     <div id="prod_values">
-                      <input type="text" class="form-control" required placeholder="eg: *******" name="prod_values[]">
+                      <?php 
+                        $selected_prod_files= [];
+                        if($config_prod){ 
+                        foreach($config_prod as $key=>$value){ 
+
+                          if(file_exists($value)){
+                            $selected_prod_files[] = $value;
+                            continue;
+                          }
+
+                      ?>
+                        <input type="text" class="form-control" value="<?=$value?>" placeholder="eg : Password" name="prod_values[]"><br>
+                      <?php } } ?>
+                      <input type="text" class="form-control" placeholder="eg: *******" name="prod_values[]">
                     </div>
                   </div>
                 </div>
+                <div class="form-row">
+                  <input type="file" name="prod_files[]" multiple>
+                </div>
+                <?php foreach ($selected_prod_files as $key => $file) { ?>
+                  <a href="<?=base_url($value)?>"><?=$file?></a><br>
+                <?php } ?>
               </div>
             </div>
 

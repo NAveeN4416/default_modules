@@ -25,26 +25,32 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-header">Settings</li>
           <li class="nav-item">
-            <a href="<?=base_url('settings/base/site_config')?>" class="nav-link">
+            <a href="<?=base_url('settings/base/site_config')?>" class="nav-link <?=(@$page_name=='site_config')?'active':''?>">
               <i class="nav-icon fa fa-cog"></i>
               <p>Configurations
               </p>
             </a>
           </li>
           <li class="nav-item">
+            <a href="<?=base_url('settings/mobile')?>" class="nav-link <?=(@$page_name=='mobile_platforms')?'active':''?>">
+              <i class="nav-icon fa fa-mobile" aria-hidden="true"></i>
+              <p>Mobile Platforms</p>
+            </a>
+          </li>
+          <!-- <li class="nav-item">
             <a href="<?=base_url('settings/mobile_authentications')?>" class="nav-link">
               <i class="nav-icon fa fa-key" aria-hidden="true"></i>
               <p>Mobile Authentications</p>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
-            <a href="<?=base_url('settings/mobile_services')?>" class="nav-link">
+            <a href="<?=base_url('settings/mobile_services')?>" class="nav-link <?=(@$page_name=='mobile_services')?'active':''?>">
               <i class="nav-icon fas fa-taxi"></i>
               <p>Mobile Services</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?=base_url('settings/database/db_constants')?>" class="nav-link">
+            <a href="<?=base_url('settings/database/db_constants')?>" class="nav-link <?=(@$page_name=='db_constants')?'active':''?>">
               <i class="nav-icon fa fa-bars"></i>
               <p>Database Constants <span class="badge badge-info right">2</span>
               </p>

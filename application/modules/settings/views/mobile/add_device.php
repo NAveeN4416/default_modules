@@ -10,7 +10,7 @@
       <div class="modal-body">
                       <!-- form start -->
       <form role="form" id="submit_form" name="submit_form" onsubmit="Submit_Device()" action="#" enctype="multipart/form-data" method="post">
-        <input type="hidden" name="id" value="<?=$id?>">
+        <input type="hidden" name="id" value="<?=@$id?>">
         <div class="card-body">
           <div class="form-group">
             <input type="text" onkeyup="Create_slug(this.value)" value="<?=@$name?>" class="form-control" name="name" id="name" placeholder="Device Name" required>

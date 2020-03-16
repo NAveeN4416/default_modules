@@ -16,15 +16,12 @@ class Mobile_Services extends Base {
 	  	$this->data = [] ;
 
 	  	$this->data['main_page'] = 'mobile_services' ;
+	  	$this->data['page_name'] = 'mobile_services' ;
 	}
 
 	public function index()
 	{
     	$this->data['services_list'] = $this->Mobile_Services_model->Get_Objects(MOBILE_APIS);
-
-    	//echo "<pre>"; print_r($this->data);exit;
-
-
     	$this->Load_View('mobile_services/services_list',$this->data);
 	}
 
@@ -68,11 +65,8 @@ class Mobile_Services extends Base {
 		echo $this->AjaxResponse();
 	}
 
-	public function Get_GroupUsers($group_id)
+	public function Get_Service_Timeline()
 	{
-		$this->data['group_details'] = $this->Groups_model->get_group($group_id);
-		$this->data['group_id'] = $group_id ;
-
-		$this->Load_View('groups/group_users',$this->data);
+		$this->Load_View('mobile_services/services_timeline');
 	}
 }

@@ -19,7 +19,11 @@
   <!-- Main content -->
   <section class="content">
     <div cass="row">
-      <a type="button" class="btn btn-primary" href="<?=base_url($this->controller_path)?>/add_edit_service"> + Add API
+      <a type="button" class="btn btn-primary" href="<?=base_url($this->controller_path)?>/add_edit_service"> 
+        + Add API
+      </a>
+      <a type="button" class="btn btn-primary" href="<?=base_url('settings/mobile_authentications')?>">
+        <i class="nav-icon fa fa-key" aria-hidden="true"></i>Authentications
       </a>
     </div><br>
     <div class="container-fluid">

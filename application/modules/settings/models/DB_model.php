@@ -53,7 +53,7 @@
 		$devices =  $this->db->where('status',1)->get(MOBILE_DEVICES)->result_array() ;
 
 		foreach ($devices as $key => $device) {
-			$config = $this->db->where('device_type',$device['id'])->get(MOBILE_CONFIG)->row_array();
+			$config = $this->db->where('device_id',$device['id'])->get(MOBILE_CONFIG)->row_array();
 
 			$devices[$key]['config'] = $config ;
 		}
