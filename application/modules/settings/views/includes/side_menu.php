@@ -32,6 +32,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="<?=base_url('settings/localization')?>" class="nav-link <?=(@$page_name=='localization')?'active':''?>">
+              <i class="nav-icon fa fa-language" aria-hidden="true"></i>
+              <p>Localization</p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="<?=base_url('settings/mobile')?>" class="nav-link <?=(@$page_name=='mobile_platforms')?'active':''?>">
               <i class="nav-icon fa fa-mobile" aria-hidden="true"></i>
               <p>Mobile Platforms</p>

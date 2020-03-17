@@ -55,3 +55,19 @@ ERROR - 2020-03-17 01:02:37 --> Severity: Warning --> Invalid argument supplied 
 ERROR - 2020-03-17 01:02:37 --> Severity: Warning --> Invalid argument supplied for foreach() C:\xampp\htdocs\default_modules\application\modules\settings\views\mobile\update_config.php 57
 ERROR - 2020-03-17 01:02:37 --> Severity: Warning --> Invalid argument supplied for foreach() C:\xampp\htdocs\default_modules\application\modules\settings\views\mobile\update_config.php 92
 ERROR - 2020-03-17 01:02:37 --> Severity: Warning --> Invalid argument supplied for foreach() C:\xampp\htdocs\default_modules\application\modules\settings\views\mobile\update_config.php 107
+ERROR - 2020-03-17 19:03:24 --> 404 Page Not Found: /index
+ERROR - 2020-03-17 19:03:24 --> 404 Page Not Found: /index
+ERROR - 2020-03-17 23:43:48 --> Severity: error --> Exception: Call to undefined method Localization::LoadView() C:\xampp\htdocs\default_modules\application\modules\settings\controllers\Localization.php 30
+ERROR - 2020-03-17 23:44:12 --> Severity: Notice --> Undefined variable: tables C:\xampp\htdocs\default_modules\application\modules\settings\views\localization\pages_list.php 33
+ERROR - 2020-03-17 23:44:12 --> Severity: Warning --> Invalid argument supplied for foreach() C:\xampp\htdocs\default_modules\application\modules\settings\views\localization\pages_list.php 33
+ERROR - 2020-03-17 23:44:46 --> Severity: Warning --> Invalid argument supplied for foreach() C:\xampp\htdocs\default_modules\application\modules\settings\views\localization\pages_list.php 33
+ERROR - 2020-03-17 23:45:09 --> Severity: Notice --> Undefined variable: tables C:\xampp\htdocs\default_modules\application\modules\settings\views\localization\pages_list.php 33
+ERROR - 2020-03-17 23:45:09 --> Severity: Warning --> Invalid argument supplied for foreach() C:\xampp\htdocs\default_modules\application\modules\settings\views\localization\pages_list.php 33
+ERROR - 2020-03-17 23:45:52 --> Severity: Notice --> Undefined variable: tables C:\xampp\htdocs\default_modules\application\modules\settings\views\localization\pages_list.php 33
+ERROR - 2020-03-17 23:45:52 --> Severity: Warning --> Invalid argument supplied for foreach() C:\xampp\htdocs\default_modules\application\modules\settings\views\localization\pages_list.php 33
+ERROR - 2020-03-17 19:55:41 --> Severity: error --> Exception: syntax error, unexpected '}' C:\xampp\htdocs\default_modules\application\modules\settings\controllers\Localization.php 66
+ERROR - 2020-03-17 20:02:21 --> Severity: error --> Exception: syntax error, unexpected ')', expecting identifier (T_STRING) C:\xampp\htdocs\default_modules\application\modules\settings\controllers\Localization.php 64
+ERROR - 2020-03-17 20:56:55 --> 404 Page Not Found: /index
+ERROR - 2020-03-17 20:56:55 --> 404 Page Not Found: /index
+ERROR - 2020-03-17 21:00:22 --> 404 Page Not Found: /index
+ERROR - 2020-03-17 21:00:23 --> 404 Page Not Found: /index

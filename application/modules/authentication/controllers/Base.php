@@ -116,7 +116,6 @@ class Base extends CO_Controller {
               $this->auth_vars->auth_user_id(),
               $this->auth_vars->auth_username(),
               $this->auth_vars->auth_email(),
-              $this->auth_vars->auth_email(),
               $this->auth_vars->is_active(),
               $this->auth_vars->is_superuser(),
               $this->auth_vars->auth_group(),

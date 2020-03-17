@@ -126,7 +126,7 @@
       $(".close").click();
 
       setTimeout(function(){
-        //location.reload();
+        location.reload();
       },2000);
     }
     else

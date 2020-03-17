@@ -1,0 +1,34 @@
+{
+    "index": {
+        "en": {
+            "address": "Address",
+            "home": "Home",
+            "contact_us": "Contact Us",
+            "details": "Details",
+            "images": "Images"
+        },
+        "ar": {
+            "address": "Address Arabic",
+            "home": "Home Arabic",
+            "contact_us": "Contact Us Arabic",
+            "details": "Details Arabic",
+            "images": "Images Arabic "
+        }
+    },
+    "products": {
+        "en": {
+            "home": "Home",
+            "contact_us": "Contact Us",
+            "details": "Details",
+            "images": "Images",
+            "address": "Address"
+        },
+        "ar": {
+            "home": "Home Arabic",
+            "contact_us": "Contact Us Arabic",
+            "details": "Details Arabic",
+            "images": "Images Arabic ",
+            "address": "Address Arabic"
+        }
+    }
+}
